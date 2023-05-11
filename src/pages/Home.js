@@ -12,6 +12,7 @@ const Home = () => {
   return (
     <>
       {/*features */}
+      <br></br>
       <FeaturesLeft
         heading="First featurette heading. It'll blow your mind."
         description="Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id
@@ -49,7 +50,7 @@ const Home = () => {
           marginBottom: "2rem",
         }}
       >
-        <h2 className="featurette-heading">Business Affiliates</h2>
+        <h2 className="featurette-heading" style={{marginTop: "0rem"}}>Business Affiliates</h2>
       </div>
       <Container className="marketing">
         <Row>

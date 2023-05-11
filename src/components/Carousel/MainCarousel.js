@@ -5,6 +5,12 @@ import { useState } from "react";
 import image1 from "../../Images/collage1.jpg";
 import image2 from "../../Images/collage2.jpg";
 import image3 from "../../Images/collage3.jpg";
+import {
+  faStore,
+  faCompassDrafting,
+  faCircleInfo,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const MainCarousel = (props) => {
   const [index, setIndex] = useState(0);
@@ -59,17 +65,15 @@ const MainCarousel = (props) => {
             <Stack direction="horizontal" gap={5} style={{display: "flex", justifyContent: "center"}}>
               <Button
                 variant="primary"
-                size="lg"
                 onClick={() => handleIndex(1)}
               >
-                Shop
+                Shop <FontAwesomeIcon icon={faStore} />
               </Button>
               <Button
                 variant="primary"
-                size="lg"
                 onClick={() => handleIndex(2)}
               >
-                Create
+                Create <FontAwesomeIcon icon={faCompassDrafting} />
               </Button>
             </Stack>
           </div>
@@ -97,10 +101,9 @@ const MainCarousel = (props) => {
             <p>
               <Button
                 variant="primary"
-                size="lg"
                 onClick={() => handleIndex(2)}
               >
-                Learn more
+                Learn more <FontAwesomeIcon icon={faCircleInfo} />
               </Button>
             </p>
           </div>

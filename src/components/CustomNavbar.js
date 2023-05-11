@@ -1,12 +1,4 @@
-import {
-  Navbar,
-  Nav,
-  Container,
-  Row,
-  Col,
-  Button,
-  Dropdown,
-} from "react-bootstrap";
+import { Navbar, Nav, Container, Row, Col, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../main.css";
 import {
@@ -59,22 +51,25 @@ const CustomNavbar = (props) => {
               </Navbar.Brand>
             </Col>
             <Col xs="auto" className="d-flex justify-content-end">
-              <Navbar.Toggle variant="outline-secondary" className="custom-navbar-toggle">
+              <Navbar.Toggle
+                variant="outline-secondary"
+                className="custom-navbar-toggle"
+              >
                 <FontAwesomeIcon icon={faCircleChevronDown} />
               </Navbar.Toggle>
               <Navbar.Collapse>
-                <Nav>
+                <Nav onClick={() => scrollToTop()}>
                   <Nav.Link onClick={() => handleIndex(0)} active={index === 0}>
                     &nbsp; Home
                   </Nav.Link>
                   <Nav.Link onClick={() => handleIndex(1)} active={index === 1}>
-                  &nbsp; Shop
+                    &nbsp; Shop
                   </Nav.Link>
                   <Nav.Link onClick={() => handleIndex(2)} active={index === 2}>
-                  &nbsp; Create
+                    &nbsp; Create
                   </Nav.Link>
                   <Nav.Link onClick={() => handleIndex(3)} active={index === 3}>
-                  &nbsp; About
+                    &nbsp; About
                   </Nav.Link>
                 </Nav>
               </Navbar.Collapse>

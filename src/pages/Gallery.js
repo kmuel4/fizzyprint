@@ -1,14 +1,22 @@
 import GraphicCard from "../components/GraphicCard/GraphicCard.js";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Gallery = () => {
   return (
     <>
-      <Container style={{ display: "flex", justifyContent: "center", marginBottom: "1rem", marginTop: "-2rem" }}>
-        <h2 className="featurette-heading">Shop Gallery</h2>
+      <Container
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginBottom: "3rem",
+          marginTop: "0rem",
+        }}
+      >
+        <h2 className="featurette-heading" style={{ marginTop: "1.1rem" }}>
+          Shop Gallery
+        </h2>
       </Container>
-
       <Container className="mx-auto" style={{ maxWidth: "1200px" }}>
         <Row>
           {/* Render 20 identical ones for demo purposes */}
@@ -19,6 +27,19 @@ const Gallery = () => {
           ))}
         </Row>
       </Container>
+      <Button
+      variant="success"
+        style={{
+          position: "fixed",
+          bottom: 0,
+          left: "50%",
+          transform: "translateX(-50%)",
+          zIndex: 9999,
+        }}
+        className="sticky"
+      >
+        Create
+      </Button>{" "}
     </>
   );
 };
