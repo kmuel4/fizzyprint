@@ -20,7 +20,7 @@ const Checkout = (props) => {
 
   return (
     <>
-      <Modal show={show} onHide={handleClose} animation={true} closeButton>
+      <Modal show={show} onHide={handleClose} animation={true}>
         <Modal.Header closeButton>
           <Modal.Title>Checkout</Modal.Title>
         </Modal.Header>

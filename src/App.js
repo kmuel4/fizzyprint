@@ -50,7 +50,7 @@ const App = () => {
       {/*continue scrolling arrow */}
       <ContinueArrow show={showArrow} />
 
-      <hr className="featurette-divider" style={{marginBottom: "2rem"}}/>
+      <hr className="featurette-divider" style={{marginBottom: "2rem", marginTop: "0rem"}}/>
 
       {/*show screens */}
       {showScreen(index)}
