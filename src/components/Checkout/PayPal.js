@@ -14,6 +14,7 @@ const PayPal = (props) => {
     props.checkoutIndex();
   };
 
+  //handle next screen
   const handleNext = () => {
     setShow(false);
     props.checkoutIndex(5);
