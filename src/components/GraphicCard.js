@@ -1,4 +1,4 @@
-import { Container, Card, Button } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../main.css";
 import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
@@ -7,8 +7,7 @@ import image1 from "../Images/image1.png"
 
 const GraphicCard = () => {
   return (
-    <Container>
-      <Card className="shadow"style={{ width: "18rem", marginBottom: "2.5rem" }}>
+      <Card className="graphic-card">
         <Card.Img
           variant="top"
           src={image1}
@@ -25,7 +24,6 @@ const GraphicCard = () => {
           </Button>
         </Card.Body>
       </Card>
-    </Container>
   );
 };
 

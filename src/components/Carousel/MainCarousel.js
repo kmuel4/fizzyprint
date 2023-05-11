@@ -62,14 +62,14 @@ const MainCarousel = (props) => {
                 size="lg"
                 onClick={() => handleIndex(1)}
               >
-                Browse
+                Shop
               </Button>
               <Button
                 variant="primary"
                 size="lg"
                 onClick={() => handleIndex(2)}
               >
-                Generate
+                Create
               </Button>
             </Stack>
           </div>
@@ -98,7 +98,7 @@ const MainCarousel = (props) => {
               <Button
                 variant="primary"
                 size="lg"
-                onClick={() => handleIndex(3)}
+                onClick={() => handleIndex(2)}
               >
                 Learn more
               </Button>

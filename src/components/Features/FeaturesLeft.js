@@ -8,8 +8,7 @@ const FeaturesLeft = (props) => {
     <Container>
       <Row className="featurette">
         <Col md={5}>
-          {/* Replace the SVG with an appropriate image */}
-          <Image src={image1} width="275px" height="auto" />
+          <Image src={image1} className="featurette-image"/>
         </Col>
         <Col md={7}>
           <h2 className="featurette-heading">{props.heading}</h2>

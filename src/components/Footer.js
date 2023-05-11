@@ -5,28 +5,44 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../main.css";
 
 const Footer = () => {
-
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: 'smooth',
+      behavior: "smooth",
     });
   };
 
   return (
-    <Container style={{marginBottom: "-2rem"}}>
+    <Container style={{ marginBottom: "-2rem" }}>
       <div className="d-flex justify-content-between w-100">
         <span>
-          &copy; 2023 Fizzy Prints, Inc. &middot; Privacy
-          &nbsp; &middot; Terms
+          &copy; 2023 Fizzy Prints, Inc. &middot; Privacy &nbsp; &middot; Terms
         </span>
 
         <div className="d-flex justify-content-end">
           <span>
-            <Button variant="secondary" onClick={scrollToTop}>
-              Back to top &nbsp;
-              <FontAwesomeIcon icon={faArrowTurnUp} />
+            <Button
+              variant="secondary"
+              onClick={scrollToTop}
+              style={{
+                maxHeight: "2.5rem",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
+              }}
+            >
+              <span
+                style={{
+                  display: "inline-block",
+                  maxWidth: "100%",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                Back to top&nbsp;
+                <FontAwesomeIcon icon={faArrowTurnUp} />
+              </span>
             </Button>
           </span>
         </div>
