@@ -1,5 +1,5 @@
 import GraphicCard from "../components/GraphicCard/GraphicCard.js";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Card } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Gallery = () => {
@@ -13,6 +13,7 @@ const Gallery = () => {
           marginTop: "0rem",
         }}
       >
+
         <h2 className="featurette-heading" style={{ marginTop: "1.1rem" }}>
           Shop Gallery
         </h2>
