@@ -110,4 +110,8 @@
     }
   }
 
-  
+  .outline-text {
+    background-color: rgba(0, 0, 0, 0.7); /* Set the background color and opacity */
+    color: white; /* Set the text color */
+    padding: 15px; /* Adjust the padding as needed */
+  }

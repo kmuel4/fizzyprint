@@ -3,14 +3,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../main.css";
 import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import image1 from "../Images/image1.png"
 
 const GraphicCard = () => {
   return (
     <Container>
-      <Card style={{ width: "18rem", marginBottom: "2.5rem" }}>
+      <Card className="shadow"style={{ width: "18rem", marginBottom: "2.5rem" }}>
         <Card.Img
           variant="top"
-          src="https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
+          src={image1}
           style={{ cursor: "pointer" }}
         />
         <Card.Body>

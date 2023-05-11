@@ -15,7 +15,7 @@ const Footer = () => {
   };
 
   return (
-    <Container>
+    <Container style={{marginBottom: "-2rem"}}>
       <div className="d-flex justify-content-between w-100">
         <span>
           &copy; 2023 Fizzy Prints, Inc. &middot; Privacy

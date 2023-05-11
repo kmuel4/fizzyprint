@@ -1,18 +1,24 @@
-import { Carousel, Button } from "react-bootstrap";
+import { Carousel, Button, Image, Stack } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../main.css";
-import {useState} from 'react';
+import { useState } from "react";
+import image1 from "../../Images/collage1.jpg";
+import image2 from "../../Images/collage2.jpg";
+import image3 from "../../Images/collage3.jpg";
 
 const MainCarousel = (props) => {
   const [index, setIndex] = useState(0);
   const handleIndex = (value) => {
     setIndex(value);
-    props.index(value);
+    props.index(index);
   };
 
   return (
     <Carousel style={{ backgroundColor: "grey", marginTop: "1.5rem" }}>
       <Carousel.Item>
+        <div className="d-flex justify-content-center">
+          <Image src={image1} alt="image1" className="mx-auto" height="550px" />
+        </div>
         <Carousel.Caption
           style={{
             display: "flex",
@@ -21,15 +27,20 @@ const MainCarousel = (props) => {
             height: "75%",
           }}
         >
-          <h1>Create custom A.I. prints for any event.</h1>
-          <p>
-            Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec
-            id elit non mi porta gravida at eget metus. Nullam id dolor id nibh
-            ultricies vehicula ut id elit.
-          </p>
+          <div className="outline-text">
+            <h1>Create custom A.I. prints for any event.</h1>
+            <p>
+              Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec
+              id elit non mi porta gravida at eget metus. Nullam id dolor id
+              nibh ultricies vehicula ut id elit.
+            </p>
+          </div>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
+        <div className="d-flex justify-content-center">
+          <Image src={image2} alt="image1" className="mx-auto" height="550px" />
+        </div>
         <Carousel.Caption
           style={{
             display: "flex",
@@ -38,23 +49,36 @@ const MainCarousel = (props) => {
             height: "75%",
           }}
         >
-          <h1>Select from our gallery or create your own.</h1>
-          <p>
-            Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec
-            id elit non mi porta gravida at eget metus. Nullam id dolor id nibh
-            ultricies vehicula ut id elit.
-          </p>
-          <p>
-            <Button variant="primary" size="lg" onClick={() => handleIndex(1)}>
-              Browse gallery
-            </Button>&nbsp;&nbsp;
-            <Button variant="primary" size="lg" onClick={() => handleIndex(2)}>
-              Generate
-            </Button>
-          </p>
+          <div className="outline-text">
+            <h1>Select from our gallery or create your own.</h1>
+            <p>
+              Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec
+              id elit non mi porta gravida at eget metus. Nullam id dolor id
+              nibh ultricies vehicula ut id elit.
+            </p>
+            <Stack direction="horizontal" gap={5} style={{display: "flex", justifyContent: "center"}}>
+              <Button
+                variant="primary"
+                size="lg"
+                onClick={() => handleIndex(1)}
+              >
+                Browse
+              </Button>
+              <Button
+                variant="primary"
+                size="lg"
+                onClick={() => handleIndex(2)}
+              >
+                Generate
+              </Button>
+            </Stack>
+          </div>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
+        <div className="d-flex justify-content-center">
+          <Image src={image3} alt="image1" className="mx-auto" height="550px" />
+        </div>
         <Carousel.Caption
           style={{
             display: "flex",
@@ -63,17 +87,23 @@ const MainCarousel = (props) => {
             height: "75%",
           }}
         >
-          <h1>Durable, high resolution prints.</h1>
-          <p>
-            Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec
-            id elit non mi porta gravida at eget metus. Nullam id dolor id nibh
-            ultricies vehicula ut id elit.
-          </p>
-          <p>
-            <Button variant="primary" size="lg" onClick={() => handleIndex(3)}>
-              Learn more
-            </Button>
-          </p>
+          <div className="outline-text">
+            <h1>Durable, high resolution prints.</h1>
+            <p>
+              Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec
+              id elit non mi porta gravida at eget metus. Nullam id dolor id
+              nibh ultricies vehicula ut id elit.
+            </p>
+            <p>
+              <Button
+                variant="primary"
+                size="lg"
+                onClick={() => handleIndex(3)}
+              >
+                Learn more
+              </Button>
+            </p>
+          </div>
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>
