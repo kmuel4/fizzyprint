@@ -7,7 +7,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState, useEffect } from "react";
-import Checkout from "./Checkout/Checkout";
 
 const CustomNavbar = (props) => {
   const scrollToTop = () => {
@@ -28,9 +27,8 @@ const CustomNavbar = (props) => {
     setIndex(props.currentIndex);
   }, [props.currentIndex]);
 
-  const [show, setShow] = useState(false);
-  const handleCheckout = (value) => {
-    setShow(value);
+  const handleCheckout = () => {
+    props.checkoutIndex(0);
   };
 
   return (
@@ -76,7 +74,7 @@ const CustomNavbar = (props) => {
             </Col>
             <Col className="d-flex justify-content-end">
               <Button
-                onClick={() => handleCheckout(true)}
+                onClick={() => handleCheckout()}
                 style={{ maxHeight: "2.4rem" }}
               >
                 <FontAwesomeIcon icon={faCartShopping} />
@@ -85,8 +83,6 @@ const CustomNavbar = (props) => {
           </Row>
         </Container>
       </Navbar>
-
-      <Checkout show={show} setShow={handleCheckout} />
     </>
   );
 };

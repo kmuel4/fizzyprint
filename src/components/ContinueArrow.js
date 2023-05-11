@@ -12,7 +12,7 @@ const ContinueArrow = (props) => {
 
   const handleScroll = () => {
     window.scrollTo({
-      top: "620",
+      top: "580",
       behavior: "auto",
     });
   };

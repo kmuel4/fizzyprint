@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Checkout = (props) => {
+const Beverage = (props) => {
   //handle modal
   const [show, setShow] = useState(true);
 
@@ -14,25 +14,24 @@ const Checkout = (props) => {
     props.checkoutIndex();
   };
 
-  //next
   const handleNext = () => {
     setShow(false);
-    props.checkoutIndex(1);
-  }
+    props.checkoutIndex(2);
+  };
 
   return (
     <>
-      <Modal show={show} onHide={handleClose} animation={true}>
+      <Modal show={show} onHide={handleClose} animation={false}>
         <Modal.Header closeButton>
-          <Modal.Title>Cart</Modal.Title>
+          <Modal.Title>Cart / Beverage</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <p>graphics in cart:</p>
-        <p>subtotal:</p>
+          <p>Choose beverage</p>
+          <p>subtotal:</p>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={()=>handleNext()}>
-            Beverage <FontAwesomeIcon icon={faArrowRight} />
+          <Button variant="primary" onClick={() => handleNext()}>
+            Review <FontAwesomeIcon icon={faArrowRight} />
           </Button>
         </Modal.Footer>
       </Modal>
@@ -40,4 +39,4 @@ const Checkout = (props) => {
   );
 };
 
-export default Checkout;
+export default Beverage;
