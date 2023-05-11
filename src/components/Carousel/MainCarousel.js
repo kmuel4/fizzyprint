@@ -70,7 +70,7 @@ const MainCarousel = (props) => {
                 Shop <FontAwesomeIcon icon={faStore} />
               </Button>
               <Button
-                variant="primary"
+                variant="success"
                 onClick={() => handleIndex(2)}
               >
                 Create <FontAwesomeIcon icon={faCompassDrafting} />
@@ -103,7 +103,7 @@ const MainCarousel = (props) => {
                 variant="primary"
                 onClick={() => handleIndex(2)}
               >
-                Learn more <FontAwesomeIcon icon={faCircleInfo} />
+                About <FontAwesomeIcon icon={faCircleInfo} />
               </Button>
             </p>
           </div>

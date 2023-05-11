@@ -12,7 +12,7 @@ const ContinueArrow = (props) => {
 
   const handleScroll = () => {
     window.scrollTo({
-      top: "550",
+      top: "620",
       behavior: "auto",
     });
   };
@@ -27,7 +27,7 @@ const ContinueArrow = (props) => {
       }}
     >
       {flag && (
-        <h1 style={{ position: "absolute", bottom: "1rem", fontSize: "3rem", zIndex: 9999 }}>
+        <h1 style={{ position: "absolute", bottom: "2rem", fontSize: "3rem", zIndex: 9999 }}>
           <FontAwesomeIcon
             icon={faAngleDown}
             size="xl"
