@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import Footer from "./components/Footer";
+import Home from "./pages/Home";
+import CustomNavbar from "./components/CustomNavbar";
+import MainCarousel from "./components/Carousel/MainCarousel";
+import {useState} from 'react';
+import Gallery from "./pages/Gallery";
+import About from "./pages/About";
 
-function App() {
+const App = () => {
+  const [index, setIndex] = useState(0);
+
+  const showScreen = (value) => {
+    switch(value){
+      case 0: 
+        return <Home/>
+      case 1:
+          return <Gallery/>
+          //need generate page
+      case 3:
+          return <About/>
+      default:
+          return <Home/>
+        
+    }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {/*nav bar */}
+      <CustomNavbar index={setIndex} currentIndex={index}/>
+
+      {/*carousel */}
+      <MainCarousel index={setIndex}/>
+
+      {showScreen(index)}
+
+      {/*footer */}
+      <Footer />
+    </>
   );
-}
+};
 
 export default App;
