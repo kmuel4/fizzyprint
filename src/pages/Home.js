@@ -4,6 +4,9 @@ import "../main.css";
 import Marketing from "../components/Marketing";
 import FeaturesLeft from "../components/Features/FeaturesLeft";
 import FeaturesRight from "../components/Features/FeaturesRight";
+import budlight from "../Images/budlight.png";
+import vistaprint from "../Images/vistaprint.jpg";
+import amazon from "../Images/amazon.jpg";
 
 const Home = () => {
   return (
@@ -57,6 +60,7 @@ const Home = () => {
       risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo
       cursus magna."
             site="https://www.budlight.com/seltzers"
+            image={budlight}
           />
           <Marketing
             company="VistaPrint"
@@ -65,6 +69,7 @@ const Home = () => {
       risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo
       cursus magna."
             site="https://www.vistaprint.com"
+            image={vistaprint}
           />
           <Marketing
             company="Amazon"
@@ -73,6 +78,7 @@ const Home = () => {
       risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo
       cursus magna."
             site="https://www.amazon.com/"
+            image={amazon}
           />
         </Row>
       </Container>

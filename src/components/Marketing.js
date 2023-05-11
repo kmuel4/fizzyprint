@@ -11,8 +11,10 @@ const Marketing = (props) => {
         <Figure.Image
           width={140}
           height={140}
-          src="https://via.placeholder.com/140x140"
+          src={props.image}
           roundedCircle
+          className="shadow"
+          fluid
         />
         <Figure.Caption>
           <h2>{props.company}</h2>
@@ -21,7 +23,7 @@ const Marketing = (props) => {
           </p>
           <p>
             <Button variant="primary" href={props.site} target="_blank">
-              View details <FontAwesomeIcon icon={faRightToBracket} />
+              Visit site <FontAwesomeIcon icon={faRightToBracket} />
             </Button>
           </p>
         </Figure.Caption>

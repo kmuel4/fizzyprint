@@ -8,7 +8,7 @@ const FeaturesLeft = (props) => {
     <Container>
       <Row className="featurette">
         <Col md={5}>
-          <Image src={image1} className="featurette-image"/>
+          <Image src={image1} rounded className="featurette-image"/>
         </Col>
         <Col md={7}>
           <h2 className="featurette-heading">{props.heading}</h2>

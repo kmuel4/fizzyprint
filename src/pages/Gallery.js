@@ -1,4 +1,4 @@
-import GraphicCard from "../components/GraphicCard";
+import GraphicCard from "../components/GraphicCard/GraphicCard.js";
 import { Container, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 

@@ -12,7 +12,7 @@ const FeaturesRight = (props) => {
           <p className="lead">{props.description}</p>
         </Col>
         <Col md={5}>
-          <Image className="featurette-image" src={image1} />
+          <Image rounded className="featurette-image" src={image1} />
         </Col>
       </Row>
       <hr className="featurette-divider" />

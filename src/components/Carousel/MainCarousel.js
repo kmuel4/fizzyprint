@@ -14,7 +14,7 @@ const MainCarousel = (props) => {
   };
 
   return (
-    <Carousel style={{ backgroundColor: "grey", marginTop: "1.5rem" }}>
+    <Carousel style={{ backgroundColor: "grey", marginTop: "4rem" }}>
       <Carousel.Item>
         <div className="d-flex justify-content-center">
           <Image src={image1} alt="image1" className="mx-auto" height="550px" />
