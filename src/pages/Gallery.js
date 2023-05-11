@@ -1,8 +1,6 @@
 import GraphicCard from "../components/GraphicCard/GraphicCard.js";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { faCompassDrafting } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Gallery = () => {
   return (
@@ -29,21 +27,6 @@ const Gallery = () => {
           ))}
         </Row>
       </Container>
-      <Button
-        variant="success"
-        style={{
-          position: "fixed",
-          bottom: 0,
-          left: "50%",
-          width: "50%",
-          transform: "translateX(-50%)",
-          zIndex: 9999,
-        }}
-        className="sticky"
-        size="lg"
-      >
-        Create <FontAwesomeIcon icon={faCompassDrafting} />
-      </Button>
     </>
   );
 };

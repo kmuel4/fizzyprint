@@ -2,16 +2,17 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import CustomNavbar from "./components/CustomNavbar";
 import MainCarousel from "./components/Carousel/MainCarousel";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Gallery from "./pages/Gallery";
 import About from "./pages/About";
-import ContinueArrow from "./components/ContinueArrow";
 import Checkout from "./components/Checkout/Checkout";
 import Beverage from "./components/Checkout/Beverage";
 import Review from "./components/Checkout/Review";
 import PayPal from "./components/Checkout/PayPal";
 import Shipping from "./components/Checkout/Shipping";
 import Receipt from "./components/Checkout/Receipt";
+import Survey from "./pages/Survey";
+import SignUp from "./pages/SignUp";
 
 const App = () => {
   //handle screen idnex
@@ -23,8 +24,6 @@ const App = () => {
       case 1:
         return <Gallery />;
       case 2:
-        return <Gallery />;
-      case 3:
         return <About />;
       default:
         return <Home />;
@@ -47,24 +46,14 @@ const App = () => {
         return <PayPal checkoutIndex={setCheckoutIndex} />;
       case 5:
         return <Receipt checkoutIndex={setCheckoutIndex} />;
+      case 6:
+        return <Survey checkoutIndex={setCheckoutIndex} />;
+      case 7:
+        return <SignUp checkoutIndex={setCheckoutIndex} />;
       default:
         return;
     }
   };
-  //show scroll arrow
-  const [showArrow, setShowArrow] = useState(false);
-  useEffect(() => {
-    const handleScroll = () => {
-      const top = window.scrollY !== 0;
-      setShowArrow(!top);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   return (
     <>
@@ -73,17 +62,18 @@ const App = () => {
         index={setIndex}
         currentIndex={index}
         checkoutIndex={setCheckoutIndex}
+        handleModal={setCheckoutIndex}
       />
 
       {/*carousel */}
-      <MainCarousel index={setIndex} />
+      <MainCarousel index={setIndex} handleModal={setCheckoutIndex}/>
 
-      {/*continue scrolling arrow */}
+      {/*continue scrolling arrow 
       <ContinueArrow show={showArrow} />
-
+*/}
       <hr
         className="featurette-divider"
-        style={{ marginBottom: "2rem", marginTop: "0rem" }}
+        style={{ marginBottom: "2rem", marginTop: "1rem" }}
       />
 
       {/*show screens */}

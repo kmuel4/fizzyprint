@@ -1,7 +1,6 @@
 import { Container, Row, Col, Image } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../main.css";
-import image1 from "../../Images/image4.png";
 
 const FeaturesRight = (props) => {
   return (
@@ -12,7 +11,7 @@ const FeaturesRight = (props) => {
           <p className="lead">{props.description}</p>
         </Col>
         <Col md={5}>
-          <Image rounded className="featurette-image" src={image1} />
+          <Image rounded className="featurette-image" src={props.image} />
         </Col>
       </Row>
       <hr className="featurette-divider" />

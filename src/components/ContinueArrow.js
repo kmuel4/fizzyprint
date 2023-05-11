@@ -32,7 +32,7 @@ const ContinueArrow = (props) => {
         <h1
           style={{
             position: "absolute",
-            bottom: "18.5rem",
+            bottom: "25%",
             fontSize: "2.5rem",
             zIndex: 9999,
           }}

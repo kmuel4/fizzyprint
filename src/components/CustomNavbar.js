@@ -64,9 +64,6 @@ const CustomNavbar = (props) => {
                     &nbsp; Shop
                   </Nav.Link>
                   <Nav.Link onClick={() => handleIndex(2)} active={index === 2}>
-                    &nbsp; Create
-                  </Nav.Link>
-                  <Nav.Link onClick={() => handleIndex(3)} active={index === 3}>
                     &nbsp; About
                   </Nav.Link>
                 </Nav>

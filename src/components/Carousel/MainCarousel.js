@@ -9,6 +9,7 @@ import {
   faStore,
   faCompassDrafting,
   faCircleInfo,
+  faPaperPlane,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -17,6 +18,10 @@ const MainCarousel = (props) => {
   const handleIndex = (value) => {
     setIndex(value);
     props.index(index);
+  };
+
+  const handleModal = (value) => {
+    props.handleModal(value);
   };
 
   return (
@@ -34,12 +39,18 @@ const MainCarousel = (props) => {
           }}
         >
           <div className="outline-text">
-            <h1>Create custom A.I. prints for any event.</h1>
+            <h1>Get unique A.I. graphics on your favorite seltzer.</h1>
             <p>
-              Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec
-              id elit non mi porta gravida at eget metus. Nullam id dolor id
-              nibh ultricies vehicula ut id elit.
+              Choose any graphic from our unique and limited collection. Don't like what
+              you see? Sign up for emails and we'll send you a message when a new collection
+              drops.
             </p>
+            <Button
+                variant="primary"
+                onClick={() => handleModal(7)}
+              >
+                Sign up <FontAwesomeIcon icon={faPaperPlane} />
+              </Button>
           </div>
         </Carousel.Caption>
       </Carousel.Item>
@@ -56,11 +67,10 @@ const MainCarousel = (props) => {
           }}
         >
           <div className="outline-text">
-            <h1>Select from our gallery or create your own.</h1>
+            <h1>Browse our limited edition graphics in the Gallery</h1>
             <p>
-              Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec
-              id elit non mi porta gravida at eget metus. Nullam id dolor id
-              nibh ultricies vehicula ut id elit.
+              We generate our graphics based on what YOU want. Take a Survey
+              to have an impact on what graphics we print next in our next collection.
             </p>
             <Stack direction="horizontal" gap={5} style={{display: "flex", justifyContent: "center"}}>
               <Button
@@ -71,9 +81,9 @@ const MainCarousel = (props) => {
               </Button>
               <Button
                 variant="success"
-                onClick={() => handleIndex(2)}
+                onClick={() => handleModal(6)}
               >
-                Create <FontAwesomeIcon icon={faCompassDrafting} />
+                Survey <FontAwesomeIcon icon={faCompassDrafting} />
               </Button>
             </Stack>
           </div>
@@ -94,14 +104,13 @@ const MainCarousel = (props) => {
           <div className="outline-text">
             <h1>Durable, high resolution prints.</h1>
             <p>
-              Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec
-              id elit non mi porta gravida at eget metus. Nullam id dolor id
-              nibh ultricies vehicula ut id elit.
+              Our prints are [blank] and [blank] to ensure that each can has a high-definition
+              graphic and a waterproof finish.
             </p>
             <p>
               <Button
                 variant="primary"
-                onClick={() => handleIndex(2)}
+                onClick={() => handleIndex(3)}
               >
                 About <FontAwesomeIcon icon={faCircleInfo} />
               </Button>

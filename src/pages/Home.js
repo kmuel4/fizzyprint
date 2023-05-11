@@ -7,6 +7,10 @@ import FeaturesRight from "../components/Features/FeaturesRight";
 import budlight from "../Images/budlight.png";
 import vistaprint from "../Images/vistaprint.jpg";
 import amazon from "../Images/amazon.jpg";
+import image1 from "../Images/image7.png";
+import image2 from "../Images/image4.png";
+import image3 from "../Images/image9.png";
+import image4 from "../Images/image8.png";
 
 const Home = () => {
   return (
@@ -19,6 +23,7 @@ const Home = () => {
       ligula porta felis euismod semper. Praesent commodo cursus magna,
       vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus
       commodo."
+        image={image1}
       />
       <FeaturesRight
         heading="Oh yeah, it's that good. See for yourself."
@@ -26,6 +31,7 @@ const Home = () => {
   Vestibulum id ligula porta felis euismod semper. Praesent commodo 
   cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus 
   ac cursus commodo."
+        image={image2}
       />
       <FeaturesLeft
         heading="Mind = Blown, check this out."
@@ -33,6 +39,7 @@ const Home = () => {
   Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus 
   magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus 
   commodo."
+        image={image3}
       />
       <FeaturesRight
         heading="And lastly, this one. Checkmate."
@@ -40,6 +47,7 @@ const Home = () => {
   Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus 
   magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus 
   commodo."
+        image={image4}
       />
 
       {/*marketing */}
@@ -50,7 +58,9 @@ const Home = () => {
           marginBottom: "2rem",
         }}
       >
-        <h2 className="featurette-heading" style={{marginTop: "0rem"}}>Business Affiliates</h2>
+        <h2 className="featurette-heading" style={{ marginTop: "0rem" }}>
+          Business Affiliates
+        </h2>
       </div>
       <Container className="marketing">
         <Row>
@@ -83,7 +93,6 @@ const Home = () => {
           />
         </Row>
       </Container>
-
     </>
   );
 };
