@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Modal } from "react-bootstrap";
+import { Button, Modal, Form, InputGroup, Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const SignUp = (props) => {
@@ -12,6 +12,12 @@ const SignUp = (props) => {
     props.checkoutIndex();
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    //triggle toast here
+    handleClose();
+  }
+
   return (
     <>
       <Modal
@@ -20,17 +26,34 @@ const SignUp = (props) => {
         animation={true}
         fullscreen={false}
       >
-        <Modal.Header closeButton>
-          <Modal.Title>Survey</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <p>well give you an email reminder when new graphics release</p>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button style={{ marginLeft: "1rem" }} onClick={() => handleClose()}>
-            Submit
-          </Button>
-        </Modal.Footer>
+        <Form onSubmit={handleSubmit}>
+          <Modal.Header closeButton>
+            <Modal.Title>Sign up now!</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Container>
+              <Form.Text>
+                For exclusive offers and notifications on new collections.
+              </Form.Text>
+              <InputGroup>
+                <Form.Control type="email" placeholder="example@email.com" required/>
+                <InputGroup.Text>
+                  <Button type="submit">Subscribe</Button>
+                </InputGroup.Text>
+              </InputGroup>
+            </Container>
+            <Container style={{display: "flex", justifyContent: "center", marginTop: "1rem"}}>
+              <Button
+                style={{ marginLeft: "1rem" }}
+                onClick={() => handleClose()}
+                size="sm"
+                variant="secondary"
+              >
+                No Thanks
+              </Button>
+            </Container>
+          </Modal.Body>
+        </Form>
       </Modal>
     </>
   );
