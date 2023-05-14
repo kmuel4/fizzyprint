@@ -8,7 +8,6 @@ import {
   Button,
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import image1 from "../../Images/image1.png";
 import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -40,7 +39,7 @@ const PreviewModal = (props) => {
               fluid
               rounded
               variant="top"
-              src={image1}
+              src={props.image}
               onClick={() => setShow(true)}
             />
           </Container>
@@ -49,7 +48,7 @@ const PreviewModal = (props) => {
           <Container style={{ display: "flex", justifyContent: "center" }}>
             <InputGroup style={{ maxWidth: "6rem" }}>
               <InputGroup.Text>$</InputGroup.Text>
-              <Form.Control placeholder="4.99" disabled />
+              <Form.Control placeholder={props.price} disabled />
             </InputGroup>
             <Button style={{ marginLeft: "1rem" }}>
               <FontAwesomeIcon icon={faCartPlus} />

@@ -3,11 +3,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../../main.css";
 import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import image1 from "../../Images/image1.png";
 import { useState } from "react";
 import PreviewModal from "./PreviewModal";
 
-const GraphicCard = () => {
+const GraphicCard = (props) => {
   const [show, setShow] = useState(false);
   const handlePreviewModal = () => {
     setShow(true);
@@ -18,14 +17,14 @@ const GraphicCard = () => {
         <div className="image-container">
           <Card.Img
             variant="top"
-            src={image1}
+            src={props.image}
             className="radial-blur"
             style={{ cursor: "zoom-in" }}
             onClick={() => handlePreviewModal()}
           />
         </div>
         <Card.Body>
-          <Card.Title>Graphic title</Card.Title>
+          <Card.Title>{props.title}</Card.Title>
           <Card.Text>
             Some quick example text to build on the card title and make up the
             bulk of the card's content.
@@ -35,7 +34,7 @@ const GraphicCard = () => {
           </Button>
         </Card.Body>
       </Card>
-      <PreviewModal show={show} setShow={setShow} />
+      <PreviewModal show={show} setShow={setShow} image={props.image} price={props.price}/>
     </>
   );
 };
