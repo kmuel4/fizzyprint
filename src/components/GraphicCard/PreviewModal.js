@@ -27,9 +27,13 @@ const PreviewModal = (props) => {
     }
   }, [props.show]);
 
+  const handleAdd = () => {
+    props.add();
+  }
+
   return (
     <>
-      <Modal show={show} onHide={handleClose} animation={true} closeButton>
+      <Modal show={show} onHide={handleClose} animation={true}>
         <Modal.Header closeButton>
           <Modal.Title>Graphic</Modal.Title>
         </Modal.Header>
@@ -50,7 +54,7 @@ const PreviewModal = (props) => {
               <InputGroup.Text>$</InputGroup.Text>
               <Form.Control placeholder={props.price} disabled />
             </InputGroup>
-            <Button style={{ marginLeft: "1rem" }}>
+            <Button style={{ marginLeft: "1rem" }} onClick={handleAdd}>
               <FontAwesomeIcon icon={faCartPlus} />
             </Button>
           </Container>

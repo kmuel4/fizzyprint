@@ -14,7 +14,91 @@ import Receipt from "./components/Checkout/Receipt";
 import Survey from "./pages/Survey";
 import SignUp from "./pages/SignUp";
 
+import image1 from "./Images/image1.png";
+import image2 from "./Images/image2.png";
+import image3 from "./Images/image3.png";
+import image4 from "./Images/image4.png";
+import image5 from "./Images/image5.png";
+import image6 from "./Images/image6.png";
+import image7 from "./Images/image7.png";
+import image8 from "./Images/image8.png";
+import image9 from "./Images/image9.png";
+
+//hardcode database for graphics
+const cards = [
+  {
+    image: image1,
+    title: "Space Kitty Baller",
+    desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    price: 4.99,
+    id: 1,
+  },
+  {
+    image: image2,
+    title: "Large Purple Fish",
+    desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    price: 4.99,
+    id: 2,
+  },
+  {
+    image: image3,
+    title: "Royal Capybara",
+    desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    price: 4.99,
+    id: 3,
+  },
+  {
+    image: image4,
+    title: "Alien Surfer",
+    desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    price: 4.99,
+    id: 4,
+  },
+  {
+    image: image5,
+    title: "Abstract Space Dinner",
+    desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    price: 4.99,
+    id: 5,
+  },
+  {
+    image: image6,
+    title: "Nebula Symphony",
+    desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    price: 4.99,
+    id: 6,
+  },
+  {
+    image: image7,
+    title: "Fat Space Man",
+    desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    price: 4.99,
+    id: 7,
+  },
+  {
+    image: image8,
+    title: "Panda Alechemy",
+    desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    price: 4.99,
+    id: 8,
+  },
+  {
+    image: image9,
+    title: "Cosmo Soup",
+    desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    price: 4.99,
+    id: 9,
+  },
+];
+
 const App = () => {
+
+  //cart
+  const [cartItems, setCartItems] = useState([]);
+  const handleAdd = (value) => {
+    setCartItems([...cartItems, value]);
+  };
+
   //handle screen idnex
   const [index, setIndex] = useState(0);
   const showScreen = (value) => {
@@ -22,7 +106,7 @@ const App = () => {
       case 0:
         return <Home />;
       case 1:
-        return <Gallery />;
+        return <Gallery cards={cards} add={handleAdd}/>;
       case 2:
         return <About />;
       default:
@@ -35,7 +119,7 @@ const App = () => {
   const checkoutScreen = (value) => {
     switch (value) {
       case 0:
-        return <Checkout checkoutIndex={setCheckoutIndex} />;
+        return <Checkout checkoutIndex={setCheckoutIndex} cart={cartItems} cards={cards}/>;
       case 1:
         return <Beverage checkoutIndex={setCheckoutIndex} />;
       case 2:

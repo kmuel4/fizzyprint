@@ -18,7 +18,9 @@ const Checkout = (props) => {
   const handleNext = () => {
     setShow(false);
     props.checkoutIndex(1);
-  }
+  };
+
+  console.log(props.cart);
 
   return (
     <>
@@ -27,11 +29,16 @@ const Checkout = (props) => {
           <Modal.Title>Cart</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <p>graphics in cart:</p>
-        <p>subtotal:</p>
+          <p>Graphics in cart:</p>
+          <ul>
+            {props.cart.map((item, index) => (
+              <li key={index + 1}>{item.toString()}</li>
+            ))}
+          </ul>
+          <p>subtotal:</p>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={()=>handleNext()}>
+          <Button variant="primary" onClick={() => handleNext()}>
             Beverage <FontAwesomeIcon icon={faArrowRight} />
           </Button>
         </Modal.Footer>
