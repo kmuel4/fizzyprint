@@ -92,11 +92,15 @@ const cards = [
 ];
 
 const App = () => {
-
   //cart
   const [cartItems, setCartItems] = useState([]);
   const handleAdd = (value) => {
     setCartItems([...cartItems, value]);
+  };
+
+  const handleRemove = (value) => {
+    const updatedCartItems = cartItems.filter((item) => item !== value);
+    setCartItems(updatedCartItems);
   };
 
   //handle screen idnex
@@ -106,7 +110,7 @@ const App = () => {
       case 0:
         return <Home />;
       case 1:
-        return <Gallery cards={cards} add={handleAdd}/>;
+        return <Gallery cards={cards} add={handleAdd} remove={handleRemove} />;
       case 2:
         return <About />;
       default:
@@ -119,7 +123,13 @@ const App = () => {
   const checkoutScreen = (value) => {
     switch (value) {
       case 0:
-        return <Checkout checkoutIndex={setCheckoutIndex} cart={cartItems} cards={cards}/>;
+        return (
+          <Checkout
+            checkoutIndex={setCheckoutIndex}
+            cart={cartItems}
+            cards={cards}
+          />
+        );
       case 1:
         return <Beverage checkoutIndex={setCheckoutIndex} />;
       case 2:
@@ -150,7 +160,7 @@ const App = () => {
       />
 
       {/*carousel */}
-      <MainCarousel index={setIndex} handleModal={setCheckoutIndex}/>
+      <MainCarousel index={setIndex} handleModal={setCheckoutIndex} />
 
       {/*continue scrolling arrow 
       <ContinueArrow show={showArrow} />

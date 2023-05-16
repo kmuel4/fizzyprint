@@ -9,6 +9,10 @@ const Gallery = (props) => {
     props.add(value);
   }
 
+  const handleRemove = (value) => {
+    props.remove(value);
+  }
+
   return (
     <>
       <Container
@@ -33,7 +37,8 @@ const Gallery = (props) => {
                 desc={card.desc}
                 price={card.price}
                 id={card.id}
-                addToCart={handleAdd}
+                add={handleAdd}
+                remove={handleRemove}
               />
             </Col>
           ))}

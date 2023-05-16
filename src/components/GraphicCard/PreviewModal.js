@@ -8,7 +8,7 @@ import {
   Button,
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
+import { faCartPlus, faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const PreviewModal = (props) => {
@@ -29,7 +29,22 @@ const PreviewModal = (props) => {
 
   const handleAdd = () => {
     props.add();
-  }
+  };
+
+  const handleRemove = () => {
+    props.remove();
+  };
+
+  const [add, setAdd] = useState(false);
+  const handleClick = () => {
+    if (!add) {
+      handleAdd();
+    }
+    else{
+      handleRemove();
+    }
+    setAdd(!add);
+  };
 
   return (
     <>
@@ -54,8 +69,14 @@ const PreviewModal = (props) => {
               <InputGroup.Text>$</InputGroup.Text>
               <Form.Control placeholder={props.price} disabled />
             </InputGroup>
-            <Button style={{ marginLeft: "1rem" }} onClick={handleAdd}>
-              <FontAwesomeIcon icon={faCartPlus} />
+            <Button style={{ marginLeft: "1rem" }} onClick={handleClick} variant={!add ? "primary" : "success"}>
+              {!add ? (
+                <FontAwesomeIcon icon={faCartPlus} />
+              ) : (
+                <>
+                  <FontAwesomeIcon icon={faCircleCheck} />
+                </>
+              )}{" "}
             </Button>
           </Container>
         </Modal.Footer>

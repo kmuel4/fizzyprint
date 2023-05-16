@@ -13,13 +13,20 @@ const GraphicCard = (props) => {
   };
 
   const handleAdd = () => {
-    props.addToCart(props.id);
+    props.add(props.id);
+  };
+
+  const handleRemove = () => {
+    props.remove(props.id);
   };
 
   const [add, setAdd] = useState(false);
   const handleClick = () => {
     if (!add) {
       handleAdd();
+    }
+    else{
+      handleRemove();
     }
     setAdd(!add);
   };
@@ -51,6 +58,7 @@ const GraphicCard = (props) => {
         image={props.image}
         price={props.price}
         add={handleAdd}
+        remove={handleRemove}
       />
     </>
   );
