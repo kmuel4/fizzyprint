@@ -21,28 +21,28 @@ const CheckoutContents = (props) => {
     <Container>
       <Row>
         {props.cart.map((item) => {
-          // Find cards using cart IDs
+          // find cards using cart IDs
           const card = props.cards.find((card) => card.id === item);
 
-          // Print the card info
+          // print card info
           return (
             <Col key={item} xs={12} sm={6} md={4} lg={3}>
               <Card className="graphic-card">
                 <div className="image-container">
-                  {/* Graphic */}
+                  {/* graphic */}
                   <Card.Img variant="top" src={card.image} />
                 </div>
                 <Card.Body>
-                  {/* Title */}
-                  <Card.Title>{card.title}</Card.Title>
-                  {/* Price */}
+                  {/* title */}
+                  <Card.Title className="text-truncate">{card.title}</Card.Title>
+                  {/* price */}
                   <InputGroup
                     style={{ maxWidth: "6rem", marginBottom: ".5rem" }}
                   >
                     <InputGroup.Text>$</InputGroup.Text>
                     <Form.Control placeholder={card.price} disabled />
                   </InputGroup>
-                  {/* Remove button */}
+                  {/* remove button */}
                   <Button
                     className="w-100"
                     variant="danger"
