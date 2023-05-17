@@ -1,37 +1,29 @@
-import { useState } from "react";
-import { Button, Modal } from "react-bootstrap";
+import { Container, Card, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Receipt = (props) => {
-  //handle modal
-  const [show, setShow] = useState(true);
-
-  //close modal
-  const handleClose = () => {
-    setShow(false);
-    props.checkoutIndex();
-  };
-
-  const handleNext = () => {
-    setShow(false);
-    props.checkoutIndex();
-  }
-
   return (
     <>
-      <Modal show={show} onHide={handleClose} animation={false}>
-        <Modal.Header closeButton>
-          <Modal.Title>Cart / Beverage / Review / Shipping / PayPal / Receipt</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-        <p>Receipt</p>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" onClick={()=>handleNext()}>
-            Finish
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <Container fluid>
+        <Card
+          style={{
+            paddingTop: "2rem",
+            minHeight: "100%",
+          }}
+        >
+          {/*title */}
+          <Container
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              marginBottom: "1rem",
+            }}
+          >
+            <h2 className="featurette-heading">Receipt</h2>
+          </Container>
+          <Button onClick={()=> props.close()}>finish</Button>
+        </Card>
+      </Container>
     </>
   );
 };

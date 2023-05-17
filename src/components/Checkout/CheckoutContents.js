@@ -34,7 +34,9 @@ const CheckoutContents = (props) => {
                 </div>
                 <Card.Body>
                   {/* title */}
-                  <Card.Title className="text-truncate">{card.title}</Card.Title>
+                  <Card.Title className="text-truncate">
+                    {card.title}
+                  </Card.Title>
                   {/* price */}
                   <InputGroup
                     style={{ maxWidth: "6rem", marginBottom: ".5rem" }}
@@ -56,7 +58,6 @@ const CheckoutContents = (props) => {
           );
         })}
       </Row>
-      
     </Container>
   );
 };
