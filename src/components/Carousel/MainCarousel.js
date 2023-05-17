@@ -47,7 +47,7 @@ const MainCarousel = (props) => {
             </p>
             <Button
                 variant="primary"
-                onClick={() => handleModal(7)}
+                onClick={() => handleModal(2)}
               >
                 Sign up <FontAwesomeIcon icon={faPaperPlane} />
               </Button>
@@ -81,7 +81,7 @@ const MainCarousel = (props) => {
               </Button>
               <Button
                 variant="success"
-                onClick={() => handleModal(6)}
+                onClick={() => handleModal(1)}
               >
                 Survey <FontAwesomeIcon icon={faCompassDrafting} />
               </Button>
@@ -110,7 +110,7 @@ const MainCarousel = (props) => {
             <p>
               <Button
                 variant="primary"
-                onClick={() => handleIndex(3)}
+                onClick={() => handleIndex(2)}
               >
                 About <FontAwesomeIcon icon={faCircleInfo} />
               </Button>

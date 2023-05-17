@@ -6,11 +6,6 @@ import { useState, useEffect } from "react";
 import Gallery from "./pages/Gallery";
 import About from "./pages/About";
 import Checkout from "./components/Checkout/Checkout";
-import Beverage from "./components/Checkout/Beverage";
-import Review from "./components/Checkout/Review";
-import PayPal from "./components/Checkout/PayPal";
-import Shipping from "./components/Checkout/Shipping";
-import Receipt from "./components/Checkout/Receipt";
 import Survey from "./pages/Survey";
 import SignUp from "./pages/SignUp";
 
@@ -143,18 +138,8 @@ const App = () => {
           />
         );
       case 1:
-        return <Beverage checkoutIndex={setCheckoutIndex} />;
-      case 2:
-        return <Review checkoutIndex={setCheckoutIndex} />;
-      case 3:
-        return <Shipping checkoutIndex={setCheckoutIndex} />;
-      case 4:
-        return <PayPal checkoutIndex={setCheckoutIndex} />;
-      case 5:
-        return <Receipt checkoutIndex={setCheckoutIndex} />;
-      case 6:
         return <Survey checkoutIndex={setCheckoutIndex} />;
-      case 7:
+      case 2:
         return <SignUp checkoutIndex={setCheckoutIndex} />;
       default:
         return;

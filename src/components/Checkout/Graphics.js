@@ -19,7 +19,6 @@ const Graphics = (props) => {
     <Container fluid>
       <Card
         style={{
-          paddingTop: "2rem",
           minHeight: "100%",
         }}
       >
@@ -29,6 +28,7 @@ const Graphics = (props) => {
             display: "flex",
             justifyContent: "center",
             marginBottom: "1rem",
+            marginTop: "0rem"
           }}
         >
           <h2 className="featurette-heading">Review your selected graphics</h2>

@@ -29,6 +29,9 @@ const Checkout = (props) => {
   const [index, setIndex] = useState(0);
   //next
   const handleNext = () => {
+    if(index === 5){
+      return handleClose();
+    }
     setIndex((prevIndex) => prevIndex + 1);
   };
 
@@ -148,7 +151,7 @@ const Checkout = (props) => {
             <div className="d-flex justify-content-end">
               {/*next button */}
               <Button variant="primary" onClick={() => handleNext()}>
-                <FontAwesomeIcon icon={faCircleRight} size="xl" />
+                {index !== 5 ? <FontAwesomeIcon icon={faCircleRight} size="xl" /> : "Finish"}
               </Button>
             </div>
           </div>
