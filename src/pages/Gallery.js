@@ -39,6 +39,7 @@ const Gallery = (props) => {
                 id={card.id}
                 add={handleAdd}
                 remove={handleRemove}
+                cart={props.cart}
               />
             </Col>
           ))}

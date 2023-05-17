@@ -21,36 +21,46 @@ const PreviewModal = (props) => {
     props.setShow(false);
   };
 
+  //handle showing modal
   useEffect(() => {
     if (props.show) {
       setShow(true);
     }
   }, [props.show]);
 
+  //add to cart
   const handleAdd = () => {
     props.add();
   };
 
+  //remove from cart
   const handleRemove = () => {
     props.remove();
   };
 
+  //handle clicking add button
   const [add, setAdd] = useState(false);
   const handleClick = () => {
     if (!add) {
       handleAdd();
-    }
-    else{
+      props.previewToggle();
+    } else {
       handleRemove();
+      props.previewToggle();
     }
     setAdd(!add);
   };
+
+  //get state from parent
+  useEffect(() => {
+    setAdd(props.cartToggle);
+  }, [props.cartToggle]);
 
   return (
     <>
       <Modal show={show} onHide={handleClose} animation={true}>
         <Modal.Header closeButton>
-          <Modal.Title>Graphic</Modal.Title>
+          <Modal.Title>{props.title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Container>
@@ -65,18 +75,24 @@ const PreviewModal = (props) => {
         </Modal.Body>
         <Modal.Footer>
           <Container style={{ display: "flex", justifyContent: "center" }}>
+            {/*price */}
             <InputGroup style={{ maxWidth: "6rem" }}>
               <InputGroup.Text>$</InputGroup.Text>
               <Form.Control placeholder={props.price} disabled />
             </InputGroup>
-            <Button style={{ marginLeft: "1rem" }} onClick={handleClick} variant={!add ? "primary" : "success"}>
+            {/*cart toggle button */}
+            <Button
+              style={{ marginLeft: "1rem" }}
+              onClick={handleClick}
+              variant={!add ? "primary" : "success"}
+            >
               {!add ? (
                 <FontAwesomeIcon icon={faCartPlus} />
               ) : (
                 <>
                   <FontAwesomeIcon icon={faCircleCheck} />
                 </>
-              )}{" "}
+              )}
             </Button>
           </Container>
         </Modal.Footer>

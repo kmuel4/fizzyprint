@@ -2,7 +2,7 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import CustomNavbar from "./components/CustomNavbar";
 import MainCarousel from "./components/Carousel/MainCarousel";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Gallery from "./pages/Gallery";
 import About from "./pages/About";
 import Checkout from "./components/Checkout/Checkout";
@@ -14,6 +14,7 @@ import Receipt from "./components/Checkout/Receipt";
 import Survey from "./pages/Survey";
 import SignUp from "./pages/SignUp";
 
+//graphics
 import image1 from "./Images/image1.png";
 import image2 from "./Images/image2.png";
 import image3 from "./Images/image3.png";
@@ -94,14 +95,23 @@ const cards = [
 const App = () => {
   //cart
   const [cartItems, setCartItems] = useState([]);
+
+  //add to cart
   const handleAdd = (value) => {
     setCartItems([...cartItems, value]);
   };
 
+  //remove from cart
   const handleRemove = (value) => {
     const updatedCartItems = cartItems.filter((item) => item !== value);
     setCartItems(updatedCartItems);
   };
+
+  //get number of items in cart
+  const [cartItemsLength, setCartItemsLength] = useState();
+  useEffect(()=> {
+    setCartItemsLength(cartItems.length);
+  }, [cartItems])
 
   //handle screen idnex
   const [index, setIndex] = useState(0);
@@ -110,7 +120,7 @@ const App = () => {
       case 0:
         return <Home />;
       case 1:
-        return <Gallery cards={cards} add={handleAdd} remove={handleRemove} />;
+        return <Gallery cards={cards} add={handleAdd} remove={handleRemove} cart={cartItems}/>;
       case 2:
         return <About />;
       default:
@@ -128,6 +138,8 @@ const App = () => {
             checkoutIndex={setCheckoutIndex}
             cart={cartItems}
             cards={cards}
+            remove={handleRemove}
+            index={setIndex}
           />
         );
       case 1:
@@ -157,14 +169,12 @@ const App = () => {
         currentIndex={index}
         checkoutIndex={setCheckoutIndex}
         handleModal={setCheckoutIndex}
+        cartItemsLength={cartItemsLength}
       />
 
       {/*carousel */}
       <MainCarousel index={setIndex} handleModal={setCheckoutIndex} />
 
-      {/*continue scrolling arrow 
-      <ContinueArrow show={showArrow} />
-*/}
       <hr
         className="featurette-divider"
         style={{ marginBottom: "2rem", marginTop: "1rem" }}

@@ -1,4 +1,12 @@
-import { Navbar, Nav, Container, Row, Col, Button } from "react-bootstrap";
+import {
+  Navbar,
+  Nav,
+  Container,
+  Row,
+  Col,
+  Button,
+  Badge,
+} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../main.css";
 import {
@@ -9,6 +17,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState, useEffect } from "react";
 
 const CustomNavbar = (props) => {
+  // scroll to top of page
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -17,19 +26,38 @@ const CustomNavbar = (props) => {
     });
   };
 
+  //change state of screen
   const [index, setIndex] = useState(0);
   const handleIndex = (value) => {
     setIndex(value);
     props.index(value);
   };
 
+  //send navbar info to parent
   useEffect(() => {
     setIndex(props.currentIndex);
   }, [props.currentIndex]);
 
+  //handle checkout
   const handleCheckout = () => {
     props.checkoutIndex(0);
   };
+
+  //make cart bounce when item is added
+  const [cartAnimate, setCartAnimate] = useState(false);
+  useEffect(() => {
+    //only animate when there is at least 1 cart item
+    if (props.cartItemsLength > 0) {
+      setCartAnimate(true);
+      //temp change cartAnimate flag
+      const timeout = setTimeout(() => {
+        setCartAnimate(false);
+      }, 500);
+
+      // cleanup the timeout when the component unmounts or when the dependency changes
+      return () => clearTimeout(timeout);
+    }
+  }, [props.cartItemsLength]);
 
   return (
     <>
@@ -37,6 +65,7 @@ const CustomNavbar = (props) => {
         <Container fluid>
           <Row className="w-100">
             <Col xs="auto">
+              {/*title */}
               <Navbar.Brand
                 onClick={scrollToTop}
                 style={{
@@ -49,6 +78,7 @@ const CustomNavbar = (props) => {
               </Navbar.Brand>
             </Col>
             <Col xs="auto" className="d-flex justify-content-end">
+              {/*nav bar */}
               <Navbar.Toggle
                 variant="outline-secondary"
                 className="custom-navbar-toggle"
@@ -70,11 +100,21 @@ const CustomNavbar = (props) => {
               </Navbar.Collapse>
             </Col>
             <Col className="d-flex justify-content-end">
+              {/*checkout button */}
               <Button
                 onClick={() => handleCheckout()}
                 style={{ maxHeight: "2.4rem" }}
               >
-                <FontAwesomeIcon icon={faCartShopping} />
+                {/*cart icon */}
+                <FontAwesomeIcon icon={faCartShopping} bounce={cartAnimate} />
+                {/*cart badge */}
+                {props.cartItemsLength > 0 ? (
+                  <Badge style={{ marginLeft: ".5rem" }} className="bg-danger">
+                    {props.cartItemsLength}
+                  </Badge>
+                ) : (
+                  <></>
+                )}
               </Button>
             </Col>
           </Row>
