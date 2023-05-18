@@ -139,7 +139,7 @@ const Checkout = (props) => {
           <div className="d-flex justify-content-between w-100">
             {/*return button */}
             <Button variant="secondary" onClick={() => setIndex(0)}>
-              <FontAwesomeIcon icon={faCircleLeft} size="lg" />{" "}
+              <FontAwesomeIcon icon={faCircleLeft} size="lg" />
             </Button>
             {/*subtotal */}
             <Form.Group style={{ maxWidth: "10rem" }}>

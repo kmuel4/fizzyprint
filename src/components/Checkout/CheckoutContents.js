@@ -21,7 +21,7 @@ const CheckoutContents = (props) => {
     <Container>
       <Row>
         {props.cart.map((item) => {
-          // find cards using cart IDs
+          // find cards using cart id
           const card = props.cards.find((card) => card.id === item);
 
           // print card info
