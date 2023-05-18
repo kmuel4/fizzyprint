@@ -73,12 +73,16 @@ const MainCarousel = (props) => {
               to have an impact on what graphics we print next in our next collection.
             </p>
             <Stack direction="horizontal" gap={5} style={{display: "flex", justifyContent: "center"}}>
+              
+              {/*shop button */}
               <Button
                 variant="primary"
                 onClick={() => handleIndex(1)}
               >
                 Shop <FontAwesomeIcon icon={faStore} />
               </Button>
+
+              {/*survey button */}
               <Button
                 variant="success"
                 onClick={() => handleModal(1)}

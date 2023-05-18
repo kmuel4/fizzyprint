@@ -4,7 +4,7 @@ import CheckoutHeader from "./CheckoutHeader";
 const Review = (props) => {
   return (
     <>
-      <CheckoutHeader title="Review"/>
+      <CheckoutHeader title="Preview"/>
     </>
   );
 };

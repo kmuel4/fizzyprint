@@ -11,11 +11,12 @@ const ToastMessage = (props) => {
   const handleClose = () => {
     setShow(false);
     props.setShow(false);
+
     setProgress(100);
-  }
+  };
 
   //update based on props
-  useEffect(()=>{
+  useEffect(() => {
     setShow(props.show);
   }, [props.show]);
 
@@ -23,19 +24,19 @@ const ToastMessage = (props) => {
   const [progress, setProgress] = useState(100);
 
   useEffect(() => {
-    if(show){
-    const interval = setInterval(() => {
-      setProgress((prevProgress) => prevProgress - 1);
-    }, 30); //speed
+    if (show) {
+      const interval = setInterval(() => {
+        setProgress((prevProgress) => prevProgress - 1);
+      }, 30); //speed
 
-    setTimeout(() => {
-      //hide toast afterwards
-      handleClose();
-      clearInterval(interval);
-    }, 3500); // total duration
+      setTimeout(() => {
+        //hide toast afterwards
+        handleClose();
+        clearInterval(interval);
+      }, 3500); // total duration
 
-    return () => clearInterval(interval);
-}
+      return () => clearInterval(interval);
+    }
   }, [show]);
 
   return (

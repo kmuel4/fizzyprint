@@ -11,7 +11,7 @@ const About = () => {
         }}
       >
         <h2 className="featurette-heading" style={{ marginTop: "1.1rem" }}>
-          What is Fizzy Print?
+          About
         </h2>
       </Container>
   );

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button, Modal, Form, InputGroup, ProgressBar } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { faCircleRight, faCircleLeft } from "@fortawesome/free-solid-svg-icons";
+import { faCircleRight, faHouse } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Graphics from "./Graphics";
 import Beverage from "./Beverage";
@@ -29,7 +29,7 @@ const Checkout = (props) => {
   const [index, setIndex] = useState(0);
   //next
   const handleNext = () => {
-    if(index === 5){
+    if (index === 5) {
       return handleClose();
     }
     setIndex((prevIndex) => prevIndex + 1);
@@ -76,7 +76,7 @@ const Checkout = (props) => {
           />
         );
       case 1:
-        return <Beverage />;
+        return <Beverage cart={props.cart} cards={props.cards}/>;
       case 2:
         return <Review />;
       case 3:
@@ -84,7 +84,7 @@ const Checkout = (props) => {
       case 4:
         return <PayPal />;
       case 5:
-        return <Receipt close={handleClose}/>;
+        return <Receipt close={handleClose} />;
       default:
         return (
           <Graphics
@@ -131,15 +131,17 @@ const Checkout = (props) => {
           <Modal.Title>Checkout</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          {/*progress bar */}
           <ProgressBar animated className="mb-3" now={progress} />
 
+          {/*handle checkout screens */}
           {handleScreens(index)}
         </Modal.Body>
         <Modal.Footer>
           <div className="d-flex justify-content-between w-100">
             {/*return button */}
             <Button variant="secondary" onClick={() => setIndex(0)}>
-              <FontAwesomeIcon icon={faCircleLeft} size="lg" />
+              <FontAwesomeIcon icon={faHouse} size="lg" />{" "}
             </Button>
             {/*subtotal */}
             <Form.Group style={{ maxWidth: "10rem" }}>
@@ -151,7 +153,11 @@ const Checkout = (props) => {
             <div className="d-flex justify-content-end">
               {/*next button */}
               <Button variant="primary" onClick={() => handleNext()}>
-                {index !== 5 ? <FontAwesomeIcon icon={faCircleRight} size="xl" beat/> : "Finish"}
+                {index !== 5 ? (
+                  <FontAwesomeIcon icon={faCircleRight} size="xl" beat />
+                ) : (
+                  "Finish"
+                )}
               </Button>
             </div>
           </div>
