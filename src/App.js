@@ -19,6 +19,7 @@ import image6 from "./Images/image6.png";
 import image7 from "./Images/image7.png";
 import image8 from "./Images/image8.png";
 import image9 from "./Images/image9.png";
+import ToastMessage from "./components/ToastMessage";
 
 //hardcode database for graphics
 const cards = [
@@ -104,9 +105,15 @@ const App = () => {
 
   //get number of items in cart
   const [cartItemsLength, setCartItemsLength] = useState();
-  useEffect(()=> {
+  useEffect(() => {
     setCartItemsLength(cartItems.length);
-  }, [cartItems])
+  }, [cartItems]);
+
+  //handle survey submit
+  const [surveySubmit, setSurveySubmit] = useState(false);
+
+  //handle email submit
+  const [emailSubmit, setEmailSubmit] = useState(false);
 
   //handle screen idnex
   const [index, setIndex] = useState(0);
@@ -115,7 +122,14 @@ const App = () => {
       case 0:
         return <Home />;
       case 1:
-        return <Gallery cards={cards} add={handleAdd} remove={handleRemove} cart={cartItems}/>;
+        return (
+          <Gallery
+            cards={cards}
+            add={handleAdd}
+            remove={handleRemove}
+            cart={cartItems}
+          />
+        );
       case 2:
         return <About />;
       default:
@@ -138,9 +152,11 @@ const App = () => {
           />
         );
       case 1:
-        return <Survey checkoutIndex={setCheckoutIndex} />;
+        return (
+          <Survey checkoutIndex={setCheckoutIndex} submit={setSurveySubmit} />
+        );
       case 2:
-        return <SignUp checkoutIndex={setCheckoutIndex} />;
+        return <SignUp checkoutIndex={setCheckoutIndex} submit={setEmailSubmit}/>;
       default:
         return;
     }
@@ -173,6 +189,20 @@ const App = () => {
 
       {/*footer */}
       <Footer />
+
+      {/*survey message */}
+      <ToastMessage
+        show={surveySubmit}
+        setShow={setSurveySubmit}
+        message="Survey recieved!"
+      />
+
+      {/*email message */}
+      <ToastMessage
+        show={emailSubmit}
+        setShow={setEmailSubmit}
+        message="Successfully subscribed!"
+      />
     </>
   );
 };

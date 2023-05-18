@@ -151,7 +151,7 @@ const Checkout = (props) => {
             <div className="d-flex justify-content-end">
               {/*next button */}
               <Button variant="primary" onClick={() => handleNext()}>
-                {index !== 5 ? <FontAwesomeIcon icon={faCircleRight} size="xl" /> : "Finish"}
+                {index !== 5 ? <FontAwesomeIcon icon={faCircleRight} size="xl" beat/> : "Finish"}
               </Button>
             </div>
           </div>

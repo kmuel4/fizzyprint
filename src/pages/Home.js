@@ -11,14 +11,24 @@ import image1 from "../Images/image7.png";
 import image2 from "../Images/image4.png";
 import image3 from "../Images/image9.png";
 import image4 from "../Images/image8.png";
+import {useEffect} from 'react';
 
 const Home = () => {
+    // scroll to top of page on load
+    useEffect(()=>{
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
+    }, []);
+
   return (
     <>
       {/*features */}
       <br></br>
       <FeaturesLeft
-        heading="First featurette heading. It'll blow your mind."
+        heading="Take your seltzer game to the next level."
         description="Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id
       ligula porta felis euismod semper. Praesent commodo cursus magna,
       vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus

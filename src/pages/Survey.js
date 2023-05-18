@@ -55,7 +55,7 @@ const CreateGraphic = (props) => {
       alert("Please check at least one checkbox.");
       return;
     }
-
+    props.submit(true);
     handleClose();
   };
 
@@ -77,7 +77,7 @@ const CreateGraphic = (props) => {
             <Container>
               <p>
                 We'll read your responses and tailor the next collection based
-                on popular responses for each category.
+                on popular answers for each category.
               </p>
               <h5>Theme:</h5>
               <InputGroup>

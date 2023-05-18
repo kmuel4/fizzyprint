@@ -14,8 +14,8 @@ const SignUp = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    //triggle toast here
     handleClose();
+    props.submit(true);
   }
 
   return (
