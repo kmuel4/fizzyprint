@@ -13,9 +13,8 @@ const Graphics = (props) => {
   };
   return (
     <Container fluid>
-
-      <CheckoutHeader title="Review your selected graphics"/>
-
+      <CheckoutHeader title="Review your selected graphics" />
+      <Card className="p-4">
         {/*print the cart contents */}
         <CheckoutContents
           cart={props.cart}
@@ -46,11 +45,14 @@ const Graphics = (props) => {
                     size="xl"
                   />
                 </h1>
-                <p style={{marginBottom: "2rem"}}>Your cart is empty, let's fix that....</p>
+                <p style={{ marginBottom: "2rem" }}>
+                  Your cart is empty, let's fix that....
+                </p>
               </Stack>
             </Container>
           </>
         )}
+      </Card>
     </Container>
   );
 };
