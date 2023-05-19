@@ -5,7 +5,7 @@ import { faCircleRight, faHouse } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Graphics from "./Graphics";
 import Beverage from "./Beverage";
-import Review from "./Review";
+import Preview from "./Preview";
 import Shipping from "./Shipping";
 import PayPal from "./PayPal";
 import Receipt from "./Receipt";
@@ -78,7 +78,7 @@ const Checkout = (props) => {
       case 1:
         return <Beverage cart={props.cart} cards={props.cards}/>;
       case 2:
-        return <Review />;
+        return <Preview />;
       case 3:
         return <Shipping />;
       case 4:
