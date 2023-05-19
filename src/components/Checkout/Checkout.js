@@ -21,6 +21,12 @@ const Checkout = (props) => {
     props.index(0);
   };
 
+  //finish and refresh page
+  const handleFinish = () => {
+    console.log("finish");
+    window.location.reload();
+  }
+
   //remove from cart
   const handleRemove = (value) => {
     props.remove(value);
@@ -30,7 +36,7 @@ const Checkout = (props) => {
   //next
   const handleNext = () => {
     if (index === 5) {
-      return handleClose();
+      return handleFinish();
     }
     setIndex((prevIndex) => prevIndex + 1);
   };
@@ -84,7 +90,7 @@ const Checkout = (props) => {
       case 4:
         return <PayPal />;
       case 5:
-        return <Receipt close={handleClose} />;
+        return <Receipt/>;
       default:
         return (
           <Graphics
@@ -136,6 +142,7 @@ const Checkout = (props) => {
 
           {/*handle checkout screens */}
           {handleScreens(index)}
+
         </Modal.Body>
         <Modal.Footer>
           <div className="d-flex justify-content-between w-100">

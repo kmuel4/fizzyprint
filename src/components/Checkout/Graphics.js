@@ -16,7 +16,6 @@ const Graphics = (props) => {
 
       <CheckoutHeader title="Review your selected graphics"/>
 
-      <Card style={{ paddingTop: "2rem" }}>
         {/*print the cart contents */}
         <CheckoutContents
           cart={props.cart}
@@ -52,7 +51,6 @@ const Graphics = (props) => {
             </Container>
           </>
         )}
-      </Card>
     </Container>
   );
 };
