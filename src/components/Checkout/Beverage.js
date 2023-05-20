@@ -4,6 +4,11 @@ import {Card} from 'react-bootstrap'
 import SelectBeverage from "./SelectBeverage";
 
 const Beverage = (props) => {
+  //total price
+  const handleTotal = (value) => {
+    props.total(value);
+  }
+
   return (
     <>
       <CheckoutHeader title="Select your beverage"/>
@@ -12,6 +17,8 @@ const Beverage = (props) => {
         <SelectBeverage
           cart={props.cart}
           cards={props.cards}
+          remove={props.remove}
+          total={handleTotal}
         />
         </Card>
     </>

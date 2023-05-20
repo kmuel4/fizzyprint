@@ -25,7 +25,7 @@ const Checkout = (props) => {
   const handleFinish = () => {
     console.log("finish");
     window.location.reload();
-  }
+  };
 
   //remove from cart
   const handleRemove = (value) => {
@@ -35,7 +35,7 @@ const Checkout = (props) => {
   const [index, setIndex] = useState(0);
   //next
   const handleNext = () => {
-    if (index === 5) {
+    if (index === 4) {
       return handleFinish();
     }
     setIndex((prevIndex) => prevIndex + 1);
@@ -57,6 +57,7 @@ const Checkout = (props) => {
   }, [props.cart]);
 
   //calculate subtotal
+  //need to get total price from beverage page
   const calculateSubtotal = () => {
     let total = 0;
     props.cart.forEach((item) => {
@@ -65,36 +66,37 @@ const Checkout = (props) => {
         total += card.price;
       }
     });
-    setSubtotal(total);
+    setSubtotal((total).toFixed(2));
   };
+
+  const [total, setTotal] = useState(0);
+  const handleTotal = (value) => {
+    setTotal(value);
+  }
 
   //handle the checkout screens
   const handleScreens = (value) => {
     switch (value) {
       case 0:
         return (
-          <Graphics
-            index={props.index}
+          <Beverage
             cart={props.cart}
             cards={props.cards}
             remove={handleRemove}
-            close={handleClose}
+            total={handleTotal}
           />
         );
       case 1:
-        return <Beverage cart={props.cart} cards={props.cards}/>;
-      case 2:
         return <Preview />;
-      case 3:
+      case 2:
         return <Shipping />;
-      case 4:
+      case 3:
         return <PayPal />;
-      case 5:
-        return <Receipt/>;
+      case 4:
+        return <Receipt />;
       default:
         return (
           <Graphics
-            close={handleClose}
             index={props.index}
             cart={props.cart}
             cards={props.cards}
@@ -111,14 +113,12 @@ const Checkout = (props) => {
       case 0:
         return setProgress(5);
       case 1:
-        return setProgress(20);
+        return setProgress(25);
       case 2:
-        return setProgress(40);
+        return setProgress(50);
       case 3:
-        return setProgress(60);
+        return setProgress(75);
       case 4:
-        return setProgress(80);
-      case 5:
         return setProgress(100);
       default:
         return setProgress(0);
@@ -142,7 +142,6 @@ const Checkout = (props) => {
 
           {/*handle checkout screens */}
           {handleScreens(index)}
-
         </Modal.Body>
         <Modal.Footer>
           <div className="d-flex justify-content-between w-100">
@@ -154,13 +153,13 @@ const Checkout = (props) => {
             <Form.Group style={{ maxWidth: "10rem" }}>
               <InputGroup>
                 <InputGroup.Text>$</InputGroup.Text>
-                <Form.Control placeholder={subtotal} disabled />
+                <Form.Control placeholder={total} disabled />
               </InputGroup>
             </Form.Group>
             <div className="d-flex justify-content-end">
               {/*next button */}
               <Button variant="primary" onClick={() => handleNext()}>
-                {index !== 5 ? (
+                {index !== 4 ? (
                   <FontAwesomeIcon icon={faCircleRight} size="xl" beat />
                 ) : (
                   "Finish"
