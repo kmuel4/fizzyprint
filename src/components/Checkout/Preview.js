@@ -7,7 +7,7 @@ const Preview = (props) => {
     <>
       <CheckoutHeader title="Preview"/>
       <Card>
-        preview the graphics on the beverage
+        preview the graphics on the beverage. print each graphic on their selected can with the brand overlay over it
       </Card>
     </>
   );

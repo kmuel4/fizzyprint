@@ -3,7 +3,6 @@ import { Button, Modal, Form, InputGroup, ProgressBar } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { faCircleRight, faHouse } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Graphics from "./Graphics";
 import Beverage from "./Beverage";
 import Preview from "./Preview";
 import Shipping from "./Shipping";
@@ -16,9 +15,14 @@ const Checkout = (props) => {
 
   //close modal
   const handleClose = () => {
-    setShow(false);
-    props.checkoutIndex();
-    props.index(0);
+    if (index === 4) {
+      setShow(false);
+      handleFinish();
+    } else {
+      setShow(false);
+      props.checkoutIndex();
+      props.index(0);
+    }
   };
 
   //finish and refresh page
@@ -66,13 +70,13 @@ const Checkout = (props) => {
         total += card.price;
       }
     });
-    setSubtotal((total).toFixed(2));
+    setSubtotal(total.toFixed(2));
   };
 
   const [total, setTotal] = useState(0);
   const handleTotal = (value) => {
     setTotal(value);
-  }
+  };
 
   //handle the checkout screens
   const handleScreens = (value) => {
@@ -95,14 +99,7 @@ const Checkout = (props) => {
       case 4:
         return <Receipt />;
       default:
-        return (
-          <Graphics
-            index={props.index}
-            cart={props.cart}
-            cards={props.cards}
-            remove={handleRemove}
-          />
-        );
+        return;
     }
   };
 
@@ -145,17 +142,25 @@ const Checkout = (props) => {
         </Modal.Body>
         <Modal.Footer>
           <div className="d-flex justify-content-between w-100">
-            {/*return button */}
-            <Button variant="secondary" onClick={() => setIndex(0)}>
-              <FontAwesomeIcon icon={faHouse} size="lg" />{" "}
+            {/*return button, disable on receipt page */}
+            <Button
+              variant="secondary"
+              disabled={index === 4}
+              onClick={() => setIndex(0)}
+            >
+              <FontAwesomeIcon icon={faHouse} size="lg" />
             </Button>
-            {/*subtotal */}
-            <Form.Group style={{ maxWidth: "10rem" }}>
-              <InputGroup>
-                <InputGroup.Text>$</InputGroup.Text>
-                <Form.Control placeholder={total} disabled />
-              </InputGroup>
-            </Form.Group>
+
+            {/*subtotal, hide on receipt page */}
+            {index !== 4 && (
+              <Form.Group style={{ maxWidth: "10rem" }}>
+                <InputGroup>
+                  <InputGroup.Text>$</InputGroup.Text>
+                  <Form.Control placeholder={total} disabled />
+                </InputGroup>
+              </Form.Group>
+            )}
+
             <div className="d-flex justify-content-end">
               {/*next button */}
               <Button variant="primary" onClick={() => handleNext()}>

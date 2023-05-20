@@ -100,19 +100,18 @@ const BeverageCard = (props) => {
                   </Form.Group>
 
                   {/*quantity */}
-                  <Form.Group>
-                    <Form.Range
-                      min="1"
-                      max="10"
-                      step="1"
-                      value={quantity || 1}
-                      onChange={handleQuantityChange}
-                      className="mt-3"
-                    />
-                    <InputGroup>
-                      <Form.Control disabled value="12 Pack" />
-                      <InputGroup.Text>{quantity}x</InputGroup.Text>
-                    </InputGroup>
+                  <Form.Group className="mt-2">
+                      <Form.Label>Quantity:</Form.Label>
+                      
+                        <Form.Control
+                          type="number"
+                          defaultValue="1"
+                          min="1"
+                          max="10"
+                          step="1"
+                          onChange={(e) => setQuantity(e.target.value)}
+          
+                        />
                   </Form.Group>
 
                   {/*beverage price */}
