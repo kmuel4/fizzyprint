@@ -176,11 +176,6 @@ const App = () => {
       {/*carousel */}
       <MainCarousel index={setIndex} handleModal={setCheckoutIndex} />
 
-      <hr
-        className="featurette-divider"
-        style={{ marginBottom: "2rem", marginTop: "1rem" }}
-      />
-
       {/*show screens */}
       {showScreen(index)}
 
