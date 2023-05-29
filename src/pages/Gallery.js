@@ -1,17 +1,25 @@
 import GraphicCard from "../components/GraphicCard/GraphicCard.js";
 import { Container, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import { useEffect } from "react";
 
 const Gallery = (props) => {
+  // scroll to top of page on load
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  }, []);
 
   const handleAdd = (value) => {
     props.add(value);
-  }
+  };
 
   const handleRemove = (value) => {
     props.remove(value);
-  }
+  };
 
   return (
     <>

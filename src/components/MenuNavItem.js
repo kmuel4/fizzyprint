@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../main.css";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -18,14 +17,22 @@ const MenuNavItem = (props) => {
       className="d-flex justify-content-between align-items-center"
       onMouseEnter={() => handleArrowFlag(true)}
       onMouseLeave={() => handleArrowFlag(false)}
+      onClick={() => handleClick()}
+      style={{ cursor: "pointer" }}
     >
-      <div>{props.name}</div>
-      <FontAwesomeIcon
-        icon={faAngleRight}
-        style={{ cursor: "pointer" }}
-        beat={arrowFlag}
-        onClick={() => handleClick()}
-      />
+      <div className="d-flex align-items-center">
+        <FontAwesomeIcon icon={props.icon} />
+        <div style={{marginLeft: "1rem"}}>{props.name}</div>
+      </div>
+      {props.name === "Sign Up" || props.name === "Survey" ? (
+        <>
+          <FontAwesomeIcon
+            icon={faAngleRight}
+            style={{ cursor: "pointer" }}
+            beat={arrowFlag}
+          />
+        </>
+      ) : null}
     </Container>
   );
 };

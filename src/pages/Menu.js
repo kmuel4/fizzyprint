@@ -3,6 +3,13 @@ import { Modal, Form } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../main.css";
 import MenuNavItem from "../components/MenuNavItem";
+import {
+  faStore,
+  faCompassDrafting,
+  faCircleInfo,
+  faPaperPlane,
+  faHouse,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Menu = (props) => {
   //handle modal
@@ -21,23 +28,31 @@ const Menu = (props) => {
   };
 
   const handleNav = (value) => {
-    switch(value) {
-        case "Home":
-            return navHelper(0);
-        case "Shop":
-            return navHelper(1);
-        case "About":
-            return navHelper(2);
-        default:
-            return;
+    switch (value) {
+      case "Home":
+        return navHelper(0);
+      case "Shop":
+        return navHelper(1);
+      case "About":
+        return navHelper(2);
+      case "Sign Up":
+        return modalHelper(1);
+      case "Survey":
+        return modalHelper(2);
+      default:
+        return;
     }
-  }
+  };
 
   const navHelper = (value) => {
     props.setNav(value);
     handleClose();
-  }
+  };
 
+  const modalHelper = (value) => {
+    setShow(false);
+    props.checkoutIndex(value);
+  }
 
   return (
     <>
@@ -50,18 +65,31 @@ const Menu = (props) => {
       >
         <Form onSubmit={handleSubmit}>
           <Modal.Header closeButton>
-            <Modal.Title>Fizzy Prints</Modal.Title>
+            <Modal.Title style={{ fontWeight: "bold" }}>
+              Fizzy Prints
+            </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-
-            <MenuNavItem name="Home" click={handleNav}/>
+            <MenuNavItem name="Home" click={handleNav} icon={faHouse} />
 
             <br />
 
-            <MenuNavItem name="Shop" click={handleNav}/>
+            <MenuNavItem name="Shop" click={handleNav} icon={faStore} />
             <br />
 
-            <MenuNavItem name="About" click={handleNav}/>
+            <MenuNavItem name="About" click={handleNav} icon={faCircleInfo} />
+
+            <hr />
+
+            <MenuNavItem name="Sign Up" click={handleNav} icon={faPaperPlane} />
+
+            <br />
+
+            <MenuNavItem
+              name="Survey"
+              click={handleNav}
+              icon={faCompassDrafting}
+            />
           </Modal.Body>
         </Form>
       </Modal>

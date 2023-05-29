@@ -11,17 +11,17 @@ import image1 from "../Images/image7.png";
 import image2 from "../Images/image4.png";
 import image3 from "../Images/image9.png";
 import image4 from "../Images/image8.png";
-import {useEffect} from 'react';
+import { useEffect } from "react";
 
 const Home = () => {
-    // scroll to top of page on load
-    useEffect(()=>{
-      window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: "smooth",
-      });
-    }, []);
+  // scroll to top of page on load
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  }, []);
 
   return (
     <>

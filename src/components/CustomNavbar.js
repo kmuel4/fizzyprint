@@ -77,7 +77,7 @@ const CustomNavbar = (props) => {
               </Navbar.Brand>
             </Col>
             <Col xs="auto" className="ml-auto d-flex text-right">
-              Log In
+              <span style={{cursor: "pointer"}}>Log In</span>
               {/* cart icon */}
               <FontAwesomeIcon
                 icon={faBagShopping}

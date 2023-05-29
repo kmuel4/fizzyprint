@@ -1,25 +1,17 @@
 import { Carousel, Button, Image, Stack } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../main.css";
-import { useState } from "react";
 import image1 from "../../Images/collage1.jpg";
 import image2 from "../../Images/collage2.jpg";
 import image3 from "../../Images/collage3.jpg";
 import {
-  faStore,
   faCompassDrafting,
-  faCircleInfo,
   faPaperPlane,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const MainCarousel = (props) => {
-  const [index, setIndex] = useState(0);
-  const handleIndex = (value) => {
-    setIndex(value);
-    props.index(index);
-  };
-
+  //handle modal
   const handleModal = (value) => {
     props.handleModal(value);
   };
@@ -73,18 +65,9 @@ const MainCarousel = (props) => {
               to have an impact on what graphics we print next in our next collection.
             </p>
             <Stack direction="horizontal" gap={5} style={{display: "flex", justifyContent: "center"}}>
-              
-              {/*shop button */}
-              <Button
-                variant="primary"
-                onClick={() => handleIndex(1)}
-              >
-                Shop <FontAwesomeIcon icon={faStore} />
-              </Button>
 
               {/*survey button */}
               <Button
-                variant="success"
                 onClick={() => handleModal(1)}
               >
                 Survey <FontAwesomeIcon icon={faCompassDrafting} />
@@ -110,14 +93,6 @@ const MainCarousel = (props) => {
             <p>
               Our prints are [blank] and [blank] to ensure that each can has a high-definition
               graphic and a waterproof finish.
-            </p>
-            <p>
-              <Button
-                variant="primary"
-                onClick={() => handleIndex(2)}
-              >
-                About <FontAwesomeIcon icon={faCircleInfo} />
-              </Button>
             </p>
           </div>
         </Carousel.Caption>
