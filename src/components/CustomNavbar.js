@@ -1,10 +1,8 @@
 import {
   Navbar,
-  Nav,
   Container,
   Row,
   Col,
-  Button,
   Badge,
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -26,18 +24,6 @@ const CustomNavbar = (props) => {
       behavior: "smooth",
     });
   };
-
-  //change state of screen
-  const [index, setIndex] = useState(0);
-  const handleIndex = (value) => {
-    setIndex(value);
-    props.index(value);
-  };
-
-  //send navbar info to parent
-  useEffect(() => {
-    setIndex(props.currentIndex);
-  }, [props.currentIndex]);
 
   //handle checkout
   const handleCheckout = () => {

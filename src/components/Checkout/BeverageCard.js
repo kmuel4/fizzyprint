@@ -83,6 +83,7 @@ const BeverageCard = (props) => {
                     <FloatingLabel label="Brand">
                       <Form.Select required>
                         <option value="budlight">Budlight</option>
+                        <option value="whiteclaw">Whiteclaw</option>
                       </Form.Select>
                     </FloatingLabel>
                   </Form.Group>

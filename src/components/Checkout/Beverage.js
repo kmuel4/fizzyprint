@@ -11,7 +11,7 @@ const Beverage = (props) => {
 
   return (
     <>
-      <CheckoutHeader title="Select your beverage"/>
+      <CheckoutHeader title="Add a beverage"/>
       <Card style={{ paddingTop: "2rem" }}>
         {/*print the cart contents */}
         <SelectBeverage
