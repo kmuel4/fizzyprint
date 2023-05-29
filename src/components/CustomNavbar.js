@@ -44,6 +44,10 @@ const CustomNavbar = (props) => {
     props.checkoutIndex(0);
   };
 
+  const handleMenu = () => {
+    props.menu(3);
+  }
+
   //make cart bounce when item is added
   const [cartAnimate, setCartAnimate] = useState(false);
   useEffect(() => {
@@ -68,9 +72,9 @@ const CustomNavbar = (props) => {
             {/*menu button */}
             &nbsp;
             <Col xs="auto">
-              {/* faBars */}
-              <FontAwesomeIcon icon={faBars} size="xl" style={{cursor: "pointer"}}/>
-              
+              {/* menu */}
+              <FontAwesomeIcon icon={faBars} size="xl" style={{cursor: "pointer"}} onClick={()=> handleMenu()}/>
+              {/*search */}
               <FontAwesomeIcon icon={faMagnifyingGlass} size="lg" style={{marginLeft: "1.5rem", cursor: "pointer"}}/>
             </Col>
             <Col xs="auto" className="text-center flex-grow-1">
@@ -87,14 +91,14 @@ const CustomNavbar = (props) => {
               </Navbar.Brand>
             </Col>
             <Col xs="auto" className="ml-auto d-flex text-right">
-              Log In &nbsp;
+              Log In
               {/* cart icon */}
               <FontAwesomeIcon
                 icon={faBagShopping}
                 bounce={cartAnimate}
                 onClick={() => handleCheckout()}
                 size="xl"
-                style={{cursor: "pointer"}}
+                style={{cursor: "pointer", marginLeft: "1rem"}}
               />
               {/* cart badge */}
               {props.cartItemsLength > 0 ? (

@@ -126,6 +126,12 @@
   margin-top: 1rem;
 }
 
+.custom-modal {
+  width: 320px;
+  font-weight: bold;
+  font-size: large;
+}
+
 /* RESPONSIVE CSS
   -------------------------------------------------- */
 

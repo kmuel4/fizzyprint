@@ -20,6 +20,7 @@ import image7 from "./Images/image7.png";
 import image8 from "./Images/image8.png";
 import image9 from "./Images/image9.png";
 import ToastMessage from "./components/ToastMessage";
+import Menu from "./pages/Menu";
 
 //hardcode database for graphics
 const cards = [
@@ -137,14 +138,14 @@ const App = () => {
     }
   };
 
-  // handle checkout windows
-  const [checkoutIndex, setCheckoutIndex] = useState();
-  const checkoutScreen = (value) => {
+  // handle modals
+  const [modalIndex, setModalIndex] = useState();
+  const modals = (value) => {
     switch (value) {
       case 0:
         return (
           <Checkout
-            checkoutIndex={setCheckoutIndex}
+            checkoutIndex={setModalIndex}
             cart={cartItems}
             cards={cards}
             remove={handleRemove}
@@ -153,10 +154,12 @@ const App = () => {
         );
       case 1:
         return (
-          <Survey checkoutIndex={setCheckoutIndex} submit={setSurveySubmit} />
+          <Survey checkoutIndex={setModalIndex} submit={setSurveySubmit} />
         );
       case 2:
-        return <SignUp checkoutIndex={setCheckoutIndex} submit={setEmailSubmit}/>;
+        return <SignUp checkoutIndex={setModalIndex} submit={setEmailSubmit}/>;
+      case 3:
+        return <Menu checkoutIndex={setModalIndex} setNav={setIndex}/>
       default:
         return;
     }
@@ -168,19 +171,20 @@ const App = () => {
       <CustomNavbar
         index={setIndex}
         currentIndex={index}
-        checkoutIndex={setCheckoutIndex}
-        handleModal={setCheckoutIndex}
+        checkoutIndex={setModalIndex}
+        handleModal={setModalIndex}
+        menu={setModalIndex}
         cartItemsLength={cartItemsLength}
       />
 
       {/*carousel */}
-      <MainCarousel index={setIndex} handleModal={setCheckoutIndex} />
+      <MainCarousel index={setIndex} handleModal={setModalIndex} />
 
       {/*show screens */}
       {showScreen(index)}
 
       {/*show checkout screens */}
-      {checkoutScreen(checkoutIndex)}
+      {modals(modalIndex)}
 
       {/*footer */}
       <Footer />
