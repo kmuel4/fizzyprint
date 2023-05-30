@@ -7,19 +7,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Shipping = (props) => {
   //handle billing name
-  const [billingFirst, setBillingFirst] = useState();
+  const [billingFirst, setBillingFirst] = useState('');
 
   //handle billing last
-  const [billingLast, setBillingLast] = useState();
+  const [billingLast, setBillingLast] = useState('');
 
   //handle address1
-  const [address1, setAddress1] = useState();
+  const [address1, setAddress1] = useState('');
 
   //handle address2
-  const [address2, setAddress2] = useState();
+  const [address2, setAddress2] = useState('');
 
   //handle city
-  const [city, setCity] = useState();
+  const [city, setCity] = useState('');
 
   //handle zip code
   const [zip, setZip] = useState();

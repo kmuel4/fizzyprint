@@ -7,9 +7,14 @@ import {
   Button,
   FloatingLabel,
   Accordion,
+  Container,
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { faTrashAlt, faLock, faLockOpen } from "@fortawesome/free-solid-svg-icons";
+import {
+  faTrashAlt,
+  faLock,
+  faLockOpen,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const BeverageCard = (props) => {
@@ -41,11 +46,11 @@ const BeverageCard = (props) => {
   }, [price, total]);
 
   //send total to parent when locked
-  useEffect(()=>{
-    if(locked){
+  useEffect(() => {
+    if (locked) {
       props.total(total);
     }
-  }, [locked, total])
+  }, [locked, total]);
   // remove from cart
   const handleRemove = (value) => {
     props.remove(value);
@@ -54,14 +59,14 @@ const BeverageCard = (props) => {
   // lock accordion
   const [activeKey, setActiveKey] = useState(null);
   const handleAccordionSelect = (eventKey) => {
-    if(!locked){
+    if (!locked) {
       setActiveKey(eventKey);
     }
   };
 
   return (
     <Col key={props.item} xs={12} sm={6} md={4} lg={3}>
-      <Card className="graphic-card">
+      <Card className="graphic-card" style={{marginRight: "1rem"}}>
         {/* graphic */}
         <div className="image-container">
           <Card.Img variant="top" src={props.card.image} />
@@ -76,7 +81,7 @@ const BeverageCard = (props) => {
             {/* beverage accordion */}
             <Accordion activeKey={activeKey} onSelect={handleAccordionSelect}>
               <Accordion.Item eventKey="0">
-                <Accordion.Header>Beverage</Accordion.Header>
+                <Accordion.Header>Select</Accordion.Header>
                 <Accordion.Body>
                   {/* graphic price */}
                   <Form.Group className="mt-2 mb-2">
@@ -143,23 +148,33 @@ const BeverageCard = (props) => {
               </Accordion.Item>
             </Accordion>
 
-            {/* save button */}
-            <Button
-              variant={locked ? "success" : "primary"}
-              className="w-100 mt-2"
-              type="submit"
+            {/*buttons */}
+            <span
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                marginTop: ".5rem",
+              }}
             >
-              {locked ? <FontAwesomeIcon icon={faLock} /> : <FontAwesomeIcon icon={faLockOpen} />}
-            </Button>
+              {/* remove button */}
+              <Button
+                variant="danger"
+                onClick={() => handleRemove(props.card.id)}
+                className="w-100"
+                style={{marginRight: '.5rem'}}
+              >
+                <FontAwesomeIcon icon={faTrashAlt} />
+              </Button>
 
-            {/* remove button */}
-            <Button
-              variant="danger"
-              className="w-100 mt-2"
-              onClick={() => handleRemove(props.card.id)}
-            >
-              <FontAwesomeIcon icon={faTrashAlt} />
-            </Button>
+              {/* save button */}
+              <Button variant={locked ? "success" : "primary"} type="submit" className="w-100">
+                {locked ? (
+                  <FontAwesomeIcon icon={faLock} />
+                ) : (
+                  <FontAwesomeIcon icon={faLockOpen} beatFade/>
+                )}
+              </Button>
+            </span>
           </Card.Body>
         </Form>
       </Card>

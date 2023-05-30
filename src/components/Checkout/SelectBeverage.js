@@ -1,4 +1,4 @@
-import { Container, Row, Stack } from "react-bootstrap";
+import { Container, Row, Col, Stack } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import BeverageCard from "./BeverageCard";
 import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
@@ -60,8 +60,8 @@ const SelectBeverage = (props) => {
   }, [lockCount, cartSize]);
 
   return (
-    <Container>
-      <Row>
+    <Container style={{maxWidth: "1200px"}}>
+      <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap'}}>
         {props.cart.map((item) => {
           const card = props.cards.find((card) => card.id === item);
           return (
@@ -75,7 +75,7 @@ const SelectBeverage = (props) => {
             />
           );
         })}
-      </Row>
+      </div>
       {/*conditional rendering */}
       {props.cart.length === 0 && (
         <>

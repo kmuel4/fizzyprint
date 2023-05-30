@@ -27,7 +27,6 @@ const Checkout = (props) => {
 
   //finish and refresh page
   const handleFinish = () => {
-    console.log("finish");
     window.location.reload();
   };
 

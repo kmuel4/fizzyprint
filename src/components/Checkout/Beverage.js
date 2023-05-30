@@ -1,23 +1,26 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import CheckoutHeader from "./CheckoutHeader";
-import {Container} from 'react-bootstrap'
+import { Container } from "react-bootstrap";
 import SelectBeverage from "./SelectBeverage";
 
 const Beverage = (props) => {
   //total price
   const handleTotal = (value) => {
     props.total(value);
-  }
+  };
 
   //send complete to parent
   const handleComplete = (value) => {
     props.complete(value);
-  }
+  };
 
   return (
     <>
-      <CheckoutHeader title="Add a beverage"/>
-      <Container style={{ paddingTop: "2rem", maxWidth: "1200px"}}>
+      <CheckoutHeader title="Beverage Selection" />
+      <Container style={{display: 'flex', justifyContent: 'center'}}>
+        <p>Lock-in each selection to continue.</p>
+      </Container>
+      <Container style={{ paddingTop: "2rem", maxWidth: "1200px" }}>
         {/*print the cart contents */}
         <SelectBeverage
           cart={props.cart}
@@ -26,7 +29,7 @@ const Beverage = (props) => {
           total={handleTotal}
           complete={handleComplete}
         />
-        </Container>
+      </Container>
     </>
   );
 };

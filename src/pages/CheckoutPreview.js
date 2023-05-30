@@ -7,7 +7,6 @@ import {
   faTriangleExclamation,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import BeverageCard from "../components/Checkout/BeverageCard";
 import CheckoutPreviewItem from "../components/Checkout/CheckoutPreviewItem";
 
 const CheckoutPreview = (props) => {
@@ -27,7 +26,7 @@ const CheckoutPreview = (props) => {
 
   const handleRemove = (value) => {
     props.remove(value);
-  }
+  };
 
   return (
     <>
@@ -86,7 +85,15 @@ const CheckoutPreview = (props) => {
                 {props.cart.map((item) => {
                   const card = props.cards.find((card) => card.id === item);
                   return (
-                    <CheckoutPreviewItem key={item} card={card} item={item} remove={handleRemove}/>
+                    <Container key={item}>
+                      <CheckoutPreviewItem
+                        key={item}
+                        card={card}
+                        item={item}
+                        remove={handleRemove}
+                      />
+                      <br />
+                    </Container>
                   );
                 })}
               </Row>
