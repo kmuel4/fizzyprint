@@ -9,6 +9,10 @@ const Beverage = (props) => {
     props.total(value);
   }
 
+  const handleComplete = (value) => {
+    props.complete(value);
+  }
+
   return (
     <>
       <CheckoutHeader title="Add a beverage"/>
@@ -19,6 +23,7 @@ const Beverage = (props) => {
           cards={props.cards}
           remove={props.remove}
           total={handleTotal}
+          complete={handleComplete}
         />
         </Card>
     </>

@@ -39,44 +39,22 @@ const Checkout = (props) => {
   const [index, setIndex] = useState(0);
   //next
   const handleNext = () => {
+    setComplete(false);
     if (index === 4) {
       return handleFinish();
     }
     setIndex((prevIndex) => prevIndex + 1);
   };
 
-  //subtotal
-  const [subtotal, setSubtotal] = useState(0.0);
-
-  //load on page load
-  useEffect(() => {
-    calculateSubtotal();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  //update when cart changes
-  useEffect(() => {
-    calculateSubtotal();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.cart]);
-
-  //calculate subtotal
-  //need to get total price from beverage page
-  const calculateSubtotal = () => {
-    let total = 0;
-    props.cart.forEach((item) => {
-      const card = props.cards.find((card) => card.id === item);
-      if (card) {
-        total += card.price;
-      }
-    });
-    setSubtotal(total.toFixed(2));
-  };
-
-  const [total, setTotal] = useState(0);
+  const [total, setTotal] = useState("0.00");
   const handleTotal = (value) => {
-    setTotal(value);
+    setTotal(parseFloat(value));
   };
+
+  const [complete, setComplete] = useState(false);
+  const handleComplete = (value) => {
+    setComplete(value);
+  }
 
   //handle the checkout screens
   const handleScreens = (value) => {
@@ -88,6 +66,7 @@ const Checkout = (props) => {
             cards={props.cards}
             remove={handleRemove}
             total={handleTotal}
+            complete={handleComplete}
           />
         );
       case 1:
@@ -142,10 +121,10 @@ const Checkout = (props) => {
         </Modal.Body>
         <Modal.Footer>
           <div className="d-flex justify-content-between w-100">
-            {/*return button, disable on receipt page */}
+            {/*return button, disable on receipt page and home page*/}
             <Button
               variant="secondary"
-              disabled={index === 4}
+              disabled={index === 4 || index === 0}
               onClick={() => setIndex(0)}
             >
               <FontAwesomeIcon icon={faHouse} size="lg" />
@@ -163,9 +142,9 @@ const Checkout = (props) => {
 
             <div className="d-flex justify-content-end">
               {/*next button */}
-              <Button variant="primary" onClick={() => handleNext()}>
+              <Button variant="primary" disabled={!complete}onClick={() => handleNext()}>
                 {index !== 4 ? (
-                  <FontAwesomeIcon icon={faCircleRight} size="xl" beat />
+                  <FontAwesomeIcon icon={faCircleRight} size="xl" beat={complete} />
                 ) : (
                   "Finish"
                 )}

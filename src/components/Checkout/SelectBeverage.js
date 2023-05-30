@@ -3,20 +3,48 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import BeverageCard from "./BeverageCard";
 import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const SelectBeverage = (props) => {
+
+  const [lockCount, setLockCount] = useState(0);
+
   //remove from cart
   const handleRemove = (value) => {
     props.remove(value);
+    setTotals((prevTotals) => {
+      const updatedTotals = { ...prevTotals };
+      delete updatedTotals[value];
+      return updatedTotals;
+    });
+    setLockCount((prevLockCount) => prevLockCount - 1);
   };
 
-  //handle total amount
-  const [totalAmount, setTotalAmount] = useState(0);
-  const handleTotal = (value) => {
-    setTotalAmount((prevTotal) => prevTotal + value);
-    props.total(totalAmount);
+  const [totals, setTotals] = useState({});
+  const addToTotal = (cardId, total) => {
+    setTotals((prevTotals) => ({
+      ...prevTotals,
+      [cardId]: total,
+    }));
+  };
+
+  // calculate the sum of totals and send to parent
+  useEffect(() => {
+    const sum = Object.values(totals)
+      .map(parseFloat) // convert to numbers
+      .reduce((acc, curr) => acc + curr, 0);
+    props.total(sum.toFixed(2));
+  }, [totals, props.total]);
+
+  const handleLocked = () => {
+    setLockCount((prevLockCount) => prevLockCount + 1);
   }
+
+  useEffect(()=>{
+    if(lockCount === props.cart.length){
+      props.complete(true);
+    }
+  }, [lockCount])
 
   return (
     <Container>
@@ -29,7 +57,8 @@ const SelectBeverage = (props) => {
               card={card}
               item={item}
               remove={handleRemove}
-              total={handleTotal}
+              total={(value) => addToTotal(card.id, value)}
+              locked={handleLocked}
             />
           );
         })}
