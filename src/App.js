@@ -21,6 +21,7 @@ import image8 from "./Images/image8.png";
 import image9 from "./Images/image9.png";
 import ToastMessage from "./components/ToastMessage";
 import Menu from "./pages/Menu";
+import CheckoutPreview from "./pages/CheckoutPreview";
 
 //hardcode database for graphics
 const cards = [
@@ -157,9 +158,19 @@ const App = () => {
           <Survey checkoutIndex={setModalIndex} submit={setSurveySubmit} />
         );
       case 2:
-        return <SignUp checkoutIndex={setModalIndex} submit={setEmailSubmit}/>;
+        return <SignUp checkoutIndex={setModalIndex} submit={setEmailSubmit} />;
       case 3:
-        return <Menu checkoutIndex={setModalIndex} setNav={setIndex}/>
+        return <Menu checkoutIndex={setModalIndex} setNav={setIndex} />;
+      case 4:
+        return (
+          <CheckoutPreview
+            checkoutIndex={setModalIndex}
+            cartItemsLength={cartItemsLength}
+            cart={cartItems}
+            cards={cards}
+            remove={handleRemove}
+          />
+        );
       default:
         return;
     }

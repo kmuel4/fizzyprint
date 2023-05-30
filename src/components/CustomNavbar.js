@@ -27,7 +27,7 @@ const CustomNavbar = (props) => {
 
   //handle checkout
   const handleCheckout = () => {
-    props.checkoutIndex(0);
+    props.checkoutIndex(4);
   };
 
   const handleMenu = () => {

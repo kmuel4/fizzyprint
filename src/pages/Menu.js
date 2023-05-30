@@ -36,9 +36,9 @@ const Menu = (props) => {
       case "About":
         return navHelper(2);
       case "Sign Up":
-        return modalHelper(1);
-      case "Survey":
         return modalHelper(2);
+      case "Survey":
+        return modalHelper(1);
       default:
         return;
     }
@@ -61,7 +61,7 @@ const Menu = (props) => {
         onHide={handleClose}
         animation={false}
         fullscreen={true}
-        dialogClassName="custom-modal"
+        dialogClassName="menu-modal"
       >
         <Form onSubmit={handleSubmit}>
           <Modal.Header closeButton>
