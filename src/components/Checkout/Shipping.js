@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import CheckoutHeader from "./CheckoutHeader";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Container, Form, Row, Col, Button } from "react-bootstrap";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -56,6 +56,15 @@ const Shipping = (props) => {
     event.preventDefault();
     setSave(!save);
   };
+
+  useEffect(()=>{
+    if(save){
+      props.complete(true);
+    }
+    else{
+      props.complete(false);
+    }
+  }, [save]);
 
   return (
     <>
@@ -177,7 +186,9 @@ const Shipping = (props) => {
           >
             {save ? <FontAwesomeIcon icon={faCircleCheck} /> : "Save"}
           </Button>
+          <Form.Label className="text-muted">*Shipping in 7-10 business days.</Form.Label>
         </Form>
+        
       </Container>
     </>
   );

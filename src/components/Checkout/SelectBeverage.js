@@ -11,13 +11,17 @@ const SelectBeverage = (props) => {
 
   //remove from cart
   const handleRemove = (value) => {
-    props.remove(value);
+    props.remove(value);    
+
     setTotals((prevTotals) => {
       const updatedTotals = { ...prevTotals };
       delete updatedTotals[value];
       return updatedTotals;
     });
-    setLockCount((prevLockCount) => prevLockCount - 1);
+    setCartSize((prevCartSize) => prevCartSize - 1);
+    if(lockCount > 0){
+      setLockCount((prevLockCount) => prevLockCount - 1);
+    }
   };
 
   const [totals, setTotals] = useState({});
@@ -40,11 +44,16 @@ const SelectBeverage = (props) => {
     setLockCount((prevLockCount) => prevLockCount + 1);
   }
 
+  const [cartSize, setCartSize] = useState(props.cart.length);
+  useEffect(() => {
+    setCartSize(props.cart.length); 
+  }, []);
+
   useEffect(()=>{
-    if(lockCount === props.cart.length){
+    if(lockCount === cartSize){
       props.complete(true);
     }
-  }, [lockCount])
+  }, [lockCount, cartSize])
 
   return (
     <Container>

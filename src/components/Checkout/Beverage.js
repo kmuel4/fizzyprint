@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import CheckoutHeader from "./CheckoutHeader";
-import {Card} from 'react-bootstrap'
+import {Container} from 'react-bootstrap'
 import SelectBeverage from "./SelectBeverage";
 
 const Beverage = (props) => {
@@ -9,6 +9,7 @@ const Beverage = (props) => {
     props.total(value);
   }
 
+  //send complete to parent
   const handleComplete = (value) => {
     props.complete(value);
   }
@@ -16,7 +17,7 @@ const Beverage = (props) => {
   return (
     <>
       <CheckoutHeader title="Add a beverage"/>
-      <Card style={{ paddingTop: "2rem" }}>
+      <Container style={{ paddingTop: "2rem", maxWidth: "1200px"}}>
         {/*print the cart contents */}
         <SelectBeverage
           cart={props.cart}
@@ -25,7 +26,7 @@ const Beverage = (props) => {
           total={handleTotal}
           complete={handleComplete}
         />
-        </Card>
+        </Container>
     </>
   );
 };

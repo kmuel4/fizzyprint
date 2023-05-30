@@ -70,13 +70,13 @@ const Checkout = (props) => {
           />
         );
       case 1:
-        return <Preview />;
+        return <Preview complete={handleComplete}/>;
       case 2:
-        return <Shipping />;
+        return <Shipping complete={handleComplete}/>;
       case 3:
-        return <PayPal />;
+        return <PayPal complete={handleComplete}/>;
       case 4:
-        return <Receipt />;
+        return <Receipt complete={handleComplete}/>;
       default:
         return;
     }

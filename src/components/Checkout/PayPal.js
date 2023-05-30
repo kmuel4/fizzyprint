@@ -1,14 +1,15 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import CheckoutHeader from "./CheckoutHeader";
-import { Card } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 
 const PayPal = (props) => {
+  props.complete(true);
   return (
     <>
       <CheckoutHeader title="PayPal"/>
-      <Card>
+      <Container style={{maxWidth: "1200px"}}>
         have the paypal buttons here to show what it should look like if launched
-      </Card>
+      </Container>
     </>
   );
 };
