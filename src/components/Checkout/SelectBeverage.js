@@ -6,24 +6,33 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState, useEffect } from "react";
 
 const SelectBeverage = (props) => {
-
+  //initalize lock count
   const [lockCount, setLockCount] = useState(0);
+
+  //increment lock count
+  const handleLocked = () => {
+    setLockCount((prevLockCount) => prevLockCount + 1);
+  };
 
   //remove from cart
   const handleRemove = (value) => {
-    props.remove(value);    
+    props.remove(value);
 
+    //remove from array
     setTotals((prevTotals) => {
       const updatedTotals = { ...prevTotals };
       delete updatedTotals[value];
       return updatedTotals;
     });
+    //update cart size
     setCartSize((prevCartSize) => prevCartSize - 1);
-    if(lockCount > 0){
+    //update lock count
+    if (lockCount > 0) {
       setLockCount((prevLockCount) => prevLockCount - 1);
     }
   };
 
+  //array to hold card id and card total
   const [totals, setTotals] = useState({});
   const addToTotal = (cardId, total) => {
     setTotals((prevTotals) => ({
@@ -40,20 +49,15 @@ const SelectBeverage = (props) => {
     props.total(sum.toFixed(2));
   }, [totals, props.total]);
 
-  const handleLocked = () => {
-    setLockCount((prevLockCount) => prevLockCount + 1);
-  }
-
+  //initialize cart size
   const [cartSize, setCartSize] = useState(props.cart.length);
-  useEffect(() => {
-    setCartSize(props.cart.length); 
-  }, []);
 
-  useEffect(()=>{
-    if(lockCount === cartSize){
+  //send complete message when every card is locked
+  useEffect(() => {
+    if (lockCount === cartSize) {
       props.complete(true);
     }
-  }, [lockCount, cartSize])
+  }, [lockCount, cartSize]);
 
   return (
     <Container>

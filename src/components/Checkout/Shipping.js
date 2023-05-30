@@ -64,7 +64,7 @@ const Shipping = (props) => {
     else{
       props.complete(false);
     }
-  }, [save]);
+  }, [save, props]);
 
   return (
     <>
