@@ -2,6 +2,7 @@ import { Card, Form } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
 
 const CheckoutPreviewItem = (props) => {
   // remove from cart
@@ -9,8 +10,19 @@ const CheckoutPreviewItem = (props) => {
     props.remove(value);
   };
 
+  const [isHovered, setIsHovered] = useState(false);
+  const cardStyle = {
+    boxShadow: isHovered
+      ? "0 0 5px rgba(0, 0, 0, 0.4)"
+      : "0 0 5px rgba(0, 0, 0, 0.2)",
+  };
+
   return (
-    <Card>
+    <Card
+      style={cardStyle}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       {/* graphic */}
       <Card.Header>
         <span style={{ display: "block" }}>
@@ -32,8 +44,12 @@ const CheckoutPreviewItem = (props) => {
       </Card.Header>
       <Form>
         <Card.Body>
-          <div className="image-container">
-            <Card.Img variant="top" src={props.card.image} />
+          <div>
+            <Card.Img
+              variant="top"
+              src={props.card.image}
+              style={{ borderRadius: "5px" }}
+            />
           </div>
         </Card.Body>
       </Form>

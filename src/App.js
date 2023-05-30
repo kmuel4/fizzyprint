@@ -31,6 +31,7 @@ const cards = [
     desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
     price: 4.99,
     id: 1,
+    stock: "high"
   },
   {
     image: image2,
@@ -38,6 +39,7 @@ const cards = [
     desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
     price: 4.99,
     id: 2,
+    stock: "high"
   },
   {
     image: image3,
@@ -45,6 +47,7 @@ const cards = [
     desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
     price: 4.99,
     id: 3,
+    stock: "out"
   },
   {
     image: image4,
@@ -52,6 +55,7 @@ const cards = [
     desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
     price: 4.99,
     id: 4,
+    stock: "high"
   },
   {
     image: image5,
@@ -59,6 +63,7 @@ const cards = [
     desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
     price: 4.99,
     id: 5,
+    stock: "high"
   },
   {
     image: image6,
@@ -66,6 +71,7 @@ const cards = [
     desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
     price: 4.99,
     id: 6,
+    stock: "low"
   },
   {
     image: image7,
@@ -73,6 +79,7 @@ const cards = [
     desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
     price: 4.99,
     id: 7,
+    stock: "out"
   },
   {
     image: image8,
@@ -80,6 +87,7 @@ const cards = [
     desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
     price: 4.99,
     id: 8,
+    stock: "high"
   },
   {
     image: image9,
@@ -87,6 +95,7 @@ const cards = [
     desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
     price: 4.99,
     id: 9,
+    stock: "high"
   },
 ];
 

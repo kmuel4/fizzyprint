@@ -64,12 +64,41 @@ const BeverageCard = (props) => {
     }
   };
 
+  const [isHovered, setIsHovered] = useState(false);
+  const cardStyle = {
+    boxShadow: isHovered
+      ? "0 0 5px rgba(0, 0, 0, 0.4)"
+      : "0 0 3px rgba(0, 0, 0, 0.2)",
+    marginRight: "1rem",
+  };
+
   return (
     <Col key={props.item} xs={12} sm={6} md={4} lg={3}>
-      <Card className="graphic-card" style={{marginRight: "1rem"}}>
+      <Card
+        className="graphic-card"
+        style={cardStyle}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
         {/* graphic */}
         <div className="image-container">
           <Card.Img variant="top" src={props.card.image} />
+          <span
+            style={{
+              backgroundColor: "#007bff",
+              paddingLeft: "40px",
+              paddingRight: "40px",
+              right: "-25px",
+              fontWeight: "600",
+              color: "white",
+              position: "absolute",
+              top: "20px",
+              transform: "rotate(45deg)",
+              boxShadow: "0 0 10px rgba(255, 255, 255, 0.4)",
+            }}
+          >
+            $4.99
+          </span>
         </div>
         <Form onSubmit={handlelocked}>
           <Card.Body>
@@ -161,17 +190,21 @@ const BeverageCard = (props) => {
                 variant="danger"
                 onClick={() => handleRemove(props.card.id)}
                 className="w-100"
-                style={{marginRight: '.5rem'}}
+                style={{ marginRight: ".5rem" }}
               >
                 <FontAwesomeIcon icon={faTrashAlt} />
               </Button>
 
               {/* save button */}
-              <Button variant={locked ? "success" : "primary"} type="submit" className="w-100">
+              <Button
+                variant={locked ? "success" : "primary"}
+                type="submit"
+                className="w-100"
+              >
                 {locked ? (
                   <FontAwesomeIcon icon={faLock} />
                 ) : (
-                  <FontAwesomeIcon icon={faLockOpen} beatFade/>
+                  <FontAwesomeIcon icon={faLockOpen} beatFade />
                 )}
               </Button>
             </span>
