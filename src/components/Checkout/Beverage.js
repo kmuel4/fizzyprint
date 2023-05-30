@@ -20,7 +20,7 @@ const Beverage = (props) => {
       <Container style={{display: 'flex', justifyContent: 'center'}}>
         <p>Lock-in each selection to continue.</p>
       </Container>
-      <Container style={{ paddingTop: "2rem", maxWidth: "1200px" }}>
+      <Container style={{ maxWidth: "1200px" }}>
         {/*print the cart contents */}
         <SelectBeverage
           cart={props.cart}
