@@ -38,7 +38,7 @@ const Gallery = (props) => {
       <Container className="mx-auto" style={{ maxWidth: "1200px" }}>
         <Row>
           {props.cards.map((card, index) => (
-            <Col key={index} xs={12} sm={8} md={4} lg={4} xl={3}>
+            <Col key={index} xs={12} sm={8} md={6} lg={4} xl={3}>
               <GraphicCard
                 key={index}
                 image={card.image}

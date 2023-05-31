@@ -20,6 +20,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const BeverageCard = (props) => {
   // handle quantity of order
   const [quantity, setQuantity] = useState(1);
+  const handleQuantityChange = (event) => {
+    const value = parseInt(event.target.value);
+    setQuantity(value);
+  };
 
   // save changes
   const [locked, setlocked] = useState(false);
@@ -70,10 +74,11 @@ const BeverageCard = (props) => {
       ? "0 0 5px rgba(0, 0, 0, 0.4)"
       : "0 0 3px rgba(0, 0, 0, 0.2)",
     marginRight: "1rem",
-  };
+    minWidth: "15rem",
+    };
 
   return (
-    <Col key={props.item} xs={12} sm={6} md={4} lg={3}>
+    <Col key={props.item} xs={12} sm={6} md={6} lg={4}>
       <Card
         className="graphic-card"
         style={cardStyle}
@@ -97,7 +102,7 @@ const BeverageCard = (props) => {
               boxShadow: "0 0 10px rgba(255, 255, 255, 0.4)",
             }}
           >
-            $4.99
+            ${total}
           </span>
         </div>
         <Form onSubmit={handlelocked}>
@@ -118,6 +123,15 @@ const BeverageCard = (props) => {
                     <InputGroup>
                       <InputGroup.Text>$</InputGroup.Text>
                       <Form.Control placeholder="4.99" disabled />
+                    </InputGroup>
+                  </Form.Group>
+
+                  {/* beverage price */}
+                  <Form.Group className="mt-2 mb-2">
+                    <Form.Label>Beverage:</Form.Label>
+                    <InputGroup>
+                      <InputGroup.Text>$</InputGroup.Text>
+                      <Form.Control placeholder={price} disabled />
                     </InputGroup>
                   </Form.Group>
 
@@ -146,22 +160,17 @@ const BeverageCard = (props) => {
                   {/* quantity */}
                   <Form.Group className="mt-2">
                     <Form.Label>Quantity:</Form.Label>
-                    <Form.Control
-                      type="number"
-                      defaultValue="1"
-                      min="1"
-                      max="10"
-                      step="1"
-                      onChange={(e) => setQuantity(parseInt(e.target.value))}
-                    />
-                  </Form.Group>
-
-                  {/* beverage price */}
-                  <Form.Group className="mt-2">
-                    <Form.Label>Beverage:</Form.Label>
                     <InputGroup>
-                      <InputGroup.Text>$</InputGroup.Text>
-                      <Form.Control placeholder={price} disabled />
+                    <Form.Control
+                      type="range"
+                      min={1}
+                      defaultValue={1}
+                      max={9}
+                      onChange={handleQuantityChange}
+                      style={{cursor: "pointer"}}
+                    />
+                    <Form.Control.Feedback>{quantity}</Form.Control.Feedback>
+                    <InputGroup.Text>{quantity}x</InputGroup.Text>
                     </InputGroup>
                   </Form.Group>
 
@@ -200,6 +209,7 @@ const BeverageCard = (props) => {
                 variant={locked ? "success" : "primary"}
                 type="submit"
                 className="w-100"
+                disabled={locked}
               >
                 {locked ? (
                   <FontAwesomeIcon icon={faLock} />

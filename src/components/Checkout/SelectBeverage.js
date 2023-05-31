@@ -52,10 +52,12 @@ const SelectBeverage = (props) => {
   //initialize cart size
   const [cartSize, setCartSize] = useState(props.cart.length);
 
-  //send complete message when every card is locked
+  //allow continue when all cards are locked
   useEffect(() => {
-    if (lockCount === cartSize) {
+    if (cartSize > 0 && lockCount === cartSize) {
       props.complete(true);
+    } else {
+      props.complete(false);
     }
   }, [lockCount, cartSize]);
 
@@ -107,6 +109,7 @@ const SelectBeverage = (props) => {
           </Container>
         </>
       )}
+      <p>cart size: {cartSize} locked count: {lockCount}</p>
     </Container>
   );
 };

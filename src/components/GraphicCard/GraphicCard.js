@@ -1,7 +1,11 @@
 import { Card, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../main.css";
-import { faCartPlus, faCircleCheck } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCartPlus,
+  faCircleCheck,
+  faStar,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState, useEffect } from "react";
 import PreviewModal from "./PreviewModal";
@@ -97,6 +101,21 @@ const GraphicCard = (props) => {
     };
   };
 
+  //handle favorite button
+  const [favorite, setFavorite] = useState("white");
+  const [favoriteAnimate, setFavoriteAnimate] = useState(false);
+  const handleFavorite = () => {
+    //change color of star
+    const newColor = favorite === "yellow" ? "white" : "yellow";
+    setFavorite(newColor);
+
+    //turn on and off animate
+    setFavoriteAnimate(true);
+    setTimeout(() => {
+      setFavoriteAnimate(false);
+    }, 1000);
+  };
+
   return (
     <>
       <Card
@@ -123,18 +142,34 @@ const GraphicCard = (props) => {
             {props.stock === "low" && "Low"}
             {props.stock === "out" && "Sold Out"}
           </span>
+          <span
+            style={{
+              position: "absolute",
+              top: "8px",
+              left: "10px",
+            }}
+          >
+            <FontAwesomeIcon
+              icon={faStar}
+              size="lg"
+              style={{ color: favorite, cursor: "pointer" }}
+              onClick={handleFavorite}
+              bounce={favoriteAnimate}
+            />
+          </span>
         </div>
         <Card.Body>
           {/*title */}
           <Card.Title>{props.title}</Card.Title>
-          {/*description */}
-          <Card.Text>{props.desc}</Card.Text>
+          <div style={{display: "flex", justifyContent: "space-between"}}>
+          {/*price */}
+          <Card.Text>${props.price.toString()}</Card.Text>
           {/*button icon */}
           <Button
             disabled={props.stock === "out"}
-            className="w-100"
             onClick={handleClick}
             variant={!add ? "primary" : "success"}
+            
           >
             {!add ? (
               <FontAwesomeIcon icon={faCartPlus} />
@@ -144,6 +179,7 @@ const GraphicCard = (props) => {
               </>
             )}
           </Button>
+          </div>
         </Card.Body>
       </Card>
       {/*preview modal */}

@@ -6,6 +6,7 @@ import {
   Form,
   InputGroup,
   Button,
+  Stack
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { faCartPlus, faCircleCheck } from "@fortawesome/free-solid-svg-icons";
@@ -58,7 +59,12 @@ const PreviewModal = (props) => {
 
   return (
     <>
-      <Modal show={show} onHide={handleClose} animation={true}>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        animation={true}
+        fullscreen={true}
+      >
         <Modal.Header closeButton>
           <Modal.Title>{props.title}</Modal.Title>
         </Modal.Header>
@@ -74,15 +80,14 @@ const PreviewModal = (props) => {
           </Container>
         </Modal.Body>
         <Modal.Footer>
-          <Container style={{ display: "flex", justifyContent: "center" }}>
-            {/*price */}
-            <InputGroup style={{ maxWidth: "6rem" }}>
-              <InputGroup.Text>$</InputGroup.Text>
-              <Form.Control placeholder={props.price} disabled />
-            </InputGroup>
+          <Container>
+            <Stack direction="horizontal" gap={3}>
+            -price
+            -rating
+            -comment with rating
+            -submit rating
             {/*cart toggle button */}
             <Button
-              style={{ marginLeft: "1rem" }}
               onClick={handleClick}
               variant={!add ? "primary" : "success"}
             >
@@ -94,6 +99,7 @@ const PreviewModal = (props) => {
                 </>
               )}
             </Button>
+            </Stack>
           </Container>
         </Modal.Footer>
       </Modal>
