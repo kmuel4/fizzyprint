@@ -116,6 +116,20 @@ const GraphicCard = (props) => {
     }, 1000);
   };
 
+  //handle checkout button
+  const handleButtonColor = () => {
+    if (props.stock !== "out") {
+      if (!add) {
+        return "primary";
+      } else {
+        return "success";
+      }
+    }
+    else{
+      return "danger"
+    }
+  };
+
   return (
     <>
       <Card
@@ -161,24 +175,23 @@ const GraphicCard = (props) => {
         <Card.Body>
           {/*title */}
           <Card.Title>{props.title}</Card.Title>
-          <div style={{display: "flex", justifyContent: "space-between"}}>
-          {/*price */}
-          <Card.Text>${props.price.toString()}</Card.Text>
-          {/*button icon */}
-          <Button
-            disabled={props.stock === "out"}
-            onClick={handleClick}
-            variant={!add ? "primary" : "success"}
-            
-          >
-            {!add ? (
-              <FontAwesomeIcon icon={faCartPlus} />
-            ) : (
-              <>
-                <FontAwesomeIcon icon={faCircleCheck} />
-              </>
-            )}
-          </Button>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            {/*price */}
+            <Card.Text>${props.price.toString()}</Card.Text>
+            {/*button icon */}
+            <Button
+              disabled={props.stock === "out"}
+              onClick={handleClick}
+              variant={handleButtonColor()}
+            >
+              {!add ? (
+                <FontAwesomeIcon icon={faCartPlus} />
+              ) : (
+                <>
+                  <FontAwesomeIcon icon={faCircleCheck} />
+                </>
+              )}
+            </Button>
           </div>
         </Card.Body>
       </Card>
