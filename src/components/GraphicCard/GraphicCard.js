@@ -14,7 +14,7 @@ const GraphicCard = (props) => {
   //handle showing preview modal
   const [show, setShow] = useState(false);
   const handlePreviewModal = () => {
-    if (props.stock != "out") {
+    if (props.stock !== "out") {
       setShow(true);
     }
   };

@@ -1,16 +1,7 @@
 import { useState, useEffect } from "react";
-import {
-  Modal,
-  Image,
-  Container,
-  Form,
-  InputGroup,
-  Button,
-  Stack
-} from "react-bootstrap";
+import { Modal, Image, Container, Stack } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { faCartPlus, faCircleCheck } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ReviewIcon from "./ReviewIcon";
 
 const PreviewModal = (props) => {
   //handle modal
@@ -69,7 +60,13 @@ const PreviewModal = (props) => {
           <Modal.Title>{props.title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Container>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
             <Image
               fluid
               rounded
@@ -77,31 +74,31 @@ const PreviewModal = (props) => {
               src={props.image}
               onClick={() => setShow(true)}
             />
+          </div>
+          <Container
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              marginTop: "1rem",
+            }}
+          >
+            <h4>Like this graphic?</h4>
+          </Container>
+          <Container
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <h4>
+              <Stack direction="horizontal" gap={3} className="mt-2">
+                <ReviewIcon />
+              </Stack>
+            </h4>
           </Container>
         </Modal.Body>
-        <Modal.Footer>
-          <Container>
-            <Stack direction="horizontal" gap={3}>
-            -price
-            -rating
-            -comment with rating
-            -submit rating
-            {/*cart toggle button */}
-            <Button
-              onClick={handleClick}
-              variant={!add ? "primary" : "success"}
-            >
-              {!add ? (
-                <FontAwesomeIcon icon={faCartPlus} />
-              ) : (
-                <>
-                  <FontAwesomeIcon icon={faCircleCheck} />
-                </>
-              )}
-            </Button>
-            </Stack>
-          </Container>
-        </Modal.Footer>
       </Modal>
     </>
   );

@@ -7,29 +7,37 @@ import { useState, useEffect } from "react";
 
 const SelectBeverage = (props) => {
   //initalize lock count
-  const [lockCount, setLockCount] = useState(0);
+  const [lockCount, setLockCount] = useState([]);
 
-  //increment lock count
-  const handleLocked = () => {
-    setLockCount((prevLockCount) => prevLockCount + 1);
+  //handle lock count
+  const handleLocked = (value) => {
+    setLockCount((prevLockCount) => [
+      ...prevLockCount,
+      { key: value, locked: false },
+    ]);
   };
 
-  //remove from cart
+  // remove from cart
   const handleRemove = (value) => {
     props.remove(value);
 
-    //remove from array
+    // remove from array
     setTotals((prevTotals) => {
       const updatedTotals = { ...prevTotals };
       delete updatedTotals[value];
       return updatedTotals;
     });
-    //update cart size
+
+    // update cart size
     setCartSize((prevCartSize) => prevCartSize - 1);
-    //update lock count
-    if (lockCount > 0) {
-      setLockCount((prevLockCount) => prevLockCount - 1);
-    }
+
+    // update lock count
+    setLockCount((prevLockCount) => {
+      const updatedLockCount = prevLockCount.filter(
+        (item) => item.key !== value
+      );
+      return updatedLockCount;
+    });
   };
 
   //array to hold card id and card total
@@ -54,16 +62,23 @@ const SelectBeverage = (props) => {
 
   //allow continue when all cards are locked
   useEffect(() => {
-    if (cartSize > 0 && lockCount === cartSize) {
+    if (cartSize > 0 && lockCount.length === cartSize) {
       props.complete(true);
     } else {
       props.complete(false);
     }
-  }, [lockCount, cartSize]);
+  }, [lockCount.length, cartSize]);
 
   return (
-    <Container style={{maxWidth: "1200px"}}>
-      <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap'}}>
+    <Container style={{ maxWidth: "1200px" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexWrap: "wrap",
+        }}
+      >
         {props.cart.map((item) => {
           const card = props.cards.find((card) => card.id === item);
           return (
@@ -73,7 +88,7 @@ const SelectBeverage = (props) => {
               item={item}
               remove={handleRemove}
               total={(value) => addToTotal(card.id, value)}
-              locked={handleLocked}
+              locked={()=>handleLocked(card.id)}
             />
           );
         })}
@@ -109,7 +124,6 @@ const SelectBeverage = (props) => {
           </Container>
         </>
       )}
-      <p>cart size: {cartSize} locked count: {lockCount}</p>
     </Container>
   );
 };
