@@ -158,7 +158,6 @@ const BeverageCard = (props) => {
                           name="packSize"
                           checked={packSize === "12"}
                           onChange={handlePackSizeChange}
-                          defaultChecked
                         />
                       </Col>
                       <Col>

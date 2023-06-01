@@ -1,7 +1,8 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import CheckoutHeader from "./CheckoutHeader";
-import { Container } from "react-bootstrap";
+import { Container, Image } from "react-bootstrap";
 import SelectBeverage from "./SelectBeverage";
+import wordArt from "../../Images/BeverageSelection-WordArt.png";
 
 const Beverage = (props) => {
   //total price
@@ -16,8 +17,11 @@ const Beverage = (props) => {
 
   return (
     <>
-      <CheckoutHeader title="Beverage Selection" />
-      <Container style={{display: 'flex', justifyContent: 'center'}}>
+      <Container style={{display: "flex", justifyContent: "center"}}>
+        <Image src={wordArt} fluid />
+      </Container>
+
+      <Container style={{ display: "flex", justifyContent: "center" }}>
         <p>Lock-in each selection to continue.</p>
       </Container>
       <Container style={{ maxWidth: "1200px" }}>

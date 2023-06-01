@@ -1,7 +1,8 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import CheckoutHeader from "./CheckoutHeader";
-import { Container } from "react-bootstrap";
+import { Container, Image } from "react-bootstrap";
 import { useEffect } from "react";
+import wordArt from "../../Images/PayPal-WordArt.png";
 
 const PayPal = (props) => {
   useEffect(() => {
@@ -9,7 +10,9 @@ const PayPal = (props) => {
   }, [props.complete]);
   return (
     <>
-      <CheckoutHeader title="PayPal" />
+      <Container style={{ display: "flex", justifyContent: "center" }}>
+        <Image src={wordArt} fluid />
+      </Container>
       <Container style={{ maxWidth: "1200px" }}>
         have the paypal buttons here to show what it should look like if
         launched

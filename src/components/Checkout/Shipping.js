@@ -1,25 +1,26 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import CheckoutHeader from "./CheckoutHeader";
 import { useState, useEffect } from "react";
-import { Container, Form, Row, Col, Button } from "react-bootstrap";
+import { Container, Form, Row, Col, Button, Image } from "react-bootstrap";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import wordArt from "../../Images/Shipping-WordArt.png";
 
 const Shipping = (props) => {
   //handle billing name
-  const [billingFirst, setBillingFirst] = useState('');
+  const [billingFirst, setBillingFirst] = useState("");
 
   //handle billing last
-  const [billingLast, setBillingLast] = useState('');
+  const [billingLast, setBillingLast] = useState("");
 
   //handle address1
-  const [address1, setAddress1] = useState('');
+  const [address1, setAddress1] = useState("");
 
   //handle address2
-  const [address2, setAddress2] = useState('');
+  const [address2, setAddress2] = useState("");
 
   //handle city
-  const [city, setCity] = useState('');
+  const [city, setCity] = useState("");
 
   //handle zip code
   const [zip, setZip] = useState();
@@ -57,18 +58,19 @@ const Shipping = (props) => {
     setSave(!save);
   };
 
-  useEffect(()=>{
-    if(save){
+  useEffect(() => {
+    if (save) {
       props.complete(true);
-    }
-    else{
+    } else {
       props.complete(false);
     }
   }, [save, props]);
 
   return (
     <>
-      <CheckoutHeader title="Shipping" />
+      <Container style={{ display: "flex", justifyContent: "center" }}>
+        <Image src={wordArt} fluid />
+      </Container>
       <Container style={{ maxWidth: "50rem" }}>
         <Form onSubmit={handleSave}>
           <Row className="mb-3">
@@ -186,9 +188,10 @@ const Shipping = (props) => {
           >
             {save ? <FontAwesomeIcon icon={faCircleCheck} /> : "Save"}
           </Button>
-          <Form.Label className="text-muted">*Shipping in 7-10 business days.</Form.Label>
+          <Form.Label className="text-muted">
+            *Shipping in 7-10 business days.
+          </Form.Label>
         </Form>
-        
       </Container>
     </>
   );

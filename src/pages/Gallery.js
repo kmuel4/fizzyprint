@@ -1,7 +1,8 @@
 import GraphicCard from "../components/GraphicCard/GraphicCard.js";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Image } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect } from "react";
+import wordArt from "../Images/ShopGallery-WordArt.png";
 
 const Gallery = (props) => {
   // scroll to top of page on load
@@ -31,9 +32,7 @@ const Gallery = (props) => {
           marginTop: "0rem",
         }}
       >
-        <h2 className="featurette-heading" style={{ marginTop: "1.1rem" }}>
-          Shop Gallery
-        </h2>
+        <Image src={wordArt} fluid/>
       </Container>
       <Container className="mx-auto" style={{ maxWidth: "1200px" }}>
         <Row>

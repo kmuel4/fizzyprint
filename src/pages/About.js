@@ -1,5 +1,6 @@
-import { Container } from "react-bootstrap";
+import { Container, Image } from "react-bootstrap";
 import { useEffect } from "react";
+import wordArt from "../Images/About-WordArt.png";
 
 const About = () => {
   // scroll to top of page on load
@@ -19,9 +20,7 @@ const About = () => {
         marginTop: "0rem",
       }}
     >
-      <h2 className="featurette-heading" style={{ marginTop: "1.1rem" }}>
-        About
-      </h2>
+      <Image src={wordArt} fluid/>
     </Container>
   );
 };
