@@ -1,20 +1,18 @@
-import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Image } from "react-bootstrap";
-import { useEffect } from "react";
-import wordArt from "../../Images/PayPal-WordArt.png";
+import paypal from "../../Images/PayPal-example.png";
 
-const PayPal = (props) => {
-  useEffect(() => {
-    props.complete(true);
-  }, [props.complete]);
+const PayPal = () => {
   return (
     <>
-      <Container style={{ display: "flex", justifyContent: "center" }}>
-        <Image src={wordArt} fluid />
-      </Container>
-      <Container style={{ maxWidth: "1200px" }}>
-        have the paypal buttons here to show what it should look like if
-        launched
+      <Container
+        style={{
+          marginTop: "2rem",
+          maxWidth: "1200px",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <Image src={paypal} />
       </Container>
     </>
   );

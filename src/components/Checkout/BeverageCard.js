@@ -141,7 +141,7 @@ const BeverageCard = (props) => {
 
                   {/*beverage price */}
                   <Form.Group className="mb-2">
-                  <Form.Label>Beverage:</Form.Label>
+                    <Form.Label>Beverage:</Form.Label>
                     <InputGroup>
                       <InputGroup.Text>$</InputGroup.Text>
                       <Form.Control placeholder={price} disabled />
