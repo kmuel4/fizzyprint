@@ -4,12 +4,14 @@ import {
   Row,
   Col,
   Badge,
+  OverlayTrigger,
+  Tooltip,
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../main.css";
 import {
   faBagShopping,
-  faBars,
+  faList,
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -25,14 +27,54 @@ const CustomNavbar = (props) => {
     });
   };
 
+  //date countdown for new drop
+  const targetDate = new Date("September 1, 2023 00:00:00").getTime();
+
+  const [days, setDays] = useState(0);
+  const [hours, setHours] = useState(0);
+  const [minutes, setMinutes] = useState(0);
+  const [seconds, setSeconds] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const now = new Date().getTime();
+      const timeRemaining = targetDate - now;
+
+      const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+      const hours = Math.floor(
+        (timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const minutes = Math.floor(
+        (timeRemaining % (1000 * 60 * 60)) / (1000 * 60)
+      );
+      const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+      setDays(days);
+      setHours(hours);
+      setMinutes(minutes);
+      setSeconds(seconds);
+
+      if (timeRemaining < 0) {
+        clearInterval(interval);
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const renderTooltip = (props) => (
+    <Tooltip {...props}>New collection countdown</Tooltip>
+  );
+
   //handle checkout
   const handleCheckout = () => {
     props.checkoutIndex(4);
   };
 
+  //display nav menu
   const handleMenu = () => {
     props.menu(3);
-  }
+  };
 
   //make cart bounce when item is added
   const [cartAnimate, setCartAnimate] = useState(false);
@@ -52,16 +94,50 @@ const CustomNavbar = (props) => {
 
   return (
     <>
-      <Navbar bg="light" variant="dark" fixed="top" style={{padding: "1rem"}}>
+      <Navbar bg="primary" fixed="top" style={{ height: "2rem" }}>
+        <Container
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            color: "white",
+          }}
+        >
+          <OverlayTrigger
+            placement="bottom"
+            delay={{ hide: 200 }}
+            overlay={renderTooltip}
+          >
+            <div>
+              {days}d {hours}h {minutes}m {seconds}s
+            </div>
+          </OverlayTrigger>
+        </Container>
+      </Navbar>
+      <Navbar
+        bg="light"
+        variant="dark"
+        fixed="top"
+        style={{ padding: "1rem", marginTop: "2rem" }}
+      >
         <Container fluid>
           <Row className="w-100 align-items-center">
             {/*menu button */}
             &nbsp;
             <Col xs="auto">
               {/* menu */}
-              <FontAwesomeIcon icon={faBars} size="xl" style={{cursor: "pointer"}} onClick={()=> handleMenu()}/>
+              <FontAwesomeIcon
+                icon={faList}
+                size="xl"
+                style={{ cursor: "pointer" }}
+                onClick={() => handleMenu()}
+              />
               {/*search */}
-              <FontAwesomeIcon icon={faMagnifyingGlass} size="lg" style={{marginLeft: "1.5rem", cursor: "pointer"}}/>
+              <FontAwesomeIcon
+                icon={faMagnifyingGlass}
+                size="lg"
+                style={{ marginLeft: "1.5rem", cursor: "pointer" }}
+              />
             </Col>
             <Col xs="auto" className="text-center flex-grow-1">
               {/* title */}
@@ -77,14 +153,14 @@ const CustomNavbar = (props) => {
               </Navbar.Brand>
             </Col>
             <Col xs="auto" className="ml-auto d-flex text-right">
-              <span style={{cursor: "pointer"}}>Log In</span>
+              <span style={{ cursor: "pointer" }}>Log In</span>
               {/* cart icon */}
               <FontAwesomeIcon
                 icon={faBagShopping}
                 bounce={cartAnimate}
                 onClick={() => handleCheckout()}
                 size="xl"
-                style={{cursor: "pointer", marginLeft: "1rem"}}
+                style={{ cursor: "pointer", marginLeft: "1rem" }}
               />
               {/* cart badge */}
               {props.cartItemsLength > 0 ? (

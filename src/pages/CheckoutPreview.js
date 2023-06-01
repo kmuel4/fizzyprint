@@ -5,6 +5,7 @@ import "../main.css";
 import {
   faBagShopping,
   faTriangleExclamation,
+  faAngleRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CheckoutPreviewItem from "../components/Checkout/CheckoutPreviewItem";
@@ -106,7 +107,7 @@ const CheckoutPreview = (props) => {
             onClick={handleCheckout}
             disabled={props.cartItemsLength === 0 ? true : false}
           >
-            Checkout
+            Checkout <FontAwesomeIcon icon={faAngleRight} />
           </Button>
         </Modal.Footer>
       </Modal>
