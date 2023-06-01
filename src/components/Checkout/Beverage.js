@@ -1,5 +1,4 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import CheckoutHeader from "./CheckoutHeader";
 import { Container, Image } from "react-bootstrap";
 import SelectBeverage from "./SelectBeverage";
 import wordArt from "../../Images/BeverageSelection-WordArt.png";

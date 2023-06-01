@@ -1,4 +1,4 @@
-import { Container, Row, Col, Stack } from "react-bootstrap";
+import { Container, Stack } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import BeverageCard from "./BeverageCard";
 import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";

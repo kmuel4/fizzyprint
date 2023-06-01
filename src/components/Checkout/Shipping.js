@@ -1,5 +1,4 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import CheckoutHeader from "./CheckoutHeader";
 import { useState, useEffect } from "react";
 import { Container, Form, Row, Col, Button, Image } from "react-bootstrap";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
