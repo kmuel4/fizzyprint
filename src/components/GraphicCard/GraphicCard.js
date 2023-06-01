@@ -7,7 +7,7 @@ import {
   faStar,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import PreviewModal from "./PreviewModal";
 
 const GraphicCard = (props) => {
@@ -202,9 +202,6 @@ const GraphicCard = (props) => {
         image={props.image}
         title={props.title}
         price={props.price}
-        add={handleAdd}
-        remove={handleRemove}
-        cartToggle={add}
         previewToggle={handlePreviewToggle}
       />
     </>

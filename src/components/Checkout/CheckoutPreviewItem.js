@@ -43,12 +43,17 @@ const CheckoutPreviewItem = (props) => {
         </span>
       </Card.Header>
       <Form>
-        <Card.Body>
+        <Card.Body style={{ margin: "-1rem" }}>
           <div>
             <Card.Img
               variant="top"
               src={props.card.image}
-              style={{ borderRadius: "5px" }}
+              style={{
+                borderTopLeftRadius: "0px",
+                borderTopRightRadius: "0px",
+                borderBottomLeftRadius: "5px",
+                borderBottomRightRadius: "5px",
+              }}
             />
           </div>
         </Card.Body>

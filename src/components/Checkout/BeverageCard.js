@@ -3,11 +3,12 @@ import {
   Card,
   Form,
   InputGroup,
-  Col,
   Button,
   FloatingLabel,
   Accordion,
   Container,
+  Col,
+  Row,
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
@@ -23,6 +24,15 @@ const BeverageCard = (props) => {
   const handleQuantityChange = (event) => {
     const value = parseInt(event.target.value);
     setQuantity(value);
+    const newBasePrice = packSize === "12" ? 17.99 : 30.99;
+    setBasePrice(newBasePrice);
+  };
+
+  const handlePackSizeChange = (event) => {
+    const newPackSize = event.target.value;
+    setPackSize(newPackSize);
+    const newBasePrice = newPackSize === "12" ? 17.99 : 30.99;
+    setBasePrice(newBasePrice);
   };
 
   // save changes
@@ -35,13 +45,15 @@ const BeverageCard = (props) => {
   };
 
   // base price of beverage
-  const basePrice = 20.99;
+  const [basePrice, setBasePrice] = useState(20.99);
+
+  const [packSize, setPackSize] = useState("12");
 
   // change price dynamically when quantity changes
   const [price, setPrice] = useState(0);
   useEffect(() => {
     setPrice((basePrice * quantity).toFixed(2));
-  }, [quantity]);
+  }, [quantity, basePrice]);
 
   // change total dynamically when price changes
   const [total, setTotal] = useState(25.98);
@@ -65,6 +77,7 @@ const BeverageCard = (props) => {
   const handleAccordionSelect = (eventKey) => {
     if (!locked) {
       setActiveKey(eventKey);
+      setPackSize("12");
     }
   };
 
@@ -75,7 +88,7 @@ const BeverageCard = (props) => {
       : "0 0 3px rgba(0, 0, 0, 0.2)",
     marginRight: "1rem",
     minWidth: "15rem",
-    };
+  };
 
   return (
     <Col key={props.item} xs={12} sm={6} md={6} lg={4}>
@@ -118,7 +131,7 @@ const BeverageCard = (props) => {
                 <Accordion.Header>Select</Accordion.Header>
                 <Accordion.Body>
                   {/* graphic price */}
-                  <Form.Group className="mt-2 mb-2">
+                  <Form.Group className="mb-2">
                     <Form.Label>Graphic:</Form.Label>
                     <InputGroup>
                       <InputGroup.Text>$</InputGroup.Text>
@@ -126,13 +139,38 @@ const BeverageCard = (props) => {
                     </InputGroup>
                   </Form.Group>
 
-                  {/* beverage price */}
-                  <Form.Group className="mt-2 mb-2">
-                    <Form.Label>Beverage:</Form.Label>
+                  {/*beverage price */}
+                  <Form.Group className="mb-2">
+                  <Form.Label>Beverage:</Form.Label>
                     <InputGroup>
                       <InputGroup.Text>$</InputGroup.Text>
                       <Form.Control placeholder={price} disabled />
                     </InputGroup>
+                  </Form.Group>
+
+                  {/* pack size */}
+                  <Form.Group className="mb-2">
+                    <Row>
+                      <Col>
+                        <Form.Check
+                          type="radio"
+                          label="12 pack"
+                          name="packSize"
+                          checked={packSize === "12"}
+                          onChange={handlePackSizeChange}
+                          defaultChecked
+                        />
+                      </Col>
+                      <Col>
+                        <Form.Check
+                          type="radio"
+                          label="24 pack"
+                          name="packSize"
+                          checked={packSize === "24"}
+                          onChange={handlePackSizeChange}
+                        />
+                      </Col>
+                    </Row>
                   </Form.Group>
 
                   {/* brand */}
@@ -158,19 +196,18 @@ const BeverageCard = (props) => {
                   </Form.Group>
 
                   {/* quantity */}
-                  <Form.Group className="mt-2">
-                    <Form.Label>Quantity:</Form.Label>
+                  <Form.Group className="mb-2 mt-2">
                     <InputGroup>
-                    <Form.Control
-                      type="range"
-                      min={1}
-                      defaultValue={1}
-                      max={9}
-                      onChange={handleQuantityChange}
-                      style={{cursor: "pointer"}}
-                    />
-                    <Form.Control.Feedback>{quantity}</Form.Control.Feedback>
-                    <InputGroup.Text>{quantity}x</InputGroup.Text>
+                      <Form.Control
+                        type="range"
+                        min={1}
+                        defaultValue={1}
+                        max={9}
+                        onChange={handleQuantityChange}
+                        style={{ cursor: "pointer" }}
+                      />
+                      <Form.Control.Feedback>{quantity}</Form.Control.Feedback>
+                      <InputGroup.Text>{quantity}x</InputGroup.Text>
                     </InputGroup>
                   </Form.Group>
 

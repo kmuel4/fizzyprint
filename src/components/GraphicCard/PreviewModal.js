@@ -20,34 +20,6 @@ const PreviewModal = (props) => {
     }
   }, [props.show]);
 
-  //add to cart
-  const handleAdd = () => {
-    props.add();
-  };
-
-  //remove from cart
-  const handleRemove = () => {
-    props.remove();
-  };
-
-  //handle clicking add button
-  const [add, setAdd] = useState(false);
-  const handleClick = () => {
-    if (!add) {
-      handleAdd();
-      props.previewToggle();
-    } else {
-      handleRemove();
-      props.previewToggle();
-    }
-    setAdd(!add);
-  };
-
-  //get state from parent
-  useEffect(() => {
-    setAdd(props.cartToggle);
-  }, [props.cartToggle]);
-
   return (
     <>
       <Modal
