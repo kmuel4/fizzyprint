@@ -23,83 +23,93 @@ import ToastMessage from "./components/ToastMessage";
 import Menu from "./pages/Menu";
 import CheckoutPreview from "./pages/CheckoutPreview";
 
-//hardcode database for graphics
-const cards = [
-  {
-    image: image1,
-    title: "Space Kitty Baller",
-    desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-    price: 4.99,
-    id: 1,
-    stock: "high"
-  },
-  {
-    image: image2,
-    title: "Large Purple Fish",
-    desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-    price: 4.99,
-    id: 2,
-    stock: "high"
-  },
-  {
-    image: image3,
-    title: "Royal Capybara",
-    desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-    price: 4.99,
-    id: 3,
-    stock: "out"
-  },
-  {
-    image: image4,
-    title: "Alien Surfer",
-    desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-    price: 4.99,
-    id: 4,
-    stock: "high"
-  },
-  {
-    image: image5,
-    title: "Abstract Space Dinner",
-    desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-    price: 4.99,
-    id: 5,
-    stock: "high"
-  },
-  {
-    image: image6,
-    title: "Nebula Symphony",
-    desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-    price: 4.99,
-    id: 6,
-    stock: "low"
-  },
-  {
-    image: image7,
-    title: "Fat Space Man",
-    desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-    price: 4.99,
-    id: 7,
-    stock: "out"
-  },
-  {
-    image: image8,
-    title: "Panda Alechemy",
-    desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-    price: 4.99,
-    id: 8,
-    stock: "high"
-  },
-  {
-    image: image9,
-    title: "Cosmo Soup",
-    desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-    price: 4.99,
-    id: 9,
-    stock: "high"
-  },
-];
-
 const App = () => {
+
+  //graphics database
+  const [cards, setCards] = useState([
+    {
+      image: image1,
+      title: "Space Kitty Baller",
+      desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
+      price: 4.99,
+      id: 1,
+      stock: "high",
+      favorite: false,
+    },
+    {
+      image: image2,
+      title: "Large Purple Fish",
+      desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
+      price: 4.99,
+      id: 2,
+      stock: "high",
+      favorite: false,
+    },
+    {
+      image: image3,
+      title: "Royal Capybara",
+      desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
+      price: 4.99,
+      id: 3,
+      stock: "out",
+      favorite: false,
+    },
+    {
+      image: image4,
+      title: "Alien Surfer",
+      desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
+      price: 4.99,
+      id: 4,
+      stock: "high",
+      favorite: false,
+    },
+    {
+      image: image5,
+      title: "Abstract Space Dinner",
+      desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
+      price: 4.99,
+      id: 5,
+      stock: "high",
+      favorite: false,
+    },
+    {
+      image: image6,
+      title: "Nebula Symphony",
+      desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
+      price: 4.99,
+      id: 6,
+      stock: "low",
+      favorite: false,
+    },
+    {
+      image: image7,
+      title: "Fat Space Man",
+      desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
+      price: 4.99,
+      id: 7,
+      stock: "out",
+      favorite: false,
+    },
+    {
+      image: image8,
+      title: "Panda Alechemy",
+      desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
+      price: 4.99,
+      id: 8,
+      stock: "high",
+      favorite: false,
+    },
+    {
+      image: image9,
+      title: "Cosmo Soup",
+      desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
+      price: 4.99,
+      id: 9,
+      stock: "high",
+      favorite: false,
+    },
+  ]);
+  
   //cart
   const [cartItems, setCartItems] = useState([]);
 
@@ -112,6 +122,16 @@ const App = () => {
   const handleRemove = (value) => {
     const updatedCartItems = cartItems.filter((item) => item !== value);
     setCartItems(updatedCartItems);
+  };
+
+  const setFavorite = (id, status) => {
+    const updatedCards = cards.map((card) => {
+      if (card.id === id) {
+        return { ...card, favorite: status };
+      }
+      return card;
+    });
+    setCards(updatedCards);
   };
 
   //get number of items in cart
@@ -139,6 +159,7 @@ const App = () => {
             add={handleAdd}
             remove={handleRemove}
             cart={cartItems}
+            handleFavorite={setFavorite}
           />
         );
       case 2:

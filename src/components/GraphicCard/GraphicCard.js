@@ -7,7 +7,7 @@ import {
   faStar,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PreviewModal from "./PreviewModal";
 
 const GraphicCard = (props) => {
@@ -115,6 +115,16 @@ const GraphicCard = (props) => {
       setFavoriteAnimate(false);
     }, 1000);
   };
+
+  //handle favorite change
+  useEffect(()=>{
+    if(favorite === "yellow"){
+      props.handleFavorite(props.id, true);
+    }
+    else{
+      props.handleFavorite(props.id, false);
+    }
+  }, [favorite])
 
   //handle checkout button
   const handleButtonColor = () => {
