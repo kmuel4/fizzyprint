@@ -31,6 +31,7 @@ const Beverage = (props) => {
           remove={props.remove}
           total={handleTotal}
           complete={handleComplete}
+          close={props.close}
         />
       </Container>
     </>

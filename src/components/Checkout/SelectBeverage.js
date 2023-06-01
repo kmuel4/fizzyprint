@@ -1,9 +1,8 @@
 import { Container, Stack } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import BeverageCard from "./BeverageCard";
-import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState, useEffect } from "react";
+import EmptyCard from "../EmptyCard";
 
 const SelectBeverage = (props) => {
   //initalize lock count
@@ -92,38 +91,8 @@ const SelectBeverage = (props) => {
             />
           );
         })}
+        <EmptyCard close={props.close}/>
       </div>
-      {/*conditional rendering */}
-      {props.cart.length === 0 && (
-        <>
-          {/*cart is empty message */}
-          <Container
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Stack
-              direction="vertical"
-              gap={1}
-              align="center"
-              style={{ padding: "1rem" }}
-            >
-              <h1>
-                <FontAwesomeIcon
-                  icon={faTriangleExclamation}
-                  style={{ color: "#ffc107" }}
-                  size="xl"
-                />
-              </h1>
-              <p style={{ marginBottom: "2rem" }}>
-                Your cart is empty, let's fix that....
-              </p>
-            </Stack>
-          </Container>
-        </>
-      )}
     </Container>
   );
 };

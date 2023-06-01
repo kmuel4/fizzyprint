@@ -66,6 +66,7 @@ const Checkout = (props) => {
             remove={handleRemove}
             total={handleTotal}
             complete={handleComplete}
+            close={handleClose}
           />
         );
       case 1:
