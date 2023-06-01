@@ -20,8 +20,8 @@ const CheckoutPreview = (props) => {
   };
 
   const handleCheckout = () => {
-    setShow(false);
     props.checkoutIndex(0);
+    setShow(false);
   };
 
   const handleRemove = (value) => {
@@ -29,7 +29,6 @@ const CheckoutPreview = (props) => {
   };
 
   return (
-    <>
       <Offcanvas show={show} onHide={handleClose} placement="end">
         <Offcanvas.Header closeButton>
           <Offcanvas.Title style={{ fontWeight: "bold" }}>
@@ -104,7 +103,6 @@ const CheckoutPreview = (props) => {
           </Button>
         </Offcanvas.Footer>
       </Offcanvas>
-    </>
   );
 };
 

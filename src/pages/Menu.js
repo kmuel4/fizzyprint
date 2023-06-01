@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Modal, Form } from "react-bootstrap";
+import React, { useState } from "react";
+import { Offcanvas, Form } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../main.css";
 import MenuNavItem from "../components/MenuNavItem";
@@ -12,10 +12,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const Menu = (props) => {
-  //handle modal
+  // handle offcanvas
   const [show, setShow] = useState(true);
 
-  //close modal
+  // close offcanvas
   const handleClose = () => {
     setShow(false);
     props.checkoutIndex();
@@ -52,24 +52,18 @@ const Menu = (props) => {
   const modalHelper = (value) => {
     setShow(false);
     props.checkoutIndex(value);
-  }
+  };
 
   return (
     <>
-      <Modal
-        show={show}
-        onHide={handleClose}
-        animation={false}
-        fullscreen={true}
-        dialogClassName="menu-modal"
-      >
+      <Offcanvas show={show} onHide={handleClose} placement="start">
         <Form onSubmit={handleSubmit}>
-          <Modal.Header closeButton>
-            <Modal.Title style={{ fontWeight: "bold" }}>
+          <Offcanvas.Header closeButton>
+            <Offcanvas.Title style={{ fontWeight: "bold" }}>
               Fizzy Prints
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
+            </Offcanvas.Title>
+          </Offcanvas.Header>
+          <Offcanvas.Body>
             <MenuNavItem name="Home" click={handleNav} icon={faHouse} />
 
             <br />
@@ -90,9 +84,9 @@ const Menu = (props) => {
               click={handleNav}
               icon={faCompassDrafting}
             />
-          </Modal.Body>
+          </Offcanvas.Body>
         </Form>
-      </Modal>
+      </Offcanvas>
     </>
   );
 };

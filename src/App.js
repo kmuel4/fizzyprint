@@ -24,7 +24,6 @@ import Menu from "./pages/Menu";
 import CheckoutPreview from "./pages/CheckoutPreview";
 
 const App = () => {
-
   //graphics database
   const [cards, setCards] = useState([
     {
@@ -118,7 +117,7 @@ const App = () => {
       rating: "3",
     },
   ]);
-  
+
   //cart
   const [cartItems, setCartItems] = useState([]);
 
@@ -210,6 +209,7 @@ const App = () => {
             remove={handleRemove}
           />
         );
+
       default:
         return;
     }
