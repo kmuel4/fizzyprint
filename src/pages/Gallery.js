@@ -9,7 +9,10 @@ import {
   FloatingLabel,
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
+import {
+  faTriangleExclamation,
+  faSliders,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import wordArt from "../Images/ShopGallery-WordArt.png";
 
@@ -35,8 +38,7 @@ const Gallery = (props) => {
       filtered = [...lowStockCards, ...highStockCards];
     } else if (filter === "favorites") {
       filtered = props.cards.filter((card) => card.favorite === true);
-    }
-    else if (filter === "rating") {
+    } else if (filter === "rating") {
       filtered = props.cards.filter((card) => card.rating > 3);
     }
 
@@ -104,8 +106,11 @@ const Gallery = (props) => {
               display: "flex",
               alignItems: "center",
               justifyContent: "end",
+              cursor: "pointer",
             }}
           >
+            <strong>Sort and Filter &nbsp;</strong>
+            <FontAwesomeIcon icon={faSliders} />
             {/* sort */}
             <FloatingLabel
               label="Sort"

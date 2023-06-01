@@ -1,20 +1,19 @@
-import { useState } from "react";
-import { Modal, Button, Badge, Container, Row } from "react-bootstrap";
+import React, { useState } from "react";
+import { Offcanvas, Button, Badge, Container, Row } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../main.css";
 import {
   faBagShopping,
   faTriangleExclamation,
-  faAngleRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CheckoutPreviewItem from "../components/Checkout/CheckoutPreviewItem";
 
 const CheckoutPreview = (props) => {
-  //handle modal
+  // handle offcanvas
   const [show, setShow] = useState(true);
 
-  //close modal
+  // close offcanvas
   const handleClose = () => {
     setShow(false);
     props.checkoutIndex();
@@ -31,15 +30,9 @@ const CheckoutPreview = (props) => {
 
   return (
     <>
-      <Modal
-        show={show}
-        onHide={handleClose}
-        animation={false}
-        fullscreen={true}
-        dialogClassName="checkout-preview-modal"
-      >
-        <Modal.Header closeButton>
-          <Modal.Title style={{ fontWeight: "bold" }}>
+      <Offcanvas show={show} onHide={handleClose} placement="end">
+        <Offcanvas.Header closeButton>
+          <Offcanvas.Title style={{ fontWeight: "bold" }}>
             {/* cart icon */}
             <FontAwesomeIcon icon={faBagShopping} />
             {/* cart badge */}
@@ -60,10 +53,10 @@ const CheckoutPreview = (props) => {
               <></>
             )}
             &nbsp; Shopping Cart
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          {/**conditional cart message */}
+          </Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body>
+          {/* conditional cart message */}
           {props.cartItemsLength === 0 ? (
             <Container
               className="d-flex flex-column align-items-center justify-content-center"
@@ -100,17 +93,17 @@ const CheckoutPreview = (props) => {
               </Row>
             </Container>
           )}
-        </Modal.Body>
-        <Modal.Footer>
+        </Offcanvas.Body>
+        <Offcanvas.Footer>
           <Button
             className="w-100"
             onClick={handleCheckout}
-            disabled={props.cartItemsLength === 0 ? true : false}
+            disabled={props.cartItemsLength === 0}
           >
-            Checkout <FontAwesomeIcon icon={faAngleRight} />
+            Checkout
           </Button>
-        </Modal.Footer>
-      </Modal>
+        </Offcanvas.Footer>
+      </Offcanvas>
     </>
   );
 };
