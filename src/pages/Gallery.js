@@ -96,10 +96,10 @@ const Gallery = (props) => {
         </div>
 
         <Row>
-          {filteredCards.map((card, index) => (
-            <Col key={index} xs={12} sm={8} md={6} lg={4} xl={3}>
+          {filteredCards.map((card) => (
+            <Col key={card.id} xs={12} sm={8} md={6} lg={4} xl={3}>
               <GraphicCard
-                key={index}
+                key={card.id}
                 image={card.image}
                 title={card.title}
                 desc={card.desc}
@@ -118,6 +118,7 @@ const Gallery = (props) => {
         {filteredCards.length === 0 && (
           <Container
             className="d-flex flex-column align-items-center justify-content-center mt-2 mb-5"
+            style={{padding: "5rem"}}
           >
             <h1>
               <FontAwesomeIcon

@@ -105,26 +105,20 @@ const GraphicCard = (props) => {
   const [favorite, setFavorite] = useState("white");
   const [favoriteAnimate, setFavoriteAnimate] = useState(false);
   const handleFavorite = () => {
-    //change color of star
+    // Change color of star
     const newColor = favorite === "yellow" ? "white" : "yellow";
     setFavorite(newColor);
-
-    //turn on and off animate
+  
+    // Update favorite status in the parent component
+    const newStatus = newColor === "yellow";
+    props.handleFavorite(props.id, newStatus);
+  
+    // Turn on and off animate
     setFavoriteAnimate(true);
     setTimeout(() => {
       setFavoriteAnimate(false);
     }, 1000);
   };
-
-  //handle favorite change
-  useEffect(()=>{
-    if(favorite === "yellow"){
-      props.handleFavorite(props.id, true);
-    }
-    else{
-      props.handleFavorite(props.id, false);
-    }
-  }, [favorite])
 
   //handle checkout button
   const handleButtonColor = () => {
