@@ -1,4 +1,4 @@
-import { Container, Stack } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import BeverageCard from "./BeverageCard";
 import { useState, useEffect } from "react";

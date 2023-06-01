@@ -28,6 +28,7 @@ const BeverageCard = (props) => {
   };
 
   const handlePackSizeChange = (event) => {
+    setQuantity(1);
     const newPackSize = event.target.value;
     setPackSize(newPackSize);
     const newBasePrice = newPackSize === "12" ? 17.99 : 30.99;
@@ -155,6 +156,7 @@ const BeverageCard = (props) => {
                           type="radio"
                           label="12 pack"
                           name="packSize"
+                          value="12"
                           checked={packSize === "12"}
                           onChange={handlePackSizeChange}
                         />
@@ -164,6 +166,7 @@ const BeverageCard = (props) => {
                           type="radio"
                           label="24 pack"
                           name="packSize"
+                          value="24"
                           checked={packSize === "24"}
                           onChange={handlePackSizeChange}
                         />
@@ -201,6 +204,7 @@ const BeverageCard = (props) => {
                         min={1}
                         defaultValue={1}
                         max={9}
+                        value={quantity}
                         onChange={handleQuantityChange}
                         style={{ cursor: "pointer" }}
                       />

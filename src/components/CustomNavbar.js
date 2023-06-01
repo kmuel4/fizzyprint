@@ -60,7 +60,7 @@ const CustomNavbar = (props) => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [targetDate]);
 
   const renderTooltip = (props) => (
     <Tooltip {...props}>New collection countdown</Tooltip>
