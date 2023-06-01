@@ -7,26 +7,31 @@ import {
   Image,
   Form,
   FloatingLabel,
+  OverlayTrigger,
+  Popover,
+  Button,
+  Stack,
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
   faTriangleExclamation,
   faSliders,
+  faArrowDownAZ,
+  faArrowUpAZ,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import wordArt from "../Images/ShopGallery-WordArt.png";
 
 const Gallery = (props) => {
   const [selectedFilter, setSelectedFilter] = useState("all");
-  const [selectedSort, setSelectedSort] = useState("az");
+  const [selectedSortOption, setSelectedSortOption] = useState("az");
   const [filteredCards, setFilteredCards] = useState(props.cards);
 
   useEffect(() => {
-    // apply the selected filter and sort whenever they change
-    applyFilterAndSort(selectedFilter, selectedSort);
-  }, [selectedFilter, selectedSort, props.cards]);
+    applyFilterAndSort(selectedFilter);
+  }, [selectedFilter, selectedSortOption, props.cards]);
 
-  const applyFilterAndSort = (filter, sort) => {
+  const applyFilterAndSort = (filter) => {
     let filtered = [];
     if (filter === "all") {
       filtered = props.cards;
@@ -42,22 +47,68 @@ const Gallery = (props) => {
       filtered = props.cards.filter((card) => card.rating > 3);
     }
 
-    if (sort === "za") {
-      filtered.sort((a, b) => a.title.localeCompare(b.title));
-    } else if (sort === "az") {
-      filtered.sort((a, b) => b.title.localeCompare(a.title));
+    const sorted = [...filtered]; // Create a copy of the filtered array
+    if (selectedSortOption === "az") {
+      sorted.sort((a, b) => a.title.localeCompare(b.title));
+    } else if (selectedSortOption === "za") {
+      sorted.sort((a, b) => b.title.localeCompare(a.title));
     }
 
-    setFilteredCards(filtered);
+    setFilteredCards(sorted);
   };
 
   const handleFilterChange = (event) => {
     setSelectedFilter(event.target.value);
   };
 
-  const handleSortChange = (event) => {
-    setSelectedSort(event.target.value);
-  };
+  const SortAndFilterPopover = (
+    <Popover>
+      <Popover.Header as="h3">Sort and Filter</Popover.Header>
+      <Popover.Body>
+        {/* sort */}
+        <Form.Group>
+          <Form.Check
+            type="radio"
+            id="sort-az"
+            label={
+              <Stack direction="horizontal" gap={2}>
+                <FontAwesomeIcon icon={faArrowDownAZ} size="lg" />
+              </Stack>
+            }
+            name="sortOption"
+            value="az"
+            checked={selectedSortOption === "az"}
+            onChange={(event) => setSelectedSortOption(event.target.value)}
+          />
+          <Form.Check
+            type="radio"
+            id="sort-za"
+            label={
+              <Stack direction="horizontal" gap={2}>
+                <FontAwesomeIcon icon={faArrowUpAZ} size="lg" />
+              </Stack>
+            }
+            name="sortOption"
+            value="za"
+            checked={selectedSortOption === "za"}
+            onChange={(event) => setSelectedSortOption(event.target.value)}
+          />
+        </Form.Group>
+
+        <hr />
+
+        {/* filter */}
+        <FloatingLabel label="Filter">
+          <Form.Select value={selectedFilter} onChange={handleFilterChange}>
+            <option value="all">All</option>
+            <option value="availability">Availability</option>
+            <option value="favorites">Favorites</option>
+            <option value="rating">Rating</option>
+          </Form.Select>
+        </FloatingLabel>
+      </Popover.Body>
+    </Popover>
+  );
 
   useEffect(() => {
     window.scrollTo({
@@ -101,38 +152,17 @@ const Gallery = (props) => {
           }}
         >
           <p>{filteredCards.length} Items</p>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "end",
-              cursor: "pointer",
-            }}
+
+          <OverlayTrigger
+            trigger="click"
+            placement="top"
+            overlay={SortAndFilterPopover}
           >
-            <strong>Sort and Filter &nbsp;</strong>
-            <FontAwesomeIcon icon={faSliders} />
-            {/* sort */}
-            <FloatingLabel
-              label="Sort"
-              value={selectedSort}
-              onChange={handleSortChange}
-            >
-              <Form.Select>
-                <option value="az">A-Z</option>
-                <option value="za">Z-A</option>
-              </Form.Select>
-            </FloatingLabel>
-            &nbsp;
-            {/* filter */}
-            <FloatingLabel label="Filter">
-              <Form.Select value={selectedFilter} onChange={handleFilterChange}>
-                <option value="all">All</option>
-                <option value="availability">Availability</option>
-                <option value="favorites">Favorites</option>
-                <option value="rating">Rating</option>
-              </Form.Select>
-            </FloatingLabel>
-          </div>
+            <Button>
+              <strong>Sort and Filter &nbsp;</strong>
+              <FontAwesomeIcon icon={faSliders} />
+            </Button>
+          </OverlayTrigger>
         </div>
 
         <Row>
