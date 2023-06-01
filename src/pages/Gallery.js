@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import GraphicCard from "../components/GraphicCard/GraphicCard.js";
 import {
   Container,
@@ -8,31 +9,43 @@ import {
   FloatingLabel,
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useEffect, useState } from "react";
-import wordArt from "../Images/ShopGallery-WordArt.png";
-import {
-  faTriangleExclamation,
-} from "@fortawesome/free-solid-svg-icons";
+import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import wordArt from "../Images/ShopGallery-WordArt.png";
 
 const Gallery = (props) => {
   const [selectedFilter, setSelectedFilter] = useState("all");
+  const [selectedSort, setSelectedSort] = useState("az");
   const [filteredCards, setFilteredCards] = useState(props.cards);
 
   useEffect(() => {
-    // apply the selected filter whenever it changes
-    applyFilter(selectedFilter);
-  }, [selectedFilter, props.cards]);
+    // apply the selected filter and sort whenever they change
+    applyFilterAndSort(selectedFilter, selectedSort);
+  }, [selectedFilter, selectedSort, props.cards]);
 
-  const applyFilter = (filter) => {
+  const applyFilterAndSort = (filter, sort) => {
     let filtered = [];
     if (filter === "all") {
       filtered = props.cards;
     } else if (filter === "availability") {
-      filtered = props.cards.filter((card) => card.stock !== "out");
+      const highStockCards = props.cards.filter(
+        (card) => card.stock === "high"
+      );
+      const lowStockCards = props.cards.filter((card) => card.stock === "low");
+      filtered = [...lowStockCards, ...highStockCards];
     } else if (filter === "favorites") {
       filtered = props.cards.filter((card) => card.favorite === true);
     }
+    else if (filter === "rating") {
+      filtered = props.cards.filter((card) => card.rating > 3);
+    }
+
+    if (sort === "za") {
+      filtered.sort((a, b) => a.title.localeCompare(b.title));
+    } else if (sort === "az") {
+      filtered.sort((a, b) => b.title.localeCompare(a.title));
+    }
+
     setFilteredCards(filtered);
   };
 
@@ -40,7 +53,10 @@ const Gallery = (props) => {
     setSelectedFilter(event.target.value);
   };
 
-  // scroll to top of page on load
+  const handleSortChange = (event) => {
+    setSelectedSort(event.target.value);
+  };
+
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -78,21 +94,40 @@ const Gallery = (props) => {
           style={{
             display: "flex",
             justifyContent: "space-between",
+            alignItems: "center",
             marginBottom: "1rem",
           }}
         >
           <p>{filteredCards.length} Items</p>
-          <FloatingLabel controlId="floatingSelect" label="Sort and Filter">
-            <Form.Select
-              aria-label="Floating label select example"
-              value={selectedFilter}
-              onChange={handleFilterChange}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "end",
+            }}
+          >
+            {/* sort */}
+            <FloatingLabel
+              label="Sort"
+              value={selectedSort}
+              onChange={handleSortChange}
             >
-              <option value="all">All</option>
-              <option value="avaliability">Avaliability</option>
-              <option value="favorites">Favorites</option>
-            </Form.Select>
-          </FloatingLabel>
+              <Form.Select>
+                <option value="az">A-Z</option>
+                <option value="za">Z-A</option>
+              </Form.Select>
+            </FloatingLabel>
+            &nbsp;
+            {/* filter */}
+            <FloatingLabel label="Filter">
+              <Form.Select value={selectedFilter} onChange={handleFilterChange}>
+                <option value="all">All</option>
+                <option value="availability">Availability</option>
+                <option value="favorites">Favorites</option>
+                <option value="rating">Rating</option>
+              </Form.Select>
+            </FloatingLabel>
+          </div>
         </div>
 
         <Row>
@@ -111,6 +146,7 @@ const Gallery = (props) => {
                 stock={card.stock}
                 favorite={card.favorite}
                 handleFavorite={handleFavorite}
+                rating={card.rating}
               />
             </Col>
           ))}
@@ -118,7 +154,7 @@ const Gallery = (props) => {
         {filteredCards.length === 0 && (
           <Container
             className="d-flex flex-column align-items-center justify-content-center mt-2 mb-5"
-            style={{padding: "5rem"}}
+            style={{ padding: "5rem" }}
           >
             <h1>
               <FontAwesomeIcon
@@ -127,9 +163,7 @@ const Gallery = (props) => {
                 size="xl"
               />
             </h1>
-            <p style={{ fontSize: "1rem" }}>
-              No graphics found.
-            </p>
+            <p style={{ fontSize: "1rem" }}>No graphics found.</p>
           </Container>
         )}
       </Container>

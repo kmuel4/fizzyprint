@@ -35,6 +35,7 @@ const App = () => {
       id: 1,
       stock: "high",
       favorite: false,
+      rating: "3",
     },
     {
       image: image2,
@@ -44,6 +45,7 @@ const App = () => {
       id: 2,
       stock: "high",
       favorite: false,
+      rating: "3",
     },
     {
       image: image3,
@@ -53,6 +55,7 @@ const App = () => {
       id: 3,
       stock: "out",
       favorite: false,
+      rating: "5",
     },
     {
       image: image4,
@@ -62,6 +65,7 @@ const App = () => {
       id: 4,
       stock: "high",
       favorite: false,
+      rating: "3",
     },
     {
       image: image5,
@@ -71,6 +75,7 @@ const App = () => {
       id: 5,
       stock: "high",
       favorite: false,
+      rating: "3",
     },
     {
       image: image6,
@@ -80,6 +85,7 @@ const App = () => {
       id: 6,
       stock: "low",
       favorite: false,
+      rating: "5",
     },
     {
       image: image7,
@@ -89,6 +95,7 @@ const App = () => {
       id: 7,
       stock: "out",
       favorite: false,
+      rating: "5",
     },
     {
       image: image8,
@@ -98,6 +105,7 @@ const App = () => {
       id: 8,
       stock: "high",
       favorite: false,
+      rating: "3",
     },
     {
       image: image9,
@@ -107,6 +115,7 @@ const App = () => {
       id: 9,
       stock: "high",
       favorite: false,
+      rating: "3",
     },
   ]);
   

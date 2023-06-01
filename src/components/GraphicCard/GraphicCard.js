@@ -5,9 +5,10 @@ import {
   faCartPlus,
   faCircleCheck,
   faStar,
+  faFire,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import PreviewModal from "./PreviewModal";
 
 const GraphicCard = (props) => {
@@ -108,11 +109,11 @@ const GraphicCard = (props) => {
     // Change color of star
     const newColor = favorite === "yellow" ? "white" : "yellow";
     setFavorite(newColor);
-  
+
     // Update favorite status in the parent component
     const newStatus = newColor === "yellow";
     props.handleFavorite(props.id, newStatus);
-  
+
     // Turn on and off animate
     setFavoriteAnimate(true);
     setTimeout(() => {
@@ -128,9 +129,8 @@ const GraphicCard = (props) => {
       } else {
         return "success";
       }
-    }
-    else{
-      return "danger"
+    } else {
+      return "danger";
     }
   };
 
@@ -178,8 +178,24 @@ const GraphicCard = (props) => {
         </div>
         <Card.Body>
           {/*title */}
-          <Card.Title>{props.title}</Card.Title>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <span style={{ display: "flex" }}>
+            <Card.Title>{props.title}</Card.Title>
+            {/*fire symbol */}
+            {props.rating >= 4 && (
+              <FontAwesomeIcon
+                icon={faFire}
+                style={{ color: "#ff4747", marginLeft: ".5rem" }}
+                size="xl"
+              />
+            )}
+          </span>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
             {/*price */}
             <Card.Text>${props.price.toString()}</Card.Text>
             {/*button icon */}
