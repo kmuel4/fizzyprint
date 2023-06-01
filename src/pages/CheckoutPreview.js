@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Offcanvas, Button, Badge, Container, Row } from "react-bootstrap";
+import { Modal, Button, Badge, Container, Row } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../main.css";
 import {
@@ -10,10 +10,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CheckoutPreviewItem from "../components/Checkout/CheckoutPreviewItem";
 
 const CheckoutPreview = (props) => {
-  // handle offcanvas
+  // handle Modal
   const [show, setShow] = useState(true);
 
-  // close offcanvas
+  // close Modal
   const handleClose = () => {
     setShow(false);
     props.checkoutIndex();
@@ -29,9 +29,9 @@ const CheckoutPreview = (props) => {
   };
 
   return (
-      <Offcanvas show={show} onHide={handleClose} placement="end">
-        <Offcanvas.Header closeButton>
-          <Offcanvas.Title style={{ fontWeight: "bold" }}>
+      <Modal show={show} onHide={handleClose} fullscreen={true} dialogClassName="checkout-preview-modal">
+        <Modal.Header closeButton>
+          <Modal.Title style={{ fontWeight: "bold" }}>
             {/* cart icon */}
             <FontAwesomeIcon icon={faBagShopping} />
             {/* cart badge */}
@@ -52,9 +52,9 @@ const CheckoutPreview = (props) => {
               <></>
             )}
             &nbsp; Shopping Cart
-          </Offcanvas.Title>
-        </Offcanvas.Header>
-        <Offcanvas.Body>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
           {/* conditional cart message */}
           {props.cartItemsLength === 0 ? (
             <Container
@@ -92,8 +92,8 @@ const CheckoutPreview = (props) => {
               </Row>
             </Container>
           )}
-        </Offcanvas.Body>
-        <Offcanvas.Footer>
+        </Modal.Body>
+        <Modal.Footer>
           <Button
             className="w-100"
             onClick={handleCheckout}
@@ -101,8 +101,8 @@ const CheckoutPreview = (props) => {
           >
             Checkout
           </Button>
-        </Offcanvas.Footer>
-      </Offcanvas>
+        </Modal.Footer>
+      </Modal>
   );
 };
 
