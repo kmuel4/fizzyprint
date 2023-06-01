@@ -94,6 +94,7 @@ const CustomNavbar = (props) => {
 
   return (
     <>
+      {/* countdown timer */}
       <Navbar bg="primary" fixed="top" style={{ height: "2rem" }}>
         <Container
           style={{
@@ -108,40 +109,48 @@ const CustomNavbar = (props) => {
             delay={{ hide: 200 }}
             overlay={renderTooltip}
           >
-            <div>
+            <span>
               {days}d {hours}h {minutes}m {seconds}s
-            </div>
+            </span>
           </OverlayTrigger>
         </Container>
       </Navbar>
+
+      {/* navbar */}
       <Navbar
         bg="light"
         variant="dark"
         fixed="top"
-        style={{ padding: "1rem", marginTop: "2rem" }}
+        style={{
+          padding: "1rem",
+          marginTop: "2rem",
+          display: "flex",
+          justifyContent: "center",
+        }}
       >
         <Container fluid>
-          <Row className="w-100 align-items-center">
-            {/*menu button */}
-            &nbsp;
+          <Row
+            className="w-100 align-items-center"
+            style={{ flexWrap: "nowrap" }}
+          >
+            {/* menu and search */}
             <Col xs="auto">
-              {/* menu */}
               <FontAwesomeIcon
                 icon={faList}
                 size="xl"
                 style={{ cursor: "pointer" }}
                 onClick={() => handleMenu()}
               />
-              {/*search */}
               <FontAwesomeIcon
                 icon={faMagnifyingGlass}
                 size="lg"
                 style={{ marginLeft: "1.5rem", cursor: "pointer" }}
               />
             </Col>
-            <Col xs="auto" className="text-center flex-grow-1">
-              {/* title */}
-              <Navbar.Brand
+
+            {/* brand */}
+            <Col xs="auto" className="text-center flex-fill">
+              <span
                 onClick={scrollToTop}
                 style={{
                   cursor: "pointer",
@@ -150,11 +159,12 @@ const CustomNavbar = (props) => {
                 }}
               >
                 <strong style={{ color: "black" }}>Fizzy Prints</strong>
-              </Navbar.Brand>
+              </span>
             </Col>
+
+            {/* log in, cart icon, badge */}
             <Col xs="auto" className="ml-auto d-flex text-right">
               <span style={{ cursor: "pointer" }}>Log In</span>
-              {/* cart icon */}
               <FontAwesomeIcon
                 icon={faBagShopping}
                 bounce={cartAnimate}
@@ -162,7 +172,6 @@ const CustomNavbar = (props) => {
                 size="xl"
                 style={{ cursor: "pointer", marginLeft: "1rem" }}
               />
-              {/* cart badge */}
               {props.cartItemsLength > 0 ? (
                 <Badge
                   pill
