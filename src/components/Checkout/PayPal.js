@@ -6,9 +6,19 @@ const PayPal = ({ complete }) => {
   useEffect(() => {
     complete(true);
   }, [complete]);
-  
+
   return (
     <>
+      <Container
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          textAlign: "center",
+        }}
+      >
+        <h1 style={{fontWeight: "bold"}}>Payment</h1>
+      </Container>
       <Container
         style={{
           marginTop: "2rem",

@@ -9,8 +9,16 @@ const Preview = (props) => {
   }, [props.complete]);
   return (
     <>
-      <Container style={{ display: "flex", justifyContent: "center" }}>
-        <Image src={wordArt} fluid />
+      <Container
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          textAlign: "center",
+        }}
+      >
+        <h1 style={{fontWeight: "bold"}}>Preview</h1>
+        <br />
       </Container>
       <Container style={{ maxWidth: "1200px" }}>
         preview the graphics on the beverage. print each graphic on their

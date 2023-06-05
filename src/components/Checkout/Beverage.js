@@ -16,13 +16,22 @@ const Beverage = (props) => {
 
   return (
     <>
-      <Container style={{display: "flex", justifyContent: "center"}}>
-        <Image src={wordArt} fluid />
+      <Container
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          textAlign: "center",
+        }}
+      >
+        <h1 style={{fontWeight: "bold"}}>Select Your Drinks</h1>
+        <p>Lock-in each selection to continue.</p>
+        <br />
       </Container>
 
-      <Container style={{ display: "flex", justifyContent: "center" }}>
-        <p>Lock-in each selection to continue.</p>
-      </Container>
+      <Container
+        style={{ display: "flex", justifyContent: "center" }}
+      ></Container>
       <Container style={{ maxWidth: "1200px" }}>
         {/*print the cart contents */}
         <SelectBeverage

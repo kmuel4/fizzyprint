@@ -159,16 +159,18 @@ const Gallery = (props) => {
   return (
     <>
       {/*title */}
+      <hr/>
       <Container
         style={{
           display: "flex",
-          justifyContent: "center",
-          marginBottom: "3rem",
-          marginTop: "0rem",
+          flexDirection: "column",
+          alignItems: "center",
+          textAlign: "center",
         }}
       >
-        <Image src={wordArt} fluid />
+        <h1 style={{ fontSize: "4rem", fontWeight: "bold" }}>Shop Gallery</h1>
       </Container>
+      <hr />
 
       <Container className="mx-auto" style={{ maxWidth: "1200px" }}>
         <div

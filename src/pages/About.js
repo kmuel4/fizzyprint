@@ -12,16 +12,21 @@ const About = () => {
     });
   }, []);
   return (
-    <Container
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        marginBottom: "3rem",
-        marginTop: "0rem",
-      }}
-    >
-      <Image src={wordArt} fluid/>
-    </Container>
+    <>
+      <hr />
+      <Container
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          textAlign: "center",
+        }}
+      >
+        <h1 style={{ fontSize: "4rem", fontWeight: "bold" }}>About</h1>
+      </Container>
+      <hr />
+      <p>about page</p>
+    </>
   );
 };
 

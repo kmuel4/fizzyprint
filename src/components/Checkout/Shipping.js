@@ -67,8 +67,16 @@ const Shipping = (props) => {
 
   return (
     <>
-      <Container style={{ display: "flex", justifyContent: "center" }}>
-        <Image src={wordArt} fluid />
+      <Container
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          textAlign: "center",
+        }}
+      >
+        <h1 style={{fontWeight: "bold"}}>Shipping</h1>
+        <br />
       </Container>
       <Container style={{ maxWidth: "50rem" }}>
         <Form onSubmit={handleSave}>
