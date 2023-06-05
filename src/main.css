@@ -17,6 +17,11 @@
   height: 32rem;
 }
 
+/*nav burger icon */
+.custom-toggler .svg-inline--fa {
+  color: black;
+}
+
 .carousel-item > img {
   position: absolute;
   top: 0;

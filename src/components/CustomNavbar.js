@@ -1,5 +1,6 @@
 import {
   Navbar,
+  Nav,
   Container,
   Row,
   Col,
@@ -134,14 +135,14 @@ const CustomNavbar = (props) => {
 
       {/* navbar */}
       <Navbar
-        bg="light"
+        bg="white"
         variant="dark"
         fixed="top"
         style={{
           padding: "1rem",
           marginTop: "2rem",
-          display: "flex",
-          justifyContent: "center",
+          
+          color: "black",
         }}
       >
         {/* search input */}
@@ -161,22 +162,49 @@ const CustomNavbar = (props) => {
           </Container>
         ) : (
           <Container fluid>
-            <Row
-              className="w-100 align-items-center"
-              style={{ flexWrap: "nowrap" }}
-            >
+            <Row className="w-100 align-items-center" style={{ flexWrap: "nowrap" }}>
               {/* menu and search */}
               <Col xs="auto">
+                <Navbar.Toggle
+                  aria-controls="responsive-navbar-nav"
+                  className="custom-toggler"
+                ></Navbar.Toggle>
+
                 <FontAwesomeIcon
                   icon={faBars}
                   size="xl"
                   style={{ cursor: "pointer" }}
                   onClick={() => handleMenu()}
                 />
+                
+                {/** 
+                 <Navbar.Collapse id="responsive-navbar-nav">
+                    <Row>
+                      <Nav className="ml-auto">
+                        <Nav.Link href="#home" style={{ color: "black" }}>
+                          Home
+                        </Nav.Link>
+                        <Nav.Link href="#about" style={{ color: "black" }}>
+                          Shop
+                        </Nav.Link>
+                        <Nav.Link href="#services" style={{ color: "black" }}>
+                          About
+                        </Nav.Link>
+                        <Nav.Link href="#contact" style={{ color: "black" }}>
+                          Help
+                        </Nav.Link>
+                      </Nav>
+                    </Row>
+                  </Navbar.Collapse>
+                */}
+
                 <FontAwesomeIcon
                   icon={faMagnifyingGlass}
                   size="lg"
-                  style={{ marginLeft: "1.5rem", cursor: "pointer" }}
+                  style={{
+                    marginLeft: "1rem",
+                    cursor: "pointer",
+                  }}
                   onClick={() => toggleSearchInput()}
                 />
               </Col>
