@@ -16,6 +16,7 @@ import {
   faBars,
   faMagnifyingGlass,
   faXmark,
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState, useEffect } from "react";
@@ -196,11 +197,13 @@ const CustomNavbar = (props) => {
 
               {/* log in, cart icon, badge */}
               <Col xs="auto" className="ml-auto d-flex text-right">
-                <span
-                  style={{ cursor: "pointer" }}
-                  onClick={() => handleLogIn()}
-                >
-                  Log In
+                <span>
+                  <FontAwesomeIcon
+                    icon={faUser}
+                    style={{ cursor: "pointer" }}
+                    onClick={() => handleLogIn()}
+                    size="xl"
+                  />
                 </span>
                 <FontAwesomeIcon
                   icon={faBagShopping}
