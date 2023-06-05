@@ -13,7 +13,7 @@ const EmptyCard = (props) => {
 
   const renderTooltip = (props) => (
     <Tooltip id="button-tooltip" {...props}>
-      Continue Shopping
+      Add More
     </Tooltip>
   );
   return (
@@ -34,7 +34,7 @@ const EmptyCard = (props) => {
             <FontAwesomeIcon
               icon={faPlus}
               size="xl"
-              beat={isHovered}
+              beat
               onClick={handleClick}
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}

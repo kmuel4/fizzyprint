@@ -4,7 +4,6 @@ import {
   Container,
   Row,
   Col,
-  Image,
   Form,
   FloatingLabel,
   OverlayTrigger,
@@ -21,7 +20,6 @@ import {
   faArrowUpAZ,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import wordArt from "../Images/ShopGallery-WordArt.png";
 
 const Gallery = (props) => {
   //initialize filter and sort
@@ -170,7 +168,9 @@ const Gallery = (props) => {
           color: "white",
           padding: "1rem",
           borderRadius: "0px",
-          marginBottom: "2rem"
+          marginBottom: "2rem",
+          boxShadow: "1px 0px 3px rgba(5, 5, 5, 0.5)"
+          
         }}
       >
         <h1 style={{ fontSize: "4rem", fontWeight: "bold" }}>Shop Gallery</h1>

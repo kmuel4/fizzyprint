@@ -5,10 +5,10 @@ import {
   Form,
   InputGroup,
   ProgressBar,
-  Container,
+  Breadcrumb,
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { faCircleRight, faHouse } from "@fortawesome/free-solid-svg-icons";
+import { faCircleRight, faCopyright } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Beverage from "./Beverage";
 import Preview from "./Preview";
@@ -61,6 +61,25 @@ const Checkout = (props) => {
   const handleComplete = (value) => {
     setComplete(value);
   };
+
+  const [breadcrumbs, setBreadcrumbs] = useState([]);
+
+  useEffect(() => {
+    switch (index) {
+      case 0:
+        return setBreadcrumbs(["Drinks"]);
+      case 1:
+        return setBreadcrumbs(["Drinks", "Preview"]);
+      case 2:
+        return setBreadcrumbs(["Drinks", "...", "Shipping"]);
+      case 3:
+        return setBreadcrumbs(["Drinks", "...", "Payment"]);
+      case 4:
+        return setBreadcrumbs(["Drinks", "...", "Receipt"]);
+      default:
+        return setBreadcrumbs(["Drinks"]);
+    }
+  }, [index]);
 
   //handle the checkout screens
   const handleScreens = (value) => {
@@ -117,7 +136,30 @@ const Checkout = (props) => {
         fullscreen={true}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Checkout</Modal.Title>
+          <Modal.Title
+            style={{
+              display: "flex",
+              marginBottom: "-1rem",
+              justifyContent: "start",
+              whiteSpace: "nowrap",
+            }}
+          >
+            <Breadcrumb>
+              {breadcrumbs.map((item, i) => (
+                <Breadcrumb.Item
+                  key={i}
+                  active={i !== 0}
+                  onClick={() => {
+                    if (i === 0) {
+                      setIndex(0);
+                    }
+                  }}
+                >
+                  {item}
+                </Breadcrumb.Item>
+              ))}
+            </Breadcrumb>
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {/*progress bar */}
@@ -129,13 +171,9 @@ const Checkout = (props) => {
         <Modal.Footer>
           <div className="d-flex justify-content-between w-100">
             {/*return button, disable on receipt page and home page*/}
-            <Button
-              variant="secondary"
-              disabled={index === 4 || index === 0}
-              onClick={() => setIndex(0)}
-            >
-              <FontAwesomeIcon icon={faHouse} size="lg" />
-            </Button>
+            <Form.Text>
+              FizzyPrint <FontAwesomeIcon icon={faCopyright} />
+            </Form.Text>
 
             {/*subtotal, hide on receipt page */}
             {index !== 4 && (
