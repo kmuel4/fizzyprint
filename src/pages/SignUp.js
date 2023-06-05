@@ -25,10 +25,11 @@ const SignUp = (props) => {
         onHide={handleClose}
         animation={true}
         fullscreen={false}
+        centered
       >
         <Form onSubmit={handleSubmit}>
           <Modal.Header closeButton>
-            <Modal.Title>Sign up now!</Modal.Title>
+            <Modal.Title className="w-100 text-center">Sign up now!</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Container>

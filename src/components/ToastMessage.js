@@ -40,7 +40,10 @@ const ToastMessage = (props) => {
   }, [show]);
 
   return (
-    <ToastContainer className="p-3" position="top-start">
+    <ToastContainer
+      className="p-3"
+      style={{ position: "fixed", top: "5px", left: "5px" }}
+    >
       <Toast onClose={() => setShow(false)} show={show}>
         <Toast.Header>
           <strong className="me-auto">

@@ -22,6 +22,7 @@ import image9 from "./Images/image9.png";
 import ToastMessage from "./components/ToastMessage";
 import Menu from "./pages/Menu";
 import CheckoutPreview from "./pages/CheckoutPreview";
+import LogIn from "./pages/LogIn";
 
 const App = () => {
   //graphics database
@@ -209,6 +210,8 @@ const App = () => {
             remove={handleRemove}
           />
         );
+        case 5:
+          return <LogIn modalIndex={setModalIndex}/>
 
       default:
         return;

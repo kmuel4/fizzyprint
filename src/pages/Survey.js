@@ -66,10 +66,11 @@ const CreateGraphic = (props) => {
         onHide={handleClose}
         animation={true}
         fullscreen={false}
+        centered
       >
         <Form onSubmit={handleSubmit}>
           <Modal.Header closeButton>
-            <Modal.Title>
+            <Modal.Title className="w-100 text-center">
               Survey <FontAwesomeIcon icon={faCompassDrafting} />
             </Modal.Title>
           </Modal.Header>

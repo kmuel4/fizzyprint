@@ -8,7 +8,6 @@ import {
   Tooltip,
   Form,
   InputGroup,
-  FloatingLabel,
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../main.css";
@@ -98,8 +97,14 @@ const CustomNavbar = (props) => {
     }
   }, [props.cartItemsLength]);
 
+  //toggle search bar
   const toggleSearchInput = () => {
     setShowSearchInput(!showSearchInput);
+  };
+
+  //handle log in
+  const handleLogIn = () => {
+    props.menu(5);
   };
 
   return (
@@ -191,7 +196,12 @@ const CustomNavbar = (props) => {
 
               {/* log in, cart icon, badge */}
               <Col xs="auto" className="ml-auto d-flex text-right">
-                <span style={{ cursor: "pointer" }}>Log In</span>
+                <span
+                  style={{ cursor: "pointer" }}
+                  onClick={() => handleLogIn()}
+                >
+                  Log In
+                </span>
                 <FontAwesomeIcon
                   icon={faBagShopping}
                   bounce={cartAnimate}

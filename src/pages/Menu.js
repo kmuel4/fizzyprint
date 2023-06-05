@@ -39,6 +39,8 @@ const Menu = (props) => {
         return modalHelper(2);
       case "Survey":
         return modalHelper(1);
+      case "LogIn":
+        return modalHelper(5);
       default:
         return;
     }
@@ -80,7 +82,9 @@ const Menu = (props) => {
             <hr />
             <Container style={{ textDecoration: "underline" }}>
               <p style={{ cursor: "pointer" }}>Help</p>
-              <p style={{ cursor: "pointer" }}>Log In</p>
+              <p style={{ cursor: "pointer" }} onClick={()=>handleNav("LogIn")}>
+                Log In
+              </p>
             </Container>
           </Offcanvas.Body>
         </Form>
