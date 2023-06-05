@@ -11,6 +11,7 @@ import {
   Popover,
   Button,
   Stack,
+  Card,
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
@@ -159,18 +160,21 @@ const Gallery = (props) => {
   return (
     <>
       {/*title */}
-      <hr/>
-      <Container
+      <Card
         style={{
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           textAlign: "center",
+          backgroundColor: "#0d6efd",
+          color: "white",
+          padding: "1rem",
+          borderRadius: "0px",
+          marginBottom: "2rem"
         }}
       >
         <h1 style={{ fontSize: "4rem", fontWeight: "bold" }}>Shop Gallery</h1>
-      </Container>
-      <hr />
+      </Card>
 
       <Container className="mx-auto" style={{ maxWidth: "1200px" }}>
         <div

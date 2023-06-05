@@ -24,6 +24,21 @@ import { useState, useEffect } from "react";
 
 const CustomNavbar = (props) => {
   const [showSearchInput, setShowSearchInput] = useState(false);
+  const [isXlScreen, setIsXlScreen] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsXlScreen(window.innerWidth >= 1200);
+    };
+
+    handleResize(); // Initial check
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   // scroll to top of page
   const scrollToTop = () => {
@@ -81,6 +96,10 @@ const CustomNavbar = (props) => {
   //display nav menu
   const handleMenu = () => {
     props.menu(3);
+  };
+
+  const navHelper = (value) => {
+    props.index(value);
   };
 
   //make cart bounce when item is added
@@ -141,7 +160,7 @@ const CustomNavbar = (props) => {
         style={{
           padding: "1rem",
           marginTop: "2rem",
-          
+
           color: "black",
         }}
       >
@@ -162,7 +181,10 @@ const CustomNavbar = (props) => {
           </Container>
         ) : (
           <Container fluid>
-            <Row className="w-100 align-items-center" style={{ flexWrap: "nowrap" }}>
+            <Row
+              className="w-100 align-items-center"
+              style={{ flexWrap: "nowrap" }}
+            >
               {/* menu and search */}
               <Col xs="auto">
                 <Navbar.Toggle
@@ -170,33 +192,25 @@ const CustomNavbar = (props) => {
                   className="custom-toggler"
                 ></Navbar.Toggle>
 
-                <FontAwesomeIcon
-                  icon={faBars}
-                  size="xl"
-                  style={{ cursor: "pointer" }}
-                  onClick={() => handleMenu()}
-                />
-                
-                {/** 
-                 <Navbar.Collapse id="responsive-navbar-nav">
-                    <Row>
-                      <Nav className="ml-auto">
-                        <Nav.Link href="#home" style={{ color: "black" }}>
-                          Home
-                        </Nav.Link>
-                        <Nav.Link href="#about" style={{ color: "black" }}>
-                          Shop
-                        </Nav.Link>
-                        <Nav.Link href="#services" style={{ color: "black" }}>
-                          About
-                        </Nav.Link>
-                        <Nav.Link href="#contact" style={{ color: "black" }}>
-                          Help
-                        </Nav.Link>
-                      </Nav>
-                    </Row>
-                  </Navbar.Collapse>
-                */}
+                {!isXlScreen ? (
+                  <FontAwesomeIcon
+                    icon={faBars}
+                    size="xl"
+                    style={{ cursor: "pointer" }}
+                    onClick={() => handleMenu()}
+                  />
+                ) : (
+                  <span
+                    onClick={scrollToTop}
+                    style={{
+                      cursor: "pointer",
+                      fontSize: "1.5rem",
+                      color: "white",
+                    }}
+                  >
+                    <strong style={{ color: "black" }}>Fizzy Prints</strong>
+                  </span>
+                )}
 
                 <FontAwesomeIcon
                   icon={faMagnifyingGlass}
@@ -211,16 +225,33 @@ const CustomNavbar = (props) => {
 
               {/* brand */}
               <Col xs="auto" className="text-center flex-fill">
-                <span
-                  onClick={scrollToTop}
-                  style={{
-                    cursor: "pointer",
-                    fontSize: "1.5rem",
-                    color: "white",
-                  }}
-                >
-                  <strong style={{ color: "black" }}>Fizzy Prints</strong>
-                </span>
+                {!isXlScreen ? (
+                  <span
+                    onClick={scrollToTop}
+                    style={{
+                      cursor: "pointer",
+                      fontSize: "1.5rem",
+                      color: "white",
+                    }}
+                  >
+                    <strong style={{ color: "black" }}>Fizzy Prints</strong>
+                  </span>
+                ) : (
+                      <Nav className="justify-content-center">
+                        <Nav.Link onClick={()=>navHelper(0)} style={{ color: "black" }}>
+                          Home
+                        </Nav.Link>
+                        <Nav.Link onClick={()=>navHelper(1)} style={{ color: "black" }}>
+                          Shop
+                        </Nav.Link>
+                        <Nav.Link onClick={()=>navHelper(2)} style={{ color: "black" }}>
+                          About
+                        </Nav.Link>
+                        <Nav.Link href="#contact" style={{ color: "black" }}>
+                          Help
+                        </Nav.Link>
+                      </Nav>
+                )}
               </Col>
 
               {/* log in, cart icon, badge */}
