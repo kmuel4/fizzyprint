@@ -84,7 +84,7 @@ const Menu = (props) => {
             <MenuNavItem name="Log In" click={handleNav} icon={faUser} />
             <hr />
             <Container style={{ textDecoration: "underline" }}>
-              <p style={{ cursor: "pointer" }}>Help</p>
+              <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" style={{color: "black"}} target="_blank">Help</a>
             </Container>
           </Offcanvas.Body>
         </Form>

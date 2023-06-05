@@ -33,6 +33,7 @@ const Beverage = (props) => {
         style={{ display: "flex", justifyContent: "center" }}
       ></Container>
       <Container style={{ maxWidth: "1200px" }}>
+        <p>{props.cart.length} Items</p>
         {/*print the cart contents */}
         <SelectBeverage
           cart={props.cart}
