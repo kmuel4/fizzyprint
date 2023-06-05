@@ -1,5 +1,12 @@
 import { useState, useEffect } from "react";
-import { Button, Modal, Form, InputGroup, ProgressBar } from "react-bootstrap";
+import {
+  Button,
+  Modal,
+  Form,
+  InputGroup,
+  ProgressBar,
+  Container,
+} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { faCircleRight, faHouse } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -53,7 +60,7 @@ const Checkout = (props) => {
   const [complete, setComplete] = useState(false);
   const handleComplete = (value) => {
     setComplete(value);
-  }
+  };
 
   //handle the checkout screens
   const handleScreens = (value) => {
@@ -70,13 +77,13 @@ const Checkout = (props) => {
           />
         );
       case 1:
-        return <Preview complete={handleComplete}/>;
+        return <Preview complete={handleComplete} />;
       case 2:
-        return <Shipping complete={handleComplete}/>;
+        return <Shipping complete={handleComplete} />;
       case 3:
-        return <PayPal complete={handleComplete}/>;
+        return <PayPal complete={handleComplete} />;
       case 4:
-        return <Receipt complete={handleComplete}/>;
+        return <Receipt complete={handleComplete} />;
       default:
         return;
     }
@@ -142,9 +149,17 @@ const Checkout = (props) => {
 
             <div className="d-flex justify-content-end">
               {/*next button */}
-              <Button variant="primary" disabled={!complete}onClick={() => handleNext()}>
+              <Button
+                variant="primary"
+                disabled={!complete}
+                onClick={() => handleNext()}
+              >
                 {index !== 4 ? (
-                  <FontAwesomeIcon icon={faCircleRight} size="xl" beat={complete} />
+                  <FontAwesomeIcon
+                    icon={faCircleRight}
+                    size="xl"
+                    beat={complete}
+                  />
                 ) : (
                   "Finish"
                 )}

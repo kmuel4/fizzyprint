@@ -34,8 +34,8 @@ const CreateGraphic = (props) => {
   const [abstractAndSurreal, setAbstractAndSurreal] = useState(false);
 
   //initalize description text area
-  const [themeDesc, setThemeDesc] = useState();
-  const [aestheticDesc, setAestheticDesc] = useState();
+  const [setThemeDesc] = useState();
+  const [setAestheticDesc] = useState();
 
   const handleSubmit = (event) => {
     event.preventDefault();
