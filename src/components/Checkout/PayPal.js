@@ -1,7 +1,12 @@
 import { Container, Image } from "react-bootstrap";
 import paypal from "../../Images/PayPal-example.png";
+import { useEffect } from "react";
 
-const PayPal = () => {
+const PayPal = ({ complete }) => {
+  useEffect(() => {
+    complete(true);
+  }, [complete]);
+  
   return (
     <>
       <Container

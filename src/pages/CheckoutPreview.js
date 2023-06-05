@@ -5,13 +5,13 @@ import {
   Badge,
   Container,
   Row,
-  Card,
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../main.css";
 import {
   faBagShopping,
   faTriangleExclamation,
+  faArrowRight
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CheckoutPreviewItem from "../components/Checkout/CheckoutPreviewItem";
@@ -80,7 +80,7 @@ const CheckoutPreview = (props) => {
             </p>
           </Container>
         ) : (
-          <Container style={{marginBottom: "3rem"}}>
+          <Container style={{ marginBottom: "3rem" }}>
             <Row>
               {props.cart.map((item) => {
                 const card = props.cards.find((card) => card.id === item);
@@ -99,21 +99,23 @@ const CheckoutPreview = (props) => {
             </Row>
           </Container>
         )}
-        <Container style={{
-              position: "absolute",
-              bottom: "0rem",
-              right: "0rem",
-              backgroundColor: "white",
-              padding: "1rem"
-            }}>
-
-            <Button
-              className="w-100"
-              onClick={handleCheckout}
-              disabled={props.cartItemsLength === 0}
-            >
-              Checkout
-            </Button>
+        <Container
+          style={{
+            position: "absolute",
+            bottom: "0rem",
+            right: "0rem",
+            backgroundColor: "white",
+            padding: "1rem",
+          }}
+        >
+          <Button
+            className="w-100"
+            onClick={handleCheckout}
+            disabled={props.cartItemsLength === 0}
+          >
+            Checkout&nbsp;
+            <FontAwesomeIcon icon={faArrowRight} />
+          </Button>
         </Container>
       </Offcanvas.Body>
     </Offcanvas>

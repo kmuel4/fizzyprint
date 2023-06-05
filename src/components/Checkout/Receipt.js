@@ -3,10 +3,11 @@ import { Container, Image } from "react-bootstrap";
 import { useEffect } from "react";
 import wordArt from "../../Images/Receipt-WordArt.png";
 
-const Receipt = (props) => {
+const Receipt = ({ complete }) => {
   useEffect(() => {
-    props.complete(true);
-  }, [props.complete]);
+    complete(true);
+  }, [complete]);
+  
   return (
     <>
       <Container style={{ display: "flex", justifyContent: "center" }}>

@@ -23,76 +23,98 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import wordArt from "../Images/ShopGallery-WordArt.png";
 
 const Gallery = (props) => {
+  //initialize filter and sort
   const [selectedFilter, setSelectedFilter] = useState("all");
   const [selectedSortOption, setSelectedSortOption] = useState("az");
   const [filteredCards, setFilteredCards] = useState(props.cards);
 
+  //apply the filter to the cards
   useEffect(() => {
     applyFilterAndSort(selectedFilter);
-  }, [selectedFilter, selectedSortOption, props.cards]);
+  }, [selectedFilter, selectedSortOption]);
 
+  //handle filter and sort
   const applyFilterAndSort = (filter) => {
     let filtered = [];
+    //show all
     if (filter === "all") {
       filtered = props.cards;
-    } else if (filter === "availability") {
+    }
+    //show avaliability
+    else if (filter === "availability") {
+      //high avaliability
       const highStockCards = props.cards.filter(
         (card) => card.stock === "high"
       );
+      //low avaliability
       const lowStockCards = props.cards.filter((card) => card.stock === "low");
+      //combine
       filtered = [...lowStockCards, ...highStockCards];
-    } else if (filter === "favorites") {
+    }
+    //show favorites
+    else if (filter === "favorites") {
       filtered = props.cards.filter((card) => card.favorite === true);
-    } else if (filter === "rating") {
+    }
+    //show popular
+    else if (filter === "rating") {
       filtered = props.cards.filter((card) => card.rating > 3);
     }
 
-    const sorted = [...filtered]; // Create a copy of the filtered array
+    //sort
+    const sorted = [...filtered];
+    //a to z
     if (selectedSortOption === "az") {
       sorted.sort((a, b) => a.title.localeCompare(b.title));
-    } else if (selectedSortOption === "za") {
+    }
+    //z to a
+    else if (selectedSortOption === "za") {
       sorted.sort((a, b) => b.title.localeCompare(a.title));
     }
 
     setFilteredCards(sorted);
   };
 
+  //handle filter
   const handleFilterChange = (event) => {
     setSelectedFilter(event.target.value);
   };
 
+  //sort and filter settings
   const SortAndFilterPopover = (
     <Popover>
-      <Popover.Header as="h3">Sort and Filter</Popover.Header>
       <Popover.Body>
         {/* sort */}
         <Form.Group>
-          <Form.Check
-            type="radio"
-            id="sort-az"
-            label={
-              <Stack direction="horizontal" gap={2}>
-                <FontAwesomeIcon icon={faArrowDownAZ} size="lg" />
-              </Stack>
-            }
-            name="sortOption"
-            value="az"
-            checked={selectedSortOption === "az"}
-            onChange={(event) => setSelectedSortOption(event.target.value)}
-          />
-          <Form.Check
-            type="radio"
-            id="sort-za"
-            label={
-              <Stack direction="horizontal" gap={2}>
-                <FontAwesomeIcon icon={faArrowUpAZ} size="lg" />
-              </Stack>
-            }
-            name="sortOption"
-            value="za"
-            checked={selectedSortOption === "za"}
-            onChange={(event) => setSelectedSortOption(event.target.value)}
-          />
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            {/*a to z */}
+            <Form.Check
+              type="radio"
+              id="sort-az"
+              label={
+                <Stack direction="horizontal" gap={2}>
+                  <FontAwesomeIcon icon={faArrowDownAZ} size="lg" />
+                </Stack>
+              }
+              name="sortOption"
+              value="az"
+              checked={selectedSortOption === "az"}
+              onChange={(event) => setSelectedSortOption(event.target.value)}
+            />
+            {/*z to a */}
+            <Form.Check
+              type="radio"
+              id="sort-za"
+              label={
+                <Stack direction="horizontal" gap={2}>
+                  <FontAwesomeIcon icon={faArrowUpAZ} size="lg" />
+                </Stack>
+              }
+              name="sortOption"
+              value="za"
+              checked={selectedSortOption === "za"}
+              onChange={(event) => setSelectedSortOption(event.target.value)}
+            />
+          </div>
         </Form.Group>
 
         <hr />
@@ -110,6 +132,7 @@ const Gallery = (props) => {
     </Popover>
   );
 
+  //top on page load
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -118,20 +141,24 @@ const Gallery = (props) => {
     });
   }, []);
 
+  //add graphic to cart
   const handleAdd = (value) => {
     props.add(value);
   };
 
+  //remove from cart
   const handleRemove = (value) => {
     props.remove(value);
   };
 
+  //add graphic as favorite
   const handleFavorite = (id, status) => {
     props.handleFavorite(id, status);
   };
 
   return (
     <>
+      {/*title */}
       <Container
         style={{
           display: "flex",
@@ -142,6 +169,7 @@ const Gallery = (props) => {
       >
         <Image src={wordArt} fluid />
       </Container>
+
       <Container className="mx-auto" style={{ maxWidth: "1200px" }}>
         <div
           style={{
@@ -151,8 +179,10 @@ const Gallery = (props) => {
             marginBottom: "1rem",
           }}
         >
+          {/*number of items shown */}
           <p>{filteredCards.length} Items</p>
 
+          {/*sort and filter   */}
           <OverlayTrigger
             trigger="click"
             placement="top"
@@ -165,6 +195,7 @@ const Gallery = (props) => {
           </OverlayTrigger>
         </div>
 
+        {/*graphics */}
         <Row>
           {filteredCards.map((card) => (
             <Col key={card.id} xs={12} sm={8} md={6} lg={4} xl={3}>
@@ -186,6 +217,8 @@ const Gallery = (props) => {
             </Col>
           ))}
         </Row>
+
+        {/*conditional if no graphics */}
         {filteredCards.length === 0 && (
           <Container
             className="d-flex flex-column align-items-center justify-content-center mt-2 mb-5"
