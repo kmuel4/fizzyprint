@@ -6,18 +6,24 @@ import {
   Badge,
   OverlayTrigger,
   Tooltip,
+  Form,
+  InputGroup,
+  FloatingLabel,
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../main.css";
 import {
   faBagShopping,
-  faList,
+  faBars,
   faMagnifyingGlass,
+  faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState, useEffect } from "react";
 
 const CustomNavbar = (props) => {
+  const [showSearchInput, setShowSearchInput] = useState(false);
+
   // scroll to top of page
   const scrollToTop = () => {
     window.scrollTo({
@@ -92,6 +98,10 @@ const CustomNavbar = (props) => {
     }
   }, [props.cartItemsLength]);
 
+  const toggleSearchInput = () => {
+    setShowSearchInput(!showSearchInput);
+  };
+
   return (
     <>
       {/* countdown timer */}
@@ -128,64 +138,86 @@ const CustomNavbar = (props) => {
           justifyContent: "center",
         }}
       >
-        <Container fluid>
-          <Row
-            className="w-100 align-items-center"
-            style={{ flexWrap: "nowrap" }}
-          >
-            {/* menu and search */}
-            <Col xs="auto">
-              <FontAwesomeIcon
-                icon={faList}
-                size="xl"
-                style={{ cursor: "pointer" }}
-                onClick={() => handleMenu()}
-              />
-              <FontAwesomeIcon
-                icon={faMagnifyingGlass}
-                size="lg"
-                style={{ marginLeft: "1.5rem", cursor: "pointer" }}
-              />
-            </Col>
+        {/* search input */}
+        {showSearchInput ? (
+          <Container>
+            <InputGroup>
+              <Form.Control type="text" placeholder="Search" />
+              <InputGroup.Text>
+                <FontAwesomeIcon
+                  icon={faXmark}
+                  size="lg"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => toggleSearchInput()}
+                />
+              </InputGroup.Text>
+            </InputGroup>
+          </Container>
+        ) : (
+          <Container fluid>
+            <Row
+              className="w-100 align-items-center"
+              style={{ flexWrap: "nowrap" }}
+            >
+              {/* menu and search */}
+              <Col xs="auto">
+                <FontAwesomeIcon
+                  icon={faBars}
+                  size="xl"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => handleMenu()}
+                />
+                <FontAwesomeIcon
+                  icon={faMagnifyingGlass}
+                  size="lg"
+                  style={{ marginLeft: "1.5rem", cursor: "pointer" }}
+                  onClick={() => toggleSearchInput()}
+                />
+              </Col>
 
-            {/* brand */}
-            <Col xs="auto" className="text-center flex-fill">
-              <span
-                onClick={scrollToTop}
-                style={{
-                  cursor: "pointer",
-                  fontSize: "1.5rem",
-                  color: "white",
-                }}
-              >
-                <strong style={{ color: "black" }}>Fizzy Prints</strong>
-              </span>
-            </Col>
-
-            {/* log in, cart icon, badge */}
-            <Col xs="auto" className="ml-auto d-flex text-right">
-              <span style={{ cursor: "pointer" }}>Log In</span>
-              <FontAwesomeIcon
-                icon={faBagShopping}
-                bounce={cartAnimate}
-                onClick={() => handleCheckout()}
-                size="xl"
-                style={{ cursor: "pointer", marginLeft: "1rem" }}
-              />
-              {props.cartItemsLength > 0 ? (
-                <Badge
-                  pill
-                  style={{ position: "absolute", top: "1rem", right: "1.5rem" }}
-                  className="bg-danger"
+              {/* brand */}
+              <Col xs="auto" className="text-center flex-fill">
+                <span
+                  onClick={scrollToTop}
+                  style={{
+                    cursor: "pointer",
+                    fontSize: "1.5rem",
+                    color: "white",
+                  }}
                 >
-                  {props.cartItemsLength}
-                </Badge>
-              ) : (
-                <></>
-              )}
-            </Col>
-          </Row>
-        </Container>
+                  <strong style={{ color: "black" }}>Fizzy Prints</strong>
+                </span>
+              </Col>
+
+              {/* log in, cart icon, badge */}
+              <Col xs="auto" className="ml-auto d-flex text-right">
+                <span style={{ cursor: "pointer" }}>Log In</span>
+                <FontAwesomeIcon
+                  icon={faBagShopping}
+                  bounce={cartAnimate}
+                  onClick={() => handleCheckout()}
+                  size="xl"
+                  style={{ cursor: "pointer", marginLeft: "1rem" }}
+                />
+                {props.cartItemsLength > 0 ? (
+                  <Badge
+                    pill
+                    style={{
+                      position: "absolute",
+                      top: "1rem",
+                      right: "1.5rem",
+                    }}
+                    className="bg-danger"
+                  >
+                    {props.cartItemsLength}
+                  </Badge>
+                ) : (
+                  <></>
+                )}
+              </Col>
+            </Row>
+          </Container>
+        )}
       </Navbar>
     </>
   );

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Offcanvas, Form } from "react-bootstrap";
+import { Offcanvas, Form, Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../main.css";
 import MenuNavItem from "../components/MenuNavItem";
@@ -65,25 +65,23 @@ const Menu = (props) => {
           </Offcanvas.Header>
           <Offcanvas.Body>
             <MenuNavItem name="Home" click={handleNav} icon={faHouse} />
-
             <br />
-
             <MenuNavItem name="Shop" click={handleNav} icon={faStore} />
             <br />
-
             <MenuNavItem name="About" click={handleNav} icon={faCircleInfo} />
-
             <hr />
-
             <MenuNavItem name="Sign Up" click={handleNav} icon={faPaperPlane} />
-
             <br />
-
             <MenuNavItem
               name="Survey"
               click={handleNav}
               icon={faCompassDrafting}
             />
+            <hr />
+            <Container style={{ textDecoration: "underline" }}>
+              <p style={{ cursor: "pointer" }}>Help</p>
+              <p style={{ cursor: "pointer" }}>Log In</p>
+            </Container>
           </Offcanvas.Body>
         </Form>
       </Offcanvas>
