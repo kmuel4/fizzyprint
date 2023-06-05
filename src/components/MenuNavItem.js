@@ -24,7 +24,7 @@ const MenuNavItem = (props) => {
         <FontAwesomeIcon icon={props.icon} />
         <div style={{marginLeft: "1rem"}}>{props.name}</div>
       </div>
-      {props.name === "Sign Up" || props.name === "Survey" ? (
+      {props.name === "Sign Up" || props.name === "Survey" || props.name === "Log In" ? (
         <>
           <FontAwesomeIcon
             icon={faAngleRight}

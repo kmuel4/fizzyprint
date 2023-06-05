@@ -9,6 +9,7 @@ import {
   faCircleInfo,
   faPaperPlane,
   faHouse,
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 
 const Menu = (props) => {
@@ -39,7 +40,7 @@ const Menu = (props) => {
         return modalHelper(2);
       case "Survey":
         return modalHelper(1);
-      case "LogIn":
+      case "Log In":
         return modalHelper(5);
       default:
         return;
@@ -79,12 +80,11 @@ const Menu = (props) => {
               click={handleNav}
               icon={faCompassDrafting}
             />
+            <br />
+            <MenuNavItem name="Log In" click={handleNav} icon={faUser} />
             <hr />
             <Container style={{ textDecoration: "underline" }}>
               <p style={{ cursor: "pointer" }}>Help</p>
-              <p style={{ cursor: "pointer" }} onClick={()=>handleNav("LogIn")}>
-                Log In
-              </p>
             </Container>
           </Offcanvas.Body>
         </Form>
