@@ -27,7 +27,12 @@ const About = () => {
       >
         <h1 style={{ fontSize: "4rem", fontWeight: "bold" }}>About</h1>
       </Card>
-      <p>about page</p>
+      <p>our mission</p>
+      <p>our promise</p>
+      <p>made for a new world</p>
+      <p>from your favorite seltzer companies</p>
+
+
     </>
   );
 };
