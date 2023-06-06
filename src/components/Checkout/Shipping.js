@@ -159,7 +159,7 @@ const Shipping = ({ complete }) => {
       </Container>
 
       {/*terms */}
-      <p
+      <div
         className="text-muted"
         style={{
           position: "absolute",
@@ -182,7 +182,7 @@ const Shipping = ({ complete }) => {
           <p>Terms of service</p> <p>Subscription policy</p>
           <p>Shop Cash</p> <p>Terms</p>
         </Stack>
-      </p>
+      </div>
     </>
   );
 };

@@ -30,7 +30,7 @@ const Information = (props) => {
   const [city, setCity] = useState("");
 
   //handle zip code
-  const [zip, setZip] = useState();
+  const [zip, setZip] = useState("");
   const handleZipChange = (event) => {
     const value = event.target.value;
     if (value.length <= 5) {
@@ -226,7 +226,7 @@ const Information = (props) => {
       </Container>
 
       {/*terms */}
-      <p
+      <div
         className="text-muted"
         style={{
           position: "relative",
@@ -245,7 +245,7 @@ const Information = (props) => {
           <p>Terms of service</p> <p>Subscription policy</p>
           <p>Shop Cash</p> <p>Terms</p>
         </Stack>
-      </p>
+      </div>
     </>
   );
 };

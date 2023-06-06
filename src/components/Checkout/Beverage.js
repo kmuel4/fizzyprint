@@ -1,7 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Image } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import SelectBeverage from "./SelectBeverage";
-import wordArt from "../../Images/BeverageSelection-WordArt.png";
 
 const Beverage = (props) => {
   //total price

@@ -118,7 +118,7 @@ const LogIn = (props) => {
               }}
             >
               <p>
-                Don't Have An Account? <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Sign Up</a>
+                Don't Have An Account? <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" rel="noreferrer" target="_blank">Sign Up</a>
               </p>
             </Container>
           </Modal.Footer>

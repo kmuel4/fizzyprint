@@ -1,8 +1,7 @@
 import { Container, Card, Form, Stack } from "react-bootstrap";
-import paypal from "../../Images/PayPal-example.png";
 import { useEffect } from "react";
 
-const PayPal = ({ complete }) => {
+const Payment = ({ complete }) => {
   useEffect(() => {
     complete(true);
   }, [complete]);
@@ -206,7 +205,7 @@ const PayPal = ({ complete }) => {
         </Container>
       </Container>
       {/*terms */}
-      <p
+      <div
         className="text-muted"
         style={{
           position: "relative",
@@ -225,9 +224,9 @@ const PayPal = ({ complete }) => {
           <p>Terms of service</p> <p>Subscription policy</p>
           <p>Shop Cash</p> <p>Terms</p>
         </Stack>
-      </p>
+      </div>
     </>
   );
 };
 
-export default PayPal;
+export default Payment;

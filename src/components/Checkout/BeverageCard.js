@@ -204,7 +204,6 @@ const BeverageCard = (props) => {
                         min={1}
                         defaultValue={1}
                         max={9}
-                        value={quantity}
                         onChange={handleQuantityChange}
                         style={{ cursor: "pointer" }}
                       />

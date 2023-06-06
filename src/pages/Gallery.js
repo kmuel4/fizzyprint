@@ -30,7 +30,7 @@ const Gallery = (props) => {
   //apply the filter to the cards
   useEffect(() => {
     applyFilterAndSort(selectedFilter);
-  }, [selectedFilter, selectedSortOption]);
+  }, [selectedFilter, selectedSortOption, applyFilterAndSort]);
 
   //handle filter and sort
   const applyFilterAndSort = (filter) => {

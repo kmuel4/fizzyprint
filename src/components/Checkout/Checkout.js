@@ -6,21 +6,32 @@ import {
   InputGroup,
   ProgressBar,
   Breadcrumb,
-  Container
+  Offcanvas,
+  Container,
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { faCircleRight, faCopyright } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCircleRight,
+  faCopyright,
+  faCaretRight,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Beverage from "./Beverage";
 import Preview from "./Preview";
 import Information from "./Information";
-import PayPal from "./PayPal";
+import Payment from "./Payment";
 import Receipt from "./Receipt";
 import Shipping from "./Shipping";
+import SummaryCard from "./SummaryCard";
 
 const Checkout = (props) => {
   //handle modal
   const [show, setShow] = useState(true);
+
+  const [showSummary, setShowSummary] = useState(false);
+
+  const handleCloseSummary = () => setShowSummary(false);
+  const handleShowSummary = () => setShowSummary(true);
 
   //close modal
   const handleClose = () => {
@@ -56,7 +67,7 @@ const Checkout = (props) => {
 
   const [total, setTotal] = useState("0.00");
   const handleTotal = (value) => {
-    setTotal(parseFloat(value));
+    setTotal(parseFloat(value).toFixed(2));
   };
 
   const [complete, setComplete] = useState(false);
@@ -106,7 +117,7 @@ const Checkout = (props) => {
       case 3:
         return <Shipping complete={handleComplete} />;
       case 4:
-        return <PayPal complete={handleComplete} />;
+        return <Payment complete={handleComplete} />;
       case 5:
         return <Receipt complete={handleComplete} />;
       default:
@@ -128,7 +139,7 @@ const Checkout = (props) => {
         return setProgress(60);
       case 4:
         return setProgress(80);
-        case 5: 
+      case 5:
         return setProgress(100);
       default:
         return setProgress(0);
@@ -175,7 +186,6 @@ const Checkout = (props) => {
 
           {/*handle checkout screens */}
           {handleScreens(index)}
-
         </Modal.Body>
         <Modal.Footer>
           <div
@@ -187,15 +197,12 @@ const Checkout = (props) => {
               FizzyPrint <FontAwesomeIcon icon={faCopyright} />
             </Form.Text>
 
-            {/*subtotal, hide on receipt page */}
-            {index !== 4 && (
-              <Form.Group style={{ maxWidth: "10rem" }}>
-                <InputGroup>
-                  <InputGroup.Text>$</InputGroup.Text>
-                  <Form.Control placeholder={total} disabled />
-                </InputGroup>
-              </Form.Group>
-            )}
+            {/*summary, show after preview */}
+            
+              <Button onClick={handleShowSummary}>
+                Order Summary ${total}&nbsp;<FontAwesomeIcon icon={faCaretRight} />
+              </Button>
+           
 
             <div className="d-flex justify-content-end">
               {/*next button */}
@@ -216,9 +223,48 @@ const Checkout = (props) => {
               </Button>
             </div>
           </div>
-          
         </Modal.Footer>
       </Modal>
+
+      {/*summary */}
+      <Offcanvas
+        placement="end"
+        show={showSummary}
+        onHide={handleCloseSummary}
+        style={{ zIndex: 2000 }}
+        backdrop={false}
+      >
+        <Offcanvas.Header closeButton>
+          <Offcanvas.Title>Order Summary</Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body>
+          <Container>
+            {props.cart.map((item) => {
+              const card = props.cards.find((card) => card.id === item);
+              return <SummaryCard key={item} card={card} item={item} />;
+            })}
+            <div style={{ marginBottom: "10rem" }}></div>
+            <Container
+              style={{
+                position: "absolute",
+                bottom: "0rem",
+                right: "0rem",
+                backgroundColor: "white",
+                padding: "1rem",
+                backgroundColor: "#0d6efd",
+              }}
+            >
+              <div style={{ color: "white" }}>
+                <strong>
+                  <p>Subtotal: ${total}</p>
+                  <p>Shipping: </p>
+                  <p>Total: </p>
+                </strong>
+              </div>
+            </Container>
+          </Container>
+        </Offcanvas.Body>
+      </Offcanvas>
     </>
   );
 };
