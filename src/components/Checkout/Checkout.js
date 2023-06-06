@@ -6,15 +6,17 @@ import {
   InputGroup,
   ProgressBar,
   Breadcrumb,
+  Container
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { faCircleRight, faCopyright } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Beverage from "./Beverage";
 import Preview from "./Preview";
-import Shipping from "./Shipping";
+import Information from "./Information";
 import PayPal from "./PayPal";
 import Receipt from "./Receipt";
+import Shipping from "./Shipping";
 
 const Checkout = (props) => {
   //handle modal
@@ -22,7 +24,7 @@ const Checkout = (props) => {
 
   //close modal
   const handleClose = () => {
-    if (index === 4) {
+    if (index === 5) {
       setShow(false);
       handleFinish();
     } else {
@@ -46,7 +48,7 @@ const Checkout = (props) => {
   //next
   const handleNext = () => {
     setComplete(false);
-    if (index === 4) {
+    if (index === 5) {
       return handleFinish();
     }
     setIndex((prevIndex) => prevIndex + 1);
@@ -71,10 +73,12 @@ const Checkout = (props) => {
       case 1:
         return setBreadcrumbs(["Drinks", "Preview"]);
       case 2:
-        return setBreadcrumbs(["Drinks", "...", "Shipping"]);
+        return setBreadcrumbs(["Drinks", "...", "Information"]);
       case 3:
-        return setBreadcrumbs(["Drinks", "...", "Payment"]);
+        return setBreadcrumbs(["Drinks", "...", "Shipping"]);
       case 4:
+        return setBreadcrumbs(["Drinks", "...", "Payment"]);
+      case 5:
         return setBreadcrumbs(["Drinks", "...", "Receipt"]);
       default:
         return setBreadcrumbs(["Drinks"]);
@@ -98,10 +102,12 @@ const Checkout = (props) => {
       case 1:
         return <Preview complete={handleComplete} />;
       case 2:
-        return <Shipping complete={handleComplete} />;
+        return <Information complete={handleComplete} />;
       case 3:
-        return <PayPal complete={handleComplete} />;
+        return <Shipping complete={handleComplete} />;
       case 4:
+        return <PayPal complete={handleComplete} />;
+      case 5:
         return <Receipt complete={handleComplete} />;
       default:
         return;
@@ -115,12 +121,14 @@ const Checkout = (props) => {
       case 0:
         return setProgress(5);
       case 1:
-        return setProgress(25);
+        return setProgress(20);
       case 2:
-        return setProgress(50);
+        return setProgress(40);
       case 3:
-        return setProgress(75);
+        return setProgress(60);
       case 4:
+        return setProgress(80);
+        case 5: 
         return setProgress(100);
       default:
         return setProgress(0);
@@ -167,9 +175,13 @@ const Checkout = (props) => {
 
           {/*handle checkout screens */}
           {handleScreens(index)}
+
         </Modal.Body>
         <Modal.Footer>
-          <div className="d-flex justify-content-between w-100">
+          <div
+            className="d-flex justify-content-between w-100"
+            style={{ alignItems: "center" }}
+          >
             {/*return button, disable on receipt page and home page*/}
             <Form.Text>
               FizzyPrint <FontAwesomeIcon icon={faCopyright} />
@@ -192,10 +204,10 @@ const Checkout = (props) => {
                 disabled={!complete}
                 onClick={() => handleNext()}
               >
-                {index !== 4 ? (
+                {index !== 5 ? (
                   <FontAwesomeIcon
                     icon={faCircleRight}
-                    size="xl"
+                    size="lg"
                     beat={complete}
                   />
                 ) : (
@@ -204,6 +216,7 @@ const Checkout = (props) => {
               </Button>
             </div>
           </div>
+          
         </Modal.Footer>
       </Modal>
     </>
