@@ -1,6 +1,5 @@
-import { Card, Image } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import { useEffect } from "react";
-import wordArt from "../Images/About-WordArt.png";
 
 const About = () => {
   // scroll to top of page on load

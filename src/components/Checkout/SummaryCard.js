@@ -1,12 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Card, Container, Col, Row } from "react-bootstrap";
+import React, { useState } from "react";
+import { Card, Container, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {
-  faTrashAlt,
-  faLock,
-  faLockOpen,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const SummaryCard = (props) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -14,7 +8,6 @@ const SummaryCard = (props) => {
     boxShadow: isHovered
       ? "0 0 5px rgba(0, 0, 0, 0.4)"
       : "0 0 3px rgba(0, 0, 0, 0.2)",
-    marginRight: "1rem",
     minWidth: "5rem",
     display: "flex",
     flexDirection: "row",

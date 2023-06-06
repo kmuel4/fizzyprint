@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import GraphicCard from "../components/GraphicCard/GraphicCard.js";
 import {
   Container,
@@ -28,24 +28,19 @@ const Gallery = (props) => {
   const [filteredCards, setFilteredCards] = useState(props.cards);
 
   //apply the filter to the cards
-  useEffect(() => {
-    applyFilterAndSort(selectedFilter);
-  }, [selectedFilter, selectedSortOption, applyFilterAndSort]);
-
-  //handle filter and sort
-  const applyFilterAndSort = (filter) => {
+  const applyFilterAndSort = useCallback((filter) => {
     let filtered = [];
     //show all
     if (filter === "all") {
       filtered = props.cards;
     }
-    //show avaliability
+    //show availability
     else if (filter === "availability") {
-      //high avaliability
+      //high availability
       const highStockCards = props.cards.filter(
         (card) => card.stock === "high"
       );
-      //low avaliability
+      //low availability
       const lowStockCards = props.cards.filter((card) => card.stock === "low");
       //combine
       filtered = [...lowStockCards, ...highStockCards];
@@ -71,21 +66,41 @@ const Gallery = (props) => {
     }
 
     setFilteredCards(sorted);
-  };
+  }, [props.cards, selectedSortOption]);
 
-  //handle filter
+  //handle filter and sort
+  useEffect(() => {
+    applyFilterAndSort(selectedFilter);
+  }, [selectedFilter, selectedSortOption, applyFilterAndSort]);
+
+  //handle filter change
   const handleFilterChange = (event) => {
     setSelectedFilter(event.target.value);
   };
 
-  //sort and filter settings
+  //handle add graphic to cart
+  const handleAdd = (value) => {
+    props.add(value);
+  };
+
+  //handle remove graphic from cart
+  const handleRemove = (value) => {
+    props.remove(value);
+  };
+
+  //handle add graphic as favorite
+  const handleFavorite = (id, status) => {
+    props.handleFavorite(id, status);
+  };
+
+  //rendered popover for sort and filter options
   const SortAndFilterPopover = (
     <Popover>
       <Popover.Body>
         {/* sort */}
         <Form.Group>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
-            {/*a to z */}
+            {/* a to z */}
             <Form.Check
               type="radio"
               id="sort-az"
@@ -99,7 +114,7 @@ const Gallery = (props) => {
               checked={selectedSortOption === "az"}
               onChange={(event) => setSelectedSortOption(event.target.value)}
             />
-            {/*z to a */}
+            {/* z to a */}
             <Form.Check
               type="radio"
               id="sort-za"
@@ -131,7 +146,7 @@ const Gallery = (props) => {
     </Popover>
   );
 
-  //top on page load
+  //scroll to top on page load
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -140,24 +155,9 @@ const Gallery = (props) => {
     });
   }, []);
 
-  //add graphic to cart
-  const handleAdd = (value) => {
-    props.add(value);
-  };
-
-  //remove from cart
-  const handleRemove = (value) => {
-    props.remove(value);
-  };
-
-  //add graphic as favorite
-  const handleFavorite = (id, status) => {
-    props.handleFavorite(id, status);
-  };
-
   return (
     <>
-      {/*title */}
+      {/* title */}
       <Card
         style={{
           display: "flex",
@@ -169,8 +169,7 @@ const Gallery = (props) => {
           padding: "1rem",
           borderRadius: "0px",
           marginBottom: "2rem",
-          boxShadow: "1px 0px 3px rgba(5, 5, 5, 0.5)"
-          
+          boxShadow: "1px 0px 3px rgba(5, 5, 5, 0.5)",
         }}
       >
         <h1 style={{ fontSize: "4rem", fontWeight: "bold" }}>Shop Gallery</h1>
@@ -185,10 +184,10 @@ const Gallery = (props) => {
             marginBottom: "1rem",
           }}
         >
-          {/*number of items shown */}
+          {/* number of items shown */}
           <p>{filteredCards.length} Items</p>
 
-          {/*sort and filter   */}
+          {/* sort and filter */}
           <OverlayTrigger
             trigger="click"
             placement="top"
@@ -201,7 +200,7 @@ const Gallery = (props) => {
           </OverlayTrigger>
         </div>
 
-        {/*graphics */}
+        {/* graphics */}
         <Row>
           {filteredCards.map((card) => (
             <Col key={card.id} xs={12} sm={8} md={6} lg={4} xl={3}>
@@ -224,7 +223,7 @@ const Gallery = (props) => {
           ))}
         </Row>
 
-        {/*conditional if no graphics */}
+        {/* conditional rendering if no graphics */}
         {filteredCards.length === 0 && (
           <Container
             className="d-flex flex-column align-items-center justify-content-center mt-2 mb-5"

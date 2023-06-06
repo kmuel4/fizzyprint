@@ -1,7 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Image } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { useEffect } from "react";
-import wordArt from "../../Images/Preview-WordArt.png";
 
 const Preview = (props) => {
   useEffect(() => {

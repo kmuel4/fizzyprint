@@ -3,7 +3,6 @@ import {
   Button,
   Modal,
   Form,
-  InputGroup,
   ProgressBar,
   Breadcrumb,
   Offcanvas,
@@ -249,7 +248,6 @@ const Checkout = (props) => {
                 position: "absolute",
                 bottom: "0rem",
                 right: "0rem",
-                backgroundColor: "white",
                 padding: "1rem",
                 backgroundColor: "#0d6efd",
               }}
